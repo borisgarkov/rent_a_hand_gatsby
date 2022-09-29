@@ -198,4 +198,10 @@ const MainPage = () => {
 
 export default MainPage
 
-export const Head = () => <title>Rent A Hand</title>
+export const Head = () => (
+    <>
+        <title>Rent A Hand</title>
+        <meta name="description" content="Rent a Hand - jobs portal" />
+        <meta name="keywords" content="Рент ъ хенд, Rent a Hand, работа, стаж, проекти, задачи, почасова работа" />
+    </>
+)
