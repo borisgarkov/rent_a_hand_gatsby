@@ -21,6 +21,8 @@ import cld from '../../services/getCloudinaryImages';
 import { theme } from '../../utils/mainTheme';
 
 import { Link, navigate } from 'gatsby';
+import Footer from '../CommonItems/Footer';
+import BackToTopButton from '../CommonItems/BackToTopButton';
 
 const logo = cld.image('main page photos/Rent_A_Hand_D1_ekcqtj').toURL();
 
@@ -163,6 +165,8 @@ const Navigation = ({ children }) => {
             </AppBar>
             <Toolbar id='navbar' />
             {children}
+            <BackToTopButton />
+            <Footer />
         </ThemeProvider>
     )
 }

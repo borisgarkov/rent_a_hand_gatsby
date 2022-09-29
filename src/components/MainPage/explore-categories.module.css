@@ -7,12 +7,12 @@
 }
 
 
-.grid-parent:hover .divider {
+.gridParent:hover .divider {
     background-color: #f37327;
     border-color: #f37327;
     width: 35%;
 }
 
-.grid-parent:hover .icon {
+.gridParent:hover .icon {
     transform: scale(1.2, 1.2);
 }

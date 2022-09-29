@@ -77,14 +77,14 @@ export default function ExploreTheMarketPlace() {
                     categories.map(x =>
                         <Grid
                             key={x.category}
-                            className={styles['grid-parent']}
+                            className={styles.gridParent}
                             item xs={5} md={2}
                             sx={{ cursor: 'pointer', textAlign: 'center', }} onClick={handleClickOpen}
                         >
-                            <Box className={styles['icon']}>
+                            <Box className={styles.icon}>
                                 {x.icon}
                             </Box>
-                            <Divider className={styles['divider']} sx={{
+                            <Divider className={styles.divider} sx={{
                                 width: '20%', margin: '0 auto', bgcolor: '#176ab4',
                                 border: '1px solid #176ab4',
                             }} />

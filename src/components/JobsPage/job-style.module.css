@@ -1,0 +1,8 @@
+.centerUlItems ul {
+    justify-content: center;
+}
+
+.image {
+    width: 50%;
+    box-shadow: 0 0 50px 50px white inset;
+}
