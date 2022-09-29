@@ -1,5 +1,5 @@
-import { navigate } from "gatsby";
 import * as React from "react";
+import { navigate } from "gatsby";
 
 import CustomerFeedback from "../components/MainPage/CustomerFeedback";
 import ExploreTheMarketPlace from "../components/MainPage/ExploreTheMarketPlace";
