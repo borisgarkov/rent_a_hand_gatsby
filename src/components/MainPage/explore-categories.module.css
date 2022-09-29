@@ -1,0 +1,18 @@
+.divider {
+    transition: width 0.5s;
+}
+
+.icon {
+    transition: transform 0.5s;
+}
+
+
+.grid-parent:hover .divider {
+    background-color: #f37327;
+    border-color: #f37327;
+    width: 35%;
+}
+
+.grid-parent:hover .icon {
+    transform: scale(1.2, 1.2);
+}
