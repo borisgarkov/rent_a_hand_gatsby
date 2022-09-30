@@ -1,20 +1,16 @@
 import * as React from "react";
 import { Avatar, Button, Card, CardContent, CardHeader, CardMedia, Divider, Stack, Typography, Box } from "@mui/material";
-import { jobs, projects } from './test-jobs'
+import { jobs, projects } from "../components/JobsPage/test-jobs";
 
 import WorkIcon from '@mui/icons-material/Work';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import BackToTopButton from "../CommonItems/BackToTopButton";
-
 import DesignServicesOutlinedIcon from '@mui/icons-material/DesignServicesOutlined';
 import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
 
-import cld from "../../services/getCloudinaryImages";
+import cld from "../services/getCloudinaryImages";
+import Navigation from "../components/NavigationBar/Navigation";
 
 const coverImage = cld.image('main page photos/main_pageworking_desk_m3ay3c').toURL();
-
-
-
 const job = jobs[3];
 
 const iconMetaDataStyle = {
@@ -65,7 +61,7 @@ const SideAllJobsMenu = ({ jobs, title, icon }) => {
 
 export default function JobDescriptionPage() {
     return (
-        <>
+        <Navigation>
             <Box sx={{
                 display: 'flex',
                 flexDirection: { xs: 'column-reverse', md: 'row', },
@@ -113,9 +109,8 @@ export default function JobDescriptionPage() {
                         </Typography>
                         <Button variant='contained'>Свържи се</Button>
                     </CardContent>
-                    <BackToTopButton />
                 </Card>
             </Box>
-        </>
+        </Navigation>
     )
 }

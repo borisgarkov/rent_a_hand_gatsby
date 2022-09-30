@@ -133,8 +133,6 @@ export default function JobsPage() {
                 }
             </Stack>
 
-
-
             <Stack spacing={2} sx={{ maxWidth: 1000, margin: 'auto', marginTop: 5, marginBottom: 5 }} >
                 <Pagination
                     size='large'
