@@ -4,7 +4,6 @@ import * as React from "react"
 export default function BaseRegistrationTemplate({
     formData,
     handleFormDataSubmit,
-    backgroundPicture,
     registrationTitle,
     steps,
 }) {
@@ -40,7 +39,7 @@ export default function BaseRegistrationTemplate({
 
     return (
         <Grid container sx={{
-            height: '100vh',
+            height: '100%',
             justifyContent: 'center',
             margin: '8px auto',
         }} >
