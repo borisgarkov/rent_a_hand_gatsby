@@ -1,8 +1,8 @@
 import { Stack, Typography } from "@mui/material";
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
-import { EditSectionButton } from "./EditSectionButton";
 import { userInfoIconHeadingCssStyle } from './commonProfileCssStyles';
 import * as React from 'react';
+import user from "./testUser";
 
 export const UserJobSection = () => {
     return (
@@ -12,8 +12,7 @@ export const UserJobSection = () => {
             ...userInfoIconHeadingCssStyle,
         }}>
             <WorkOutlineOutlinedIcon sx={{ color: 'primary.main' }} />
-            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 1 }}>Механик</Typography>
-            <EditSectionButton />
+            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 1 }}>{user.userJob}</Typography>
         </Stack>
     )
 }

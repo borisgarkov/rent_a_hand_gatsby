@@ -1,54 +1,72 @@
 import Grid from '@mui/material/Grid';
-import { FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { Button, Chip, FormControlLabel, TextField, Typography, Stack, Autocomplete, Checkbox } from '@mui/material';
 import BaseRegistrationTextField from '../CommonRegistrationComponents/BaseRegistrationTextField';
 import * as React from "react";
+import universitiesList from './univerisitiesList';
+import FreelanceRegisterStateContext from './freelanceRegisterContext';
 
-const registrationFields = [
-    {
-        type: 'text',
-        textField: 'profession',
-        id: 'profession',
-        label: 'Професия',
-        autoComplete: 'profession',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-    {
-        type: 'number',
-        textField: 'wage',
-        id: 'wage',
-        label: 'Заплащане на час',
-        autoComplete: 'wage',
-        required: false,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-    {
-        type: 'text',
-        textField: 'education',
-        id: 'education',
-        label: 'Образование',
-        autoComplete: 'education',
-        required: false,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-]
+/* 
+    registration fields:
+        'profession',
+        'telephone',
+        'expectedWage',
+        'university',
+        'workType',
+        'resume',
+        'skills'
 
+*/
 
 export default function SkillsEducationFormFreelancerRegister() {
-    const [workType, setWorkType] = React.useState('желая да работя само на свободна практика')
+    const {
+        profession, handleProfessionChange, telephone, handleTelephoneChange,
+        expectedWage, handleExpectedWageChange,
+        wantToWorkFullTime, handleWantToWorkFullTimeChange, inputSkillValue, handleInputSkillChange,
+        skills, handleSkillChange, handleDeleteSkill, university, handleUniversityChange,
+        otherUniversity, handleOtherUniversityChange
+    } = React.useContext(FreelanceRegisterStateContext);
 
-    const handleChange = (event) => {
-        setWorkType(event.target.value)
-    };
-
-    const freelanceWork = 'интересувам се от проекти / задачи';
-    const fullTimeJob = 'интересувам се от проекти / задачи и предложения за постоянна работа';
+    const registrationFields = [
+        {
+            type: 'text',
+            textField: 'profession',
+            id: 'profession',
+            label: 'Професия',
+            autoComplete: 'profession',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: profession,
+            updateFunction: handleProfessionChange
+        },
+        {
+            type: 'tel',
+            textField: 'telephone',
+            id: 'telephone',
+            label: 'Телефон',
+            autoComplete: 'telephone',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: telephone,
+            updateFunction: handleTelephoneChange
+        },
+        {
+            type: 'number',
+            textField: 'expectedWage',
+            id: 'expectedWage',
+            label: 'Заплащане на час',
+            autoComplete: 'expectedWage',
+            required: false,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: expectedWage,
+            updateFunction: handleExpectedWageChange
+        },
+    ];
 
     return (
         <Grid container spacing={3}>
@@ -57,17 +75,30 @@ export default function SkillsEducationFormFreelancerRegister() {
             }
 
             <Grid item xs={12}>
-                <RadioGroup
-                    aria-labelledby="demo-controlled-radio-buttons-group"
-                    name="controlled-radio-buttons-group"
-                    value={workType}
-                    onChange={handleChange}
-                    row
-                >
-                    <FormControlLabel value={freelanceWork} control={<Radio />} label={freelanceWork} />
-                    <FormControlLabel value={fullTimeJob} control={<Radio />} label={fullTimeJob} />
-                </RadioGroup>
+                <Autocomplete
+                    disablePortal
+                    id="university"
+                    value={university}
+                    onChange={handleUniversityChange}
+                    options={universitiesList}
+                    fullWidth
+                    renderInput={(params) => <TextField {...params} label="Университет" />}
+                />
             </Grid>
+            {
+                university === 'Друг'
+                    ? <Grid item xs={12}>
+                        <TextField
+                            id='otherUniversity'
+                            type='text'
+                            fullWidth
+                            label='Моля, въведете Вашия университет'
+                            value={otherUniversity}
+                            onChange={handleOtherUniversityChange}
+                        />
+                    </Grid>
+                    : null
+            }
 
             <Grid item xs={12}>
                 <TextField
@@ -77,25 +108,28 @@ export default function SkillsEducationFormFreelancerRegister() {
                     id="resume"
                     name="resume"
                     required
-                    InputProps={{
-                        rows: 5
-                    }}
+                    InputProps={{ rows: 5 }}
                 />
             </Grid>
+
             <Grid item xs={12}>
-                <TextField
-                    fullWidth
-                    multiline
-                    label="Добави твоите умения"
-                    id="skills"
-                    name="skills"
-                    required
-                    InputProps={{
-                        rows: 5
-                    }}
+                <Typography sx={{ margin: '0 0 16px' }}>Добави твоите умения</Typography>
+                <TextField fullWidth sx={{ margin: '0 0 24px' }} value={inputSkillValue} onChange={handleInputSkillChange} />
+                <Button variant='contained' sx={{ margin: '0 0 16px' }} onClick={handleSkillChange} >+ Добави умение</Button>
+
+                <Stack direction="row" spacing={1}>
+                    {
+                        skills.map((skill) => (<Chip label={skill} onDelete={() => handleDeleteSkill(skill)} key={skill} />))
+                    }
+                </Stack>
+            </Grid>
+
+            <Grid item xs={12}>
+                <FormControlLabel
+                    control={<Checkbox checked={wantToWorkFullTime} onChange={handleWantToWorkFullTimeChange} color="secondary" name="policy" />}
+                    label="Интересувам се от предложения за постоянна работа"
                 />
             </Grid>
         </Grid>
-
     );
 }

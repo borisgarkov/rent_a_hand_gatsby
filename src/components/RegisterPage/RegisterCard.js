@@ -13,10 +13,7 @@ export default function RegisterCard({
                 <CardActionArea>
                     <CardMedia component='img' height='180' image={category_image} alt='category image' />
                     <CardContent>
-                        <Typography sx={{
-                            textAlign: 'center',
-                            zIndex: 2,
-                        }}>
+                        <Typography sx={{ textAlign: 'center', zIndex: 2 }}>
                             {category_description}
                         </Typography>
                     </CardContent>

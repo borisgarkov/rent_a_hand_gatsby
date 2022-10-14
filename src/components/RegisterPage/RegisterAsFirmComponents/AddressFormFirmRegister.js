@@ -3,82 +3,101 @@ import Grid from "@mui/material/Grid";
 import BaseRegistrationTextField from "../CommonRegistrationComponents/BaseRegistrationTextField";
 import ImageUpload from "../CommonRegistrationComponents/ImageUpload";
 import * as React from "react";
+import FirmRegistrationContext from "./firmRegisterContext";
 
-const registrationFields = [
-    {
-        type: 'text',
-        textField: 'bulstat',
-        id: 'bulstat',
-        label: 'ЕИК/БУЛСТАТ',
-        autoComplete: '',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-    {
-        type: 'text',
-        textField: 'name-bulgarian',
-        id: 'name-bulgarian',
-        label: 'Име на Компанията (на Кирилица)',
-        autoComplete: '',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-    {
-        type: 'text',
-        textField: 'name-latin',
-        id: 'name-latin',
-        label: 'Име на Компанията (на Латиница)',
-        autoComplete: '',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-    {
-        type: 'text',
-        textField: 'address',
-        id: 'address',
-        label: 'Адрес на компанията по регистрация',
-        autoComplete: '',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-    {
-        type: 'text',
-        textField: 'business-sector',
-        id: 'business-sector',
-        label: 'Бизнес сектор',
-        autoComplete: 'business-sector',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-    {
-        type: 'url',
-        textField: 'website',
-        id: 'website',
-        label: 'Сайт на компанията',
-        autoComplete: 'website',
-        required: false,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-]
 
 export default function AddressFormFirmRegister() {
-    const [personPosition, setPersonPosition] = React.useState('Управител');
 
-    const handleChange = (event) => {
-        setPersonPosition(event.target.value);
-    };
+    const {
+        // administrative information
+        bulstat, handleBulstatChange, companyName, handleCompanyNameChange,
+        address, handleAddressChange, businessSector, handleBusinessSectorChange,
+        website, handleWebsiteChange, employeesNumber, handleEmployeesNumberChange,
+        companyResume, handleCompanyResumeChange, personPosition, handlePersonPositionChange,
+        isImageUploaded, getImageUploaded, isCoverImageUploaded, getCoverImageUploaded
+    } = React.useContext(FirmRegistrationContext);
+
+    const registrationFields = [
+        {
+            type: 'text',
+            textField: 'bulstat',
+            id: 'bulstat',
+            label: 'ЕИК/БУЛСТАТ',
+            autoComplete: '',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: bulstat,
+            updateFunction: handleBulstatChange,
+        },
+        {
+            type: 'text',
+            textField: 'company-name',
+            id: 'company-name',
+            label: 'Име на Компанията',
+            autoComplete: '',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: companyName,
+            updateFunction: handleCompanyNameChange,
+        },
+        {
+            type: 'text',
+            textField: 'address',
+            id: 'address',
+            label: 'Адрес на компанията по регистрация',
+            autoComplete: '',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: address,
+            updateFunction: handleAddressChange,
+        },
+        {
+            type: 'text',
+            textField: 'business-sector',
+            id: 'business-sector',
+            label: 'Бизнес сектор',
+            autoComplete: 'business-sector',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: businessSector,
+            updateFunction: handleBusinessSectorChange,
+        },
+        {
+            type: 'url',
+            textField: 'website',
+            id: 'website',
+            label: 'Сайт на компанията',
+            autoComplete: 'website',
+            required: false,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: website,
+            updateFunction: handleWebsiteChange,
+        },
+        {
+            type: 'number',
+            textField: 'employees-number',
+            id: 'employees-number',
+            label: 'Брой служители',
+            autoComplete: '',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: employeesNumber,
+            updateFunction: handleEmployeesNumberChange,
+        },
+    ];
+
 
     return (
         <Grid container spacing={3}>
@@ -96,6 +115,8 @@ export default function AddressFormFirmRegister() {
                     InputProps={{
                         rows: 5
                     }}
+                    value={companyResume}
+                    onChange={handleCompanyResumeChange}
                 />
             </Grid>
             <Grid item xs={12}>
@@ -107,7 +128,7 @@ export default function AddressFormFirmRegister() {
                         name="person-position"
                         label="Вашата длъжност във фирмата"
                         value={personPosition}
-                        onChange={handleChange}
+                        onChange={handlePersonPositionChange}
                     >
                         <MenuItem value={'Управител'}>Управител</MenuItem>
                         <MenuItem value={'Собственик'}>Собственик</MenuItem>
@@ -115,7 +136,16 @@ export default function AddressFormFirmRegister() {
                 </FormControl>
             </Grid>
 
-            <ImageUpload uploadImageText={'Прикачи фирмено лого *'} />
+            <ImageUpload
+                uploadImageText={'Прикачи фирмено лого *'}
+                isImageUploaded={isImageUploaded}
+                getImageUploaded={getImageUploaded}
+            />
+            <ImageUpload
+                uploadImageText={'Прикачи снимка за корица *'}
+                isImageUploaded={isCoverImageUploaded}
+                getImageUploaded={getCoverImageUploaded}
+            />
         </Grid>
     )
 }

@@ -15,6 +15,8 @@ export default function BaseRegistrationTextField({ field }) {
                 variant="outlined"
                 onInvalid={(e) => e.target.setCustomValidity('Моля, попълнете полето!')}
                 onInput={(e) => e.target.setCustomValidity('')}
+                value={field.value}
+                onChange={field.updateFunction}
             />
         </Grid>
     )

@@ -4,6 +4,7 @@ import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import useScreenResolution from "../../hooks/useScreenResolution";
 import * as React from 'react';
+import user from "./testUser";
 
 
 const BaseNameCityConnectHeadingSection = () => {
@@ -20,13 +21,15 @@ const BaseNameCityConnectHeadingSection = () => {
                 alignItems: 'center',
                 gap: { xs: 1, sm: 0 }
             }}>
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Иван Иванов</Typography>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                    {user.firstName} {user.lastName}
+                </Typography>
                 <Stack sx={{
                     flexDirection: 'row',
                     gap: 0.5,
                 }}>
                     <LocationOnIcon sx={{ color: 'primary.main' }} size='small' />
-                    <Typography variant="body1">Бургас</Typography>
+                    <Typography variant="body1">{user.city}</Typography>
                 </Stack>
             </Stack>
             <Stack sx={{

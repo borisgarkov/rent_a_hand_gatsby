@@ -2,36 +2,37 @@ import Grid from "@mui/material/Grid";
 import BaseRegistrationTextField from "../CommonRegistrationComponents/BaseRegistrationTextField";
 import commonRegistrationFields from "../CommonRegistrationComponents/commonRegistrationFields";
 import * as React from "react";
-
-
-const registrationFields = [
-    ...commonRegistrationFields,
-    {
-        type: 'tel',
-        textField: 'phone',
-        id: 'phone',
-        label: 'Телефон за връзка',
-        autoComplete: 'phone',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-            sm: 6,
-        },
-    },
-    {
-        type: 'number',
-        textField: 'employees-number',
-        id: 'employees-number',
-        label: 'Брой служители',
-        autoComplete: '',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        },
-    },
-];
+import FirmRegistrationContext from "./firmRegisterContext";
 
 export default function AdministrativeInfo() {
+    const {
+        firstName, handleFirstNameChange, lastName, handleLastNameChange,
+        password, handlePasswordChange, secondPassword, handleSecondPasswordChange,
+        email, handleEmailChange, phone, handlePhoneChange
+    } = React.useContext(FirmRegistrationContext);
+
+    const registrationFields = [
+        ...commonRegistrationFields(
+            firstName, handleFirstNameChange, lastName, handleLastNameChange,
+            password, handlePasswordChange, secondPassword, handleSecondPasswordChange,
+            email, handleEmailChange
+        ),
+        {
+            type: 'tel',
+            textField: 'phone',
+            id: 'phone',
+            label: 'Телефон за връзка',
+            autoComplete: 'phone',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+                sm: 6,
+            },
+            value: phone,
+            updateFunction: handlePhoneChange,
+        },
+    ];
+
     return (
         <Grid container spacing={3}>
             {

@@ -1,11 +1,12 @@
 import { Stack, Typography } from "@mui/material";
 import PaymentIcon from '@mui/icons-material/Payment';
 import SchoolIcon from '@mui/icons-material/School';
-import { EditSectionButton } from "./EditSectionButton";
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 import { userInfoIconHeadingCssStyle } from "./commonProfileCssStyles";
 import * as React from 'react';
+import user from "./testUser";
 
-export const UserSalaryAndEducationSection = ({ updateUserInfo, currentUser }) => {
+export const UserSalaryAndEducationSection = () => {
 
     return (
         <>
@@ -14,7 +15,6 @@ export const UserSalaryAndEducationSection = ({ updateUserInfo, currentUser }) =
                 alignItems: 'center',
                 ...userInfoIconHeadingCssStyle,
                 gap: 2,
-                marginBottom: 5,
             }}>
                 <PaymentIcon sx={{ color: '#666666', alignSelf: 'flex-start' }} />
                 <Stack>
@@ -22,20 +22,28 @@ export const UserSalaryAndEducationSection = ({ updateUserInfo, currentUser }) =
                         Заплащане
                     </Typography>
                     <Typography variant='body1' >
-                        {currentUser.wage} лв / час
+                        {user.wage} лв / час
                     </Typography>
                 </Stack>
-                <EditSectionButton dialogTitle={'Заплащане'}
-                    textFieldValue={currentUser.wage}
-                    userDataPoint={'wage'}
-                    updateUserInfo={updateUserInfo} />
             </Stack >
             <Stack sx={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 ...userInfoIconHeadingCssStyle,
                 gap: 2,
-                marginBottom: 5,
+            }}>
+                <DoneAllIcon sx={{ color: '#666666', alignSelf: 'flex-start' }} />
+                <Stack>
+                    <Typography variant='body1'>
+                        Интересувам се от предложения за постоянна работа
+                    </Typography>
+                </Stack>
+            </Stack >
+            <Stack sx={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                ...userInfoIconHeadingCssStyle,
+                gap: 2,
             }}>
                 <SchoolIcon sx={{ color: '#666666', alignSelf: 'flex-start' }} />
                 <Stack spacing={1}>
@@ -43,13 +51,9 @@ export const UserSalaryAndEducationSection = ({ updateUserInfo, currentUser }) =
                         Образование
                     </Typography>
                     <Typography variant='body2'>
-                        {currentUser.university1}
-                    </Typography>
-                    <Typography variant='body2'>
-                        {currentUser.university2}
+                        {user.university}
                     </Typography>
                 </Stack>
-                <EditSectionButton dialogTitle={'Образование'} textFieldValue={currentUser.university1} userDataPoint={'university1'} updateUserInfo={updateUserInfo} />
             </Stack>
         </>
     )

@@ -1,40 +1,44 @@
-import { FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField } from "@mui/material";
-import CategoriesDropDownList from "../CommonItems/CategoriesDropDownList";
+import { Autocomplete, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField } from "@mui/material";
 import BaseRegistrationTextField from "../RegisterPage/CommonRegistrationComponents/BaseRegistrationTextField";
 import * as React from "react";
+import { work_categories } from "../CommonItems/work-categories";
 
-const projectCreationFields = [
-    {
-        type: 'text',
-        textField: 'project-title',
-        id: 'project-title',
-        label: 'Заглавие на проекта',
-        autoComplete: 'title',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-    {
-        type: 'text',
-        textField: 'project-duration',
-        id: 'project-duration',
-        label: 'Продължителност на проекта',
-        autoComplete: 'time',
-        required: true,
-        displaySizeProps: {
-            xs: 12,
-        }
-    },
-]
+export const AddProjectTextFields = ({ context }) => {
 
-export const AddProjectTextFields = () => {
+    const {
+        projectTitle, handleProjectTitleChange, projectDuration, handleProjectDurationChange,
+        workCategory, handleWorkCategoryChange, payment, handlePaymentChange,
+        paymentType, handlePaymentTypeChange, projectDescription, handleProjectDescriptionChange,
+    } = React.useContext(context)
 
-    const [payment, setPayment] = React.useState('на час');
-
-    const handleChange = (event) => {
-        setPayment(event.target.value);
-    };
+    const projectCreationFields = [
+        {
+            type: 'text',
+            textField: 'project-title',
+            id: 'project-title',
+            label: 'Заглавие на проекта',
+            autoComplete: 'title',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: projectTitle,
+            updateFunction: handleProjectTitleChange,
+        },
+        {
+            type: 'text',
+            textField: 'project-duration',
+            id: 'project-duration',
+            label: 'Продължителност на проекта',
+            autoComplete: 'time',
+            required: true,
+            displaySizeProps: {
+                xs: 12,
+            },
+            value: projectDuration,
+            updateFunction: handleProjectDurationChange,
+        },
+    ]
 
     return (
         <>
@@ -44,34 +48,41 @@ export const AddProjectTextFields = () => {
                 }
             </Grid>
             <Grid item xs={12} sx={{ marginTop: 2 }}>
-                <CategoriesDropDownList />
+                <Autocomplete
+                    noOptionsText='Няма намерени резултати'
+                    disablePortal
+                    id="workCategory"
+                    value={workCategory}
+                    onChange={handleWorkCategoryChange}
+                    options={work_categories}
+                    fullWidth
+                    renderInput={(params) => <TextField {...params} label="Категория" />}
+                />
             </Grid>
             <FormControl sx={{ marginTop: 4 }}>
-                <FormLabel id="demo-controlled-radio-buttons-group">Заплащане</FormLabel>
+                <FormLabel id="paymentType">Заплащане</FormLabel>
                 <RadioGroup
-                    aria-labelledby="demo-controlled-radio-buttons-group"
-                    name="controlled-radio-buttons-group"
-                    value={payment}
-                    onChange={handleChange}
+                    aria-labelledby="paymentType"
+                    name="paymentType"
+                    value={paymentType}
+                    onChange={handlePaymentTypeChange}
                     row
                 >
                     <FormControlLabel value="на час" control={<Radio />} label="на час" />
-                    <FormControlLabel
-                        value="еднократно за целия проект"
-                        control={<Radio />}
-                        label="еднократно за целия проект"
-                    />
+                    <FormControlLabel value="еднократно за целия проект" control={<Radio />} label="еднократно за целия проект" />
                 </RadioGroup>
             </FormControl>
             <Grid item xs={12} sx={{ marginTop: 2 }}>
                 <TextField
                     type='number'
                     required
-                    id='wage'
-                    name='wage'
+                    id='payment'
+                    name='payment'
                     label='Заплащане в лв.'
                     fullWidth
                     variant="outlined"
+                    value={payment}
+                    onChange={handlePaymentChange}
                 />
             </Grid>
             <Grid item xs={12} sx={{ marginTop: 2 }}>
@@ -84,6 +95,8 @@ export const AddProjectTextFields = () => {
                     required
                     InputProps={{ rows: 10 }}
                     variant='outlined'
+                    value={projectDescription}
+                    onChange={handleProjectDescriptionChange}
                 />
             </Grid>
         </>

@@ -2,6 +2,7 @@ import { Button, Card, CardContent, Typography } from "@mui/material";
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import * as React from 'react';
+import user from "./testUser";
 
 export const SaveUserToFavouriteSection = () => {
     return (
@@ -16,10 +17,10 @@ export const SaveUserToFavouriteSection = () => {
         }}>
             <CardContent>
                 <Typography sx={{ color: 'white', marginBottom: 1 }} variant='h6'>
-                    Бъдещи проекти с Иван Иванов?
+                    Бъдещи проекти с {user.firstName} {user.lastName}?
                 </Typography>
                 <Typography sx={{ color: 'white' }} variant='body1'>
-                    Ако мислите, че уменията на Иван Иванов са подходящи за Вашите бъдещи проекти,
+                    Ако мислите, че уменията на {user.firstName} {user.lastName} са подходящи за Вашите бъдещи проекти,
                     можете да го добавите към списъка с подходящи кандидати.
                 </Typography>
                 <Button

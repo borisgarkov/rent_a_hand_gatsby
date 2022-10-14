@@ -8,44 +8,29 @@ import { UserSalaryAndEducationSection } from "../components/ProfilePage/UserPro
 import { SaveUserToFavouriteSection } from "../components/ProfilePage/UserProfilePageComponents/SaveUserToFavouriteSection";
 
 import * as React from 'react';
-
-import userData from '../components/ProfilePage/UserProfilePageComponents/testUser';
 import Navigation from "../components/NavigationBar/Navigation";
 
 export default function UserProfilePage() {
-
-    const [currentUser, setCurrentUser] = React.useState(userData);
-
-    const updateUserInfo = (info) => {
-        setCurrentUser({ ...currentUser, info });
-    };
 
     return (
         <Navigation>
             <ProfileHeading />
             <Card sx={{
-                maxWidth: 950,
-                margin: 'auto',
+                maxWidth: 950, margin: 'auto',
                 display: 'flex',
                 flexDirection: {
                     xs: 'column-reverse',
                     md: 'row',
                 },
-
                 marginBottom: 2
             }}>
-                <Stack sx={{
-                    padding: 1,
-                    flexGrow: 1,
-                }}>
-                    <UserSalaryAndEducationSection updateUserInfo={updateUserInfo} currentUser={currentUser} />
+                <Stack sx={{ flexBasis: '30%' }}>
+                    <UserSalaryAndEducationSection />
                 </Stack>
 
                 <Divider orientation="vertical" flexItem={true} />
 
-                <Stack sx={{
-                    flexBasis: '70%',
-                }}>
+                <Stack sx={{ flexBasis: '70%' }}>
                     <UserJobSection />
                     <Divider />
                     <UserResumeSection />

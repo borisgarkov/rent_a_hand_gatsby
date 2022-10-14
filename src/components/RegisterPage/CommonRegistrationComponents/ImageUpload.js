@@ -4,16 +4,7 @@ import * as React from 'react';
 
 import { Alert } from '@mui/material';
 
-export default function ImageUpload({ uploadImageText }) {
-
-    const [isImageUploaded, setIsImageUploaded] = React.useState(false);
-
-    const getImageUploaded = (event) => {
-        let imagePath = event.target.value;
-        if (imagePath) {
-            setIsImageUploaded(true);
-        };
-    };
+export default function ImageUpload({ isImageUploaded, getImageUploaded, uploadImageText }) {
 
     return (
         <Grid item xs={12}>
