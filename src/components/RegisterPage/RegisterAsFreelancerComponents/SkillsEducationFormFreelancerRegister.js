@@ -5,18 +5,6 @@ import * as React from "react";
 import universitiesList from './univerisitiesList';
 import FreelanceRegisterStateContext from './freelanceRegisterContext';
 
-/* 
-    registration fields:
-        'profession',
-        'telephone',
-        'expectedWage',
-        'university',
-        'workType',
-        'resume',
-        'skills'
-
-*/
-
 export default function SkillsEducationFormFreelancerRegister() {
     const {
         profession, handleProfessionChange, telephone, handleTelephoneChange,
@@ -126,7 +114,8 @@ export default function SkillsEducationFormFreelancerRegister() {
 
             <Grid item xs={12}>
                 <FormControlLabel
-                    control={<Checkbox checked={wantToWorkFullTime} onChange={handleWantToWorkFullTimeChange} color="secondary" name="policy" />}
+                    control={<Checkbox checked={wantToWorkFullTime}
+                        onChange={handleWantToWorkFullTimeChange} color="secondary" name="policy" />}
                     label="Интересувам се от предложения за постоянна работа"
                 />
             </Grid>
