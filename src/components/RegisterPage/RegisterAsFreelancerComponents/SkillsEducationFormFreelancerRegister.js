@@ -4,9 +4,11 @@ import BaseRegistrationTextField from '../CommonRegistrationComponents/BaseRegis
 import * as React from "react";
 import universitiesList from './univerisitiesList';
 import FreelanceRegisterStateContext from './freelanceRegisterContext';
+import AutocompleteWorkCatsList from '../../CommonItems/AutocompleteWorkCatsList';
 
 export default function SkillsEducationFormFreelancerRegister() {
     const {
+        workCategory, handleWorkCategoryChange,
         profession, handleProfessionChange, telephone, handleTelephoneChange,
         expectedWage, handleExpectedWageChange,
         wantToWorkFullTime, handleWantToWorkFullTimeChange, inputSkillValue, handleInputSkillChange,
@@ -61,6 +63,14 @@ export default function SkillsEducationFormFreelancerRegister() {
             {
                 registrationFields.map((x, index) => <BaseRegistrationTextField key={index} field={x} />)
             }
+
+            <Grid item xs={12} >
+                <AutocompleteWorkCatsList
+                    workCategory={workCategory}
+                    handleWorkCategoryChange={handleWorkCategoryChange}
+                    label='Избери категория, в която да се показва профила ти при търсене'
+                />
+            </Grid>
 
             <Grid item xs={12}>
                 <Autocomplete

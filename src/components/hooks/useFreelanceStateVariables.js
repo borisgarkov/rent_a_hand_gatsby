@@ -30,6 +30,9 @@ export default function useFreelanceStateVariables(params) {
     };
 
     // second page registration - skills and education section
+    const [workCategory, setWorkCategory] = React.useState('ИТ');
+    const handleWorkCategoryChange = (event, newValue) => { setWorkCategory(newValue) };
+
     const [profession, setProfession] = React.useState('');
     const handleProfessionChange = (event) => { setProfession(event.target.value) };
 
@@ -72,6 +75,7 @@ export default function useFreelanceStateVariables(params) {
         password, handlePasswordChange, secondPassword, handleSecondPasswordChange,
         email, handleEmailChange, city, handleCityChange, isImageUploaded, getImageUploaded,
         // second page - skills and education section
+        workCategory, handleWorkCategoryChange,
         profession, handleProfessionChange, telephone, handleTelephoneChange,
         expectedWage, handleExpectedWageChange,
         wantToWorkFullTime, handleWantToWorkFullTimeChange, inputSkillValue, handleInputSkillChange,

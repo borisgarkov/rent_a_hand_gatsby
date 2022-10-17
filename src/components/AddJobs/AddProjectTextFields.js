@@ -1,7 +1,11 @@
-import { Autocomplete, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField } from "@mui/material";
-import BaseRegistrationTextField from "../RegisterPage/CommonRegistrationComponents/BaseRegistrationTextField";
+import {
+    FormControl, FormControlLabel, FormLabel,
+    Grid, Radio, RadioGroup, TextField
+} from "@mui/material";
+import BaseRegistrationTextField from
+    "../RegisterPage/CommonRegistrationComponents/BaseRegistrationTextField";
 import * as React from "react";
-import { work_categories } from "../CommonItems/work-categories";
+import AutocompleteWorkCatsList from "../CommonItems/AutocompleteWorkCatsList";
 
 export const AddProjectTextFields = ({ context }) => {
 
@@ -48,15 +52,9 @@ export const AddProjectTextFields = ({ context }) => {
                 }
             </Grid>
             <Grid item xs={12} sx={{ marginTop: 2 }}>
-                <Autocomplete
-                    noOptionsText='Няма намерени резултати'
-                    disablePortal
-                    id="workCategory"
-                    value={workCategory}
-                    onChange={handleWorkCategoryChange}
-                    options={work_categories}
-                    fullWidth
-                    renderInput={(params) => <TextField {...params} label="Категория" />}
+                <AutocompleteWorkCatsList
+                    workCategory={workCategory}
+                    handleWorkCategoryChange={handleWorkCategoryChange}
                 />
             </Grid>
             <FormControl sx={{ marginTop: 4 }}>
@@ -69,7 +67,8 @@ export const AddProjectTextFields = ({ context }) => {
                     row
                 >
                     <FormControlLabel value="на час" control={<Radio />} label="на час" />
-                    <FormControlLabel value="еднократно за целия проект" control={<Radio />} label="еднократно за целия проект" />
+                    <FormControlLabel value="еднократно за целия проект"
+                        control={<Radio />} label="еднократно за целия проект" />
                 </RadioGroup>
             </FormControl>
             <Grid item xs={12} sx={{ marginTop: 2 }}>

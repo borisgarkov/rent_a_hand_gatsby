@@ -30,6 +30,7 @@ export default function Settings() {
         password, handlePasswordChange, secondPassword, handleSecondPasswordChange,
         email, handleEmailChange, city, handleCityChange, isImageUploaded, getImageUploaded,
         // second page - skills and education section
+        workCategory, handleWorkCategoryChange,
         profession, handleProfessionChange, telephone, handleTelephoneChange,
         expectedWage, handleExpectedWageChange,
         wantToWorkFullTime, handleWantToWorkFullTimeChange, inputSkillValue, handleInputSkillChange,
@@ -71,6 +72,7 @@ export default function Settings() {
                     password, handlePasswordChange, secondPassword, handleSecondPasswordChange,
                     email, handleEmailChange, city, handleCityChange, isImageUploaded, getImageUploaded,
                     // second page - skills and education section
+                    workCategory, handleWorkCategoryChange,
                     profession, handleProfessionChange, telephone, handleTelephoneChange,
                     expectedWage, handleExpectedWageChange,
                     wantToWorkFullTime, handleWantToWorkFullTimeChange, inputSkillValue, handleInputSkillChange,
