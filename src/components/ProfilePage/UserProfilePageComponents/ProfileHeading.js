@@ -38,7 +38,8 @@ const BaseNameCityConnectHeadingSection = () => {
                 display: { xs: 'none', sm: 'flex' }
             }}>
                 <Typography component="legend" sx={{ margin: '0 auto' }}>Отзиви</Typography>
-                <Rating name="read-only" defaultValue={3.5} precision={0.5} readOnly sx={{ color: '#f37327', margin: '0 auto' }} />
+                <Rating name="read-only" defaultValue={3.5} precision={0.5} readOnly
+                    sx={{ color: '#f37327', margin: '0 auto' }} />
             </Stack>
             <Button
                 variant='contained'

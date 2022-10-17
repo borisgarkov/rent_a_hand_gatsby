@@ -3,8 +3,9 @@ import { AddProjectTextFields } from "../components/AddJobs/AddProjectTextFields
 import * as React from "react";
 import Navigation from "../components/NavigationBar/Navigation";
 
+const AddProjectContext = React.createContext();
+
 const AddProject = () => {
-    const AddProjectContext = React.createContext();
 
     // project information form
     const [projectTitle, setProjectTitle] = React.useState('');

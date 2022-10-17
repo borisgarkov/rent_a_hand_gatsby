@@ -1,207 +1,110 @@
-import { Button, Grid, Paper, Tab, Tabs, TextField } from "@mui/material";
+import { Avatar, Button, Paper, Tab, Tabs, Stack, Typography } from "@mui/material";
 
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import * as React from 'react';
 
 import useScreenResolution from "../components/hooks/useScreenResolution";
-import ImageUpload from "../components/RegisterPage/CommonRegistrationComponents/ImageUpload";
-import commonRegistrationFields from "../components/RegisterPage/CommonRegistrationComponents/commonRegistrationFields";
-import BaseRegistrationTextField from "../components/RegisterPage/CommonRegistrationComponents/BaseRegistrationTextField";
 import Navigation from "../components/NavigationBar/Navigation";
+import AddressFormFreelancerRegister from
+    "../components/RegisterPage/RegisterAsFreelancerComponents/AddressFormFreelancerRegister";
+import SkillsEducationFormFreelancerRegister from
+    "../components/RegisterPage/RegisterAsFreelancerComponents/SkillsEducationFormFreelancerRegister";
+import FreelanceRegisterStateContext from
+    "../components/RegisterPage/RegisterAsFreelancerComponents/freelanceRegisterContext";
 
-const GeneralInfo = () => {
 
-    const fields = [
-        ...commonRegistrationFields.slice(0, 2),
-        ...commonRegistrationFields.slice(4),
-        {
-            type: 'text',
-            textField: 'city',
-            id: 'city',
-            label: 'Населено място',
-            autoComplete: '',
-            required: true,
-            displaySizeProps: {
-                xs: 12,
-                sm: 6,
-            }
-        },
-    ];
-
+const ProfilePictureSection = () => {
     return (
-        <>
-            <Grid container spacing={3} sx={{ padding: 2 }}>
-                {
-                    fields.map((x, index) => <BaseRegistrationTextField key={index} field={x} />)
-                }
-                <ImageUpload uploadImageText={'Избери Профилна снимка *'} />
-            </Grid>
-
-            <Button sx={{ margin: '16px 0' }} fullWidth>Запази промени</Button>
-        </>
-    )
-};
-
-const PasswordUpdate = () => {
-
-    const fields = [
-        {
-            type: 'old-password',
-            textField: 'old-password',
-            id: 'old-password',
-            label: 'Предишна парола',
-            autoComplete: '',
-            required: true,
-            displaySizeProps: {
-                xs: 12,
-            }
-        },
-        ...commonRegistrationFields.slice(2, 4),
-    ];
-
-    return (
-        <>
-            <Grid container spacing={3} sx={{ padding: 2 }}>
-                {
-                    fields.map((x, index) => <BaseRegistrationTextField key={index} field={x} />)
-                }
-            </Grid>
-
-            <Button sx={{ margin: '16px 0' }} fullWidth>Запази промени</Button>
-        </>
-    )
-};
-
-const Resume = () => {
-    const fields = [
-        {
-            type: 'text',
-            textField: 'profession',
-            id: 'profession',
-            label: 'Професия',
-            autoComplete: 'profession',
-            required: true,
-            displaySizeProps: {
-                xs: 12,
-            }
-        },
-        {
-            type: 'number',
-            textField: 'wage',
-            id: 'wage',
-            label: 'Заплащане на час',
-            autoComplete: 'wage',
-            required: false,
-            displaySizeProps: {
-                xs: 12,
-            }
-        },
-    ]
-
-    return (
-        <>
-            <Grid container spacing={3} sx={{ padding: 2 }}>
-                {
-                    fields.map((x, index) => <BaseRegistrationTextField key={index} field={x} />)
-                }
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        multiline
-                        label="Кратко резюме"
-                        id="company-resume"
-                        name="company-resume"
-                        required
-                        InputProps={{
-                            rows: 5
-                        }}
-                    />
-                </Grid>
-            </Grid>
-
-            <Button sx={{ margin: '16px 0' }} fullWidth>Запази промени</Button>
-        </>
-    )
-};
-
-const Education = () => {
-    const fields = [
-        {
-            type: 'text',
-            textField: 'education',
-            id: 'education',
-            label: 'Образование',
-            autoComplete: 'education',
-            required: false,
-            displaySizeProps: {
-                xs: 12,
-            }
-        },
-    ];
-
-    return (
-        <>
-            <Grid container spacing={3} sx={{ padding: 2 }}>
-                {
-                    fields.map((x, index) => <BaseRegistrationTextField key={index} field={x} />)
-                }
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        multiline
-                        label="Добави твоите умения"
-                        id="skills"
-                        name="skills"
-                        required
-                        InputProps={{
-                            rows: 5
-                        }}
-                    />
-                </Grid>
-            </Grid>
-
-            <Button sx={{ margin: '16px 0' }} fullWidth>Запази промени</Button>
-        </>
+        <Stack sx={{ marginBottom: 2, flexDirection: 'row', alignItems: 'center', gap: 2 }}>
+            <Avatar sx={{ width: 70, height: 70 }} />
+            <Typography>Профилна снимка</Typography>
+        </Stack>
     )
 };
 
 
 export default function Settings() {
-    const [tab, setTab] = React.useState(0);
+    // first page registration - administrative info section
+    const [firstName, setFirstName] = React.useState('');
+    const handleFirstNameChange = (event) => { setFirstName(event.target.value) };
 
-    const tabsChangeHandler = (event, newTab) => { setTab(newTab); };
+    const [lastName, setLastName] = React.useState('');
+    const handleLastNameChange = (event) => { setLastName(event.target.value) };
+
+    const [password, setPassword] = React.useState('');
+    const handlePasswordChange = (event) => { setPassword(event.target.value) };
+
+    const [secondPassword, setSecondPassword] = React.useState('');
+    const handleSecondPasswordChange = (event) => { setSecondPassword(event.target.value) };
+
+    const [email, setEmail] = React.useState('');
+    const handleEmailChange = (event) => { setEmail(event.target.value) };
+
+    const [city, setCity] = React.useState('');
+    const handleCityChange = (event) => { setCity(event.target.value) };
+
+    const [isImageUploaded, setIsImageUploaded] = React.useState(false);
+
+    const getImageUploaded = (event) => {
+        let imagePath = event.target.value;
+        if (imagePath) {
+            setIsImageUploaded(true);
+        };
+    };
+
+    // second page registration - skills and education section
+    const [profession, setProfession] = React.useState('');
+    const handleProfessionChange = (event) => { setProfession(event.target.value) };
+
+    const [telephone, setTelephone] = React.useState('');
+    const handleTelephoneChange = (event) => { setTelephone(event.target.value) };
+
+    const [expectedWage, setExpectedWage] = React.useState('');
+    const handleExpectedWageChange = (event) => { setExpectedWage(event.target.value) };
+
+    const [wantToWorkFullTime, setWantToWorkFullTime] = React.useState(false);
+    const handleWantToWorkFullTimeChange = (event) => { setWantToWorkFullTime(event.target.checked) };
+
+    const [inputSkillValue, setInputSkillValue] = React.useState('');
+    const handleInputSkillChange = (event) => { setInputSkillValue(event.target.value) }
+
+    const [skills, setSkills] = React.useState([]);
+
+    const handleSkillChange = () => {
+        if (inputSkillValue === '' || skills.includes(inputSkillValue)) { return };
+
+        setSkills([...skills, inputSkillValue]);
+        setInputSkillValue('');
+    };
+
+    const handleDeleteSkill = (curentSkill) => { setSkills(skills.filter(skill => skill !== curentSkill)) }
+
+    const [university, setUniversity] = React.useState('');
+    const handleUniversityChange = (event, newValue) => { setUniversity(newValue) };
+
+    const [otherUniversity, setOtherUniversity] = React.useState('');
+    const handleOtherUniversityChange = (event) => { setOtherUniversity(event.target.value) };
+
+    const [tab, setTab] = React.useState(0);
+    const tabsChangeHandler = (event, newTab) => { setTab(newTab) };
 
     const tabs_info = [
         {
             index: 0,
             label: 'Обща информация',
-            icon: <AccountCircleOutlinedIcon />,
-        },
-        {
-            index: 1,
-            label: 'Парола',
-            icon: <VpnKeyOutlinedIcon />,
-        },
-        {
-            index: 2,
-            label: 'Резюме',
             icon: <ContactMailOutlinedIcon />,
         },
         {
-            index: 3,
-            label: 'Образование / умения',
+            index: 1,
+            label: 'Умения и образование',
             icon: <SchoolOutlinedIcon />,
         },
     ];
 
     const tabs_data = {
-        0: <GeneralInfo />,
-        1: <PasswordUpdate />,
-        2: <Resume />,
-        3: <Education />,
+        0: <AddressFormFreelancerRegister />,
+        1: <SkillsEducationFormFreelancerRegister />,
     };
 
     const resolution = useScreenResolution();
@@ -210,29 +113,52 @@ export default function Settings() {
 
     return (
         <Navigation>
-            <Paper sx={{
-                width: { xs: '100%', lg: 800 }, margin: '16px auto',
-            }}>
-                <Tabs
-                    value={tab}
-                    centered
-                    sx={{ marginBottom: 5 }} onChange={tabsChangeHandler}
-                    scrollButtons
-                    allowScrollButtonsMobile
-                    aria-label="scrollable force tabs example"
-                    variant={tabs_variant}
-                >
+            <FreelanceRegisterStateContext.Provider
+                value={{
+                    // first page - administrative info section
+                    firstName, handleFirstNameChange, lastName, handleLastNameChange,
+                    password, handlePasswordChange, secondPassword, handleSecondPasswordChange,
+                    email, handleEmailChange, city, handleCityChange, isImageUploaded, getImageUploaded,
+                    // second page - skills and education section
+                    profession, handleProfessionChange, telephone, handleTelephoneChange,
+                    expectedWage, handleExpectedWageChange,
+                    wantToWorkFullTime, handleWantToWorkFullTimeChange, inputSkillValue, handleInputSkillChange,
+                    skills, handleSkillChange, handleDeleteSkill, university, handleUniversityChange,
+                    otherUniversity, handleOtherUniversityChange,
+                }}
+            >
+                <Paper sx={{
+                    width: { xs: '100%', lg: 900 }, margin: '16px auto', padding: { xs: 0, lg: '0 40px 8px' }
+                }}>
+                    <Tabs
+                        value={tab}
+                        centered
+                        sx={{ marginBottom: 5 }} onChange={tabsChangeHandler}
+                        scrollButtons
+                        allowScrollButtonsMobile
+                        aria-label="tabs scroll"
+                        variant={tabs_variant}
+                    >
+                        {
+                            tabs_info.map(t => (
+                                <Tab key={t.label} wrapped label={t.label} icon={t.icon}
+                                    iconPosition='top' value={t.value}
+                                    sx={{ padding: { xs: '0 10px', md: '0 50px', }, }}
+                                />
+                            ))
+                        }
+                    </Tabs>
                     {
-                        tabs_info.map(x => (
-                            <Tab key={x.label} wrapped label={x.label} icon={x.icon}
-                                iconPosition='top' value={x.value}
-                                sx={{ padding: { xs: '0 10px', md: '0 50px', }, }}
-                            />
-                        ))
+                        tab === 0
+                            ? <ProfilePictureSection />
+                            : null
                     }
-                </Tabs>
-                {tabs_data[tab]}
-            </Paper>
+                    {
+                        tabs_data[tab]
+                    }
+                    <Button sx={{ margin: '16px 0' }} fullWidth variant='contained'>Запази промените</Button>
+                </Paper>
+            </FreelanceRegisterStateContext.Provider>
         </Navigation>
     )
 }

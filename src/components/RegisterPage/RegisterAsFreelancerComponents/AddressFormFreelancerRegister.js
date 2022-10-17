@@ -39,7 +39,11 @@ export default function AddressFormFreelancerRegister() {
             {
                 registrationFields.map((x, index) => <BaseRegistrationTextField key={index} field={x} />)
             }
-            <ImageUpload uploadImageText={'Избери Профилна снимка *'} isImageUploaded={isImageUploaded} getImageUploaded={getImageUploaded} />
+            <ImageUpload
+                uploadImageText={'Избери Профилна снимка *'}
+                isImageUploaded={isImageUploaded}
+                getImageUploaded={getImageUploaded}
+            />
         </Grid>
     );
 }
