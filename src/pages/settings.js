@@ -19,6 +19,7 @@ import useFirmStateVariables from "../components/hooks/useFirmStateVariables";
 import AddressFormFirmRegister from "../components/RegisterPage/RegisterAsFirmComponents/AddressFormFirmRegister";
 import AdministrativeInfo from "../components/RegisterPage/RegisterAsFirmComponents/AdministrativeInfo";
 
+
 const TabsChanger = ({ tab, tabsChangeHandler, tabs_info, tabs_data }) => {
 
     const resolution = useScreenResolution();

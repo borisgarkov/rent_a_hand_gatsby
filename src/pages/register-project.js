@@ -1,39 +1,71 @@
-import BaseRegisterPageCategories from '../components/RegisterPage/CommonRegistrationComponents/BaseRegisterPageCategories';
-import setImageSize from '../utils/resizePicFromCloudinary';
+import BaseRegistrationTemplate from
+    "../components/RegisterPage/CommonRegistrationComponents/BaseRegistrationTemplate";
+import PersonalDataReview from
+    "../components/RegisterPage/CommonRegistrationComponents/PersonalDataReview";
+import AddressFormFreelancerRegister from
+    "../components/RegisterPage/RegisterAsFreelancerComponents/AddressFormFreelancerRegister";
+
+import ProjectDescription from "../components/RegisterPage/CommonRegistrationComponents/ProjectDescription";
 import * as React from "react";
-import Navigation from '../components/NavigationBar/Navigation';
+import Navigation from "../components/NavigationBar/Navigation";
+import FreelanceRegisterStateContext from
+    "../components/RegisterPage/RegisterAsFreelancerComponents/freelanceRegisterContext";
+import useFreelanceStateVariables from "../components/hooks/useFreelanceStateVariables";
+import useProjectStateVariables from "../components/hooks/useProjectStateVariables";
 
-const register_categories = [
-    {
-        category_description: 'Юридическо лице',
-        category_image: setImageSize('AdobeStock_377903904_ib8koh'),
-    },
-    {
-        category_description: 'Физическо лице',
-        category_image: setImageSize('AdobeStock_266764469_c1u8up'),
-    },
-];
 
-const registerUrlMap = {
-    'Юридическо лице': '/register-firm-project',
-    'Физическо лице': '/register-person-project',
-}
+export default function RegisterProjectAsPersonForm() {
 
-export default function ProjectRegistrationCategories() {
-    const [selectedCategoryValue, setSelectedCategoryValue] = React.useState(register_categories[0].category_description);
+    const {
+        // first page - administrative info section
+        firstName, handleFirstNameChange, lastName, handleLastNameChange,
+        password, handlePasswordChange, secondPassword, handleSecondPasswordChange,
+        email, handleEmailChange, city, handleCityChange, isImageUploaded, getImageUploaded,
+        // policy form
+        policyClicked, handlePolicyClickedChange
+    } = useFreelanceStateVariables();
 
-    const handleChange = (event) => {
-        setSelectedCategoryValue(event.currentTarget.innerText);
-    };
+    const {
+        // project information form
+        projectTitle, handleProjectTitleChange, projectDuration, handleProjectDurationChange,
+        workCategory, handleWorkCategoryChange, payment, handlePaymentChange,
+        paymentType, handlePaymentTypeChange, projectDescription, handleProjectDescriptionChange,
+    } = useProjectStateVariables();
+
+
+    const steps = [
+        {
+            label: 'Обща информация',
+            content: <AddressFormFreelancerRegister />,
+        },
+        {
+            label: 'Описание на проекта',
+            content: <ProjectDescription context={FreelanceRegisterStateContext} />,
+        },
+        {
+            label: 'Политика за поверителност',
+            content: <PersonalDataReview context={FreelanceRegisterStateContext} />,
+        },
+    ];
 
     return (
         <Navigation>
-            <BaseRegisterPageCategories
-                register_categories={register_categories}
-                registerUrlMap={registerUrlMap}
-                selectedCategoryValue={selectedCategoryValue}
-                handleChange={handleChange}
-            />
+            <FreelanceRegisterStateContext.Provider
+                value={{
+                    // first page - administrative info section
+                    firstName, handleFirstNameChange, lastName, handleLastNameChange,
+                    password, handlePasswordChange, secondPassword, handleSecondPasswordChange,
+                    email, handleEmailChange, city, handleCityChange, isImageUploaded, getImageUploaded,
+                    // project information form
+                    projectTitle, handleProjectTitleChange, projectDuration, handleProjectDurationChange,
+                    workCategory, handleWorkCategoryChange, payment, handlePaymentChange,
+                    paymentType, handlePaymentTypeChange, projectDescription, handleProjectDescriptionChange,
+                    // policy form
+                    policyClicked, handlePolicyClickedChange
+                }}
+            >
+                <BaseRegistrationTemplate registrationTitle={'Регистрация в \' Проекти\''} steps={steps} />
+            </FreelanceRegisterStateContext.Provider>
         </Navigation>
     )
-};
+}
