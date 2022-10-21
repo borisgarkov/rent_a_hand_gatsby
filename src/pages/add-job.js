@@ -1,10 +1,27 @@
 import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
-import CategoriesDropDownList from "../components/CommonItems/CategoriesDropDownList";
 import * as React from "react";
 import Navigation from "../components/NavigationBar/Navigation";
-
+import AutocompleteWorkCatsList from "../components/CommonItems/AutocompleteWorkCatsList";
+import { work_categories } from "../components/CommonItems/work-categories";
+import listOfCities from "../components/CommonItems/listOfCities";
+import AutocompleteCitiesList from "../components/CommonItems/AutocompleteCitiesList";
 
 const AddJob = () => {
+    const [position, setPosition] = React.useState('');
+    const handlePositionChange = (event) => { setPosition(event.target.value) };
+
+    const [workCategory, setWorkCategory] = React.useState(work_categories[0]);
+    const handleWorkCategoryChange = (event, newValue) => { setWorkCategory(newValue) };
+
+    const [city, setCity] = React.useState(listOfCities[0]);
+    const handleCityChange = (event, newValue) => { setCity(newValue) };
+
+    const [salary, setSalary] = React.useState('');
+    const handleSalaryChange = (event) => { setSalary(event.target.value) };
+
+    const [jobDescription, setJobDescription] = React.useState('');
+    const handleJobDescriptionChange = (event) => { setJobDescription(event.target.value) };
+
     return (
         <Navigation>
             <Grid container sx={{
@@ -24,22 +41,17 @@ const AddJob = () => {
                                 id="job-title"
                                 name="job-title"
                                 required
-                                variant='standard'
+                                variant='outlined'
+                                value={position}
+                                onChange={handlePositionChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <CategoriesDropDownList />
+                            <AutocompleteWorkCatsList workCategory={workCategory}
+                                handleWorkCategoryChange={handleWorkCategoryChange} />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                type='text'
-                                fullWidth
-                                label="Населено място"
-                                id="job-city"
-                                name="job-city"
-                                required
-                                variant='standard'
-                            />
+                            <AutocompleteCitiesList city={city} handleCityChange={handleCityChange} />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -48,7 +60,9 @@ const AddJob = () => {
                                 label="Заплащане на месец"
                                 id="job-salary"
                                 name="job-salary"
-                                variant='standard'
+                                variant='outlined'
+                                value={salary}
+                                onChange={handleSalaryChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -60,8 +74,10 @@ const AddJob = () => {
                                 name="job-description"
                                 required
                                 InputProps={{ rows: 10 }}
-                                variant='standard'
+                                variant='outlined'
                                 color='primary'
+                                value={jobDescription}
+                                onChange={handleJobDescriptionChange}
                             />
                         </Grid>
                     </Grid>

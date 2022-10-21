@@ -6,6 +6,7 @@ import BaseRegistrationTextField from
     "../RegisterPage/CommonRegistrationComponents/BaseRegistrationTextField";
 import * as React from "react";
 import AutocompleteWorkCatsList from "../CommonItems/AutocompleteWorkCatsList";
+import AutocompleteCitiesList from "../CommonItems/AutocompleteCitiesList";
 
 export const AddProjectTextFields = ({ context }) => {
 
@@ -13,6 +14,7 @@ export const AddProjectTextFields = ({ context }) => {
         projectTitle, handleProjectTitleChange, projectDuration, handleProjectDurationChange,
         workCategory, handleWorkCategoryChange, payment, handlePaymentChange,
         paymentType, handlePaymentTypeChange, projectDescription, handleProjectDescriptionChange,
+        projectCity, handleProjectCityChange
     } = React.useContext(context)
 
     const projectCreationFields = [
@@ -56,6 +58,9 @@ export const AddProjectTextFields = ({ context }) => {
                     workCategory={workCategory}
                     handleWorkCategoryChange={handleWorkCategoryChange}
                 />
+            </Grid>
+            <Grid item xs={12} sx={{ marginTop: 2 }}>
+                <AutocompleteCitiesList city={projectCity} handleCityChange={handleProjectCityChange} />
             </Grid>
             <FormControl sx={{ marginTop: 4 }}>
                 <FormLabel id="paymentType">Заплащане</FormLabel>

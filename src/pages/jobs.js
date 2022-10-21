@@ -1,25 +1,24 @@
 import {
-    Divider, FormControl, InputLabel, MenuList, Pagination, Select,
-    Stack, TextField, Box, Avatar, Typography, Paper, Card, CardHeader,
-    CardContent, Grid, Button
+    Divider, Pagination, Stack, TextField, Box, Avatar, Typography, Card, CardHeader,
+    CardContent, Grid, Button, Autocomplete, FormControlLabel, Checkbox
 } from '@mui/material';
 
 import * as styles from '../components/JobsPage/job-style.module.css';
 import * as React from "react";
 
 import Navigation from '../components/NavigationBar/Navigation';
-
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 
 import { jobs } from '../components/JobsPage/test-jobs';
 import test_users from '../components/JobsPage/test_users';
-import { work_type } from '../components/CommonItems/work-categories';
+import { work_categories, work_type } from '../components/CommonItems/work-categories';
 import JobsCatalog from '../components/JobsPage/JobsCatalog';
 
 import cld from '../services/getCloudinaryImages';
 import { scale } from '@cloudinary/url-gen/actions/resize';
-import CategoriesDropDownList from '../components/CommonItems/CategoriesDropDownList';
 import TalentsCatalog from '../components/JobsPage/TalentsCatalog';
+import AutocompleteWorkCatsList from '../components/CommonItems/AutocompleteWorkCatsList';
+import listOfCities from '../components/CommonItems/listOfCities';
 
 const setImageSize = (image) => {
     return cld.image(`main page photos/${image}`).resize(scale().width(0.4)).toURL()
@@ -45,15 +44,7 @@ export default function JobsPage() {
     work_type.forEach((key, indx) => imageMap[key] = allAvatarImages[indx]);
 
     const [currentPage, setCurrentPage] = React.useState(1);
-    const [currentCity, setCurrentCity] = React.useState('');
-
-    const [workType, setWorkType] = React.useState(work_type[0]);
-    const [avatarImage, setAvatarImage] = React.useState(imageMap[work_type[0]]);
-    const [titleWorkType, setTitleWorkType] = React.useState(work_type[0]);
-
-    const handleWorkTypeChange = (event) => {
-        setWorkType(event.target.value);
-    }
+    const handlePageChange = (event) => { setCurrentPage(parseInt(event.target.innerText)) };
 
     const currentPageJobs = React.useMemo(() => {
         const firstPageIndex = (currentPage - 1) * totalJobsPerPage;
@@ -61,14 +52,31 @@ export default function JobsPage() {
         return jobs.slice(firstPageIndex, lastPageIndex);
     }, [currentPage]);
 
-    const handlePageChange = (event) => {
-        setCurrentPage(parseInt(event.target.innerText));
-    }
+    const [workType, setWorkType] = React.useState(work_type[0]);
+    const handleWorkTypeChange = (event, newValue) => { setWorkType(newValue) }
 
-    const searchJobs = () => {
+    const [currentWorkCategoty, setCurrentWorkCategoty] = React.useState(work_categories[0]);
+    const handleCategoryChange = (event, newValue) => { setCurrentWorkCategoty(newValue) }
+
+    const [currentCity, setCurrentCity] = React.useState(listOfCities[0]);
+    const handleCurrentCityChange = (event, newValue) => { setCurrentCity(newValue) };
+
+    const [avatarImage, setAvatarImage] = React.useState(imageMap[work_type[0]]);
+    const [titleWorkType, setTitleWorkType] = React.useState(work_type[0]);
+
+    const searchJobs = (event) => {
+        if (!work_categories.includes(currentWorkCategoty) || !work_type.includes(workType)) { return };
+
         setAvatarImage(imageMap[workType]);
         setTitleWorkType(workType);
-    }
+    };
+
+    const [wantToWorkFullTime, setWantToWorkFullTime] = React.useState(false);
+    const handleWantToWorkFullTimeChange = (event) => { setWantToWorkFullTime(event.target.checked) };
+
+    const [searchByKeyWord, setSearchByKeyword] = React.useState('');
+    const handleSearchByKeyword = (event) => { setSearchByKeyword(event.target.value) };
+
 
     return (
         <Navigation>
@@ -95,33 +103,74 @@ export default function JobsPage() {
                         <CardHeader subheader='Филтър' />
                         <Divider />
                         <CardContent sx={{ display: 'flex', flexDirection: 'column', }}>
-                            <FormControl variant='standard' sx={{ margin: 1 }}>
-                                <InputLabel>Тип работа</InputLabel>
-                                <Select value={workType} onChange={handleWorkTypeChange}>
-                                    {
-                                        work_type.map(work => (<MenuList key={work} value={work}>{work}</MenuList>))
-                                    }
-                                </Select>
-                            </FormControl>
-                            <CategoriesDropDownList cssStyle={{ margin: 1 }} fullwidth={false} />
-                            <FormControl variant='standard' sx={{ margin: 1 }}>
-                                <InputLabel>Населено място</InputLabel>
-                                <Select value={currentCity}>
-                                </Select>
-                            </FormControl>
+
+                            <Autocomplete
+                                noOptionsText='Няма намерени резултати'
+                                disablePortal
+                                id="work_type"
+                                value={workType}
+                                onChange={handleWorkTypeChange}
+                                options={work_type}
+                                fullWidth
+                                renderInput={(params) => <TextField {...params} label='Тип работа' />}
+                                sx={{ marginBottom: 2 }}
+                            />
+
+                            {
+                                workType === 'Таланти'
+                                    ? (
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={wantToWorkFullTime}
+                                                    onChange={handleWantToWorkFullTimeChange}
+                                                    color="secondary"
+                                                    name="policy"
+                                                />}
+                                            label="Търси таланти за постоянна работа"
+                                            sx={{ marginBottom: 3 }}
+                                        />
+                                    )
+                                    : null
+                            }
+
+                            <AutocompleteWorkCatsList
+                                workCategory={currentWorkCategoty}
+                                handleWorkCategoryChange={handleCategoryChange}
+                            />
+
+                            <Autocomplete
+                                noOptionsText='Няма намерени резултати'
+                                disablePortal
+                                id="work_type"
+                                value={currentCity}
+                                onChange={handleCurrentCityChange}
+                                options={listOfCities}
+                                fullWidth
+                                renderInput={(params) => <TextField {...params} label='Населено място' />}
+                                sx={{ marginTop: 2 }}
+                            />
+
                         </CardContent>
                         <Divider />
                         <CardContent>
                             <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                 <ManageSearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                <TextField fullWidth id="input-with-sx" label="Търси по ключова дума" variant="standard" />
+                                <TextField
+                                    fullWidth
+                                    id="searchByKeyword"
+                                    label="Търси по ключова дума"
+                                    variant="standard"
+                                    value={searchByKeyWord}
+                                    onChange={handleSearchByKeyword}
+                                />
                             </Box>
                             <Button variant='contained' onClick={searchJobs} sx={{ marginTop: 5 }} fullWidth>Търси</Button>
                         </CardContent>
                     </Card>
                 </Stack>
                 {
-                    titleWorkType == 'Таланти'
+                    titleWorkType === 'Таланти'
                         ?
                         <Grid container sx={{ maxWidth: 1000, justifyContent: { xs: 'space-evenly', md: 'normal' } }} gap={2} >
                             {test_users.map(user => (<TalentsCatalog key={user.id} user={user} />))}

@@ -30,6 +30,7 @@ export default function RegisterProjectAsPersonForm() {
         projectTitle, handleProjectTitleChange, projectDuration, handleProjectDurationChange,
         workCategory, handleWorkCategoryChange, payment, handlePaymentChange,
         paymentType, handlePaymentTypeChange, projectDescription, handleProjectDescriptionChange,
+        projectCity, handleProjectCityChange,
     } = useProjectStateVariables();
 
 
@@ -60,6 +61,7 @@ export default function RegisterProjectAsPersonForm() {
                     projectTitle, handleProjectTitleChange, projectDuration, handleProjectDurationChange,
                     workCategory, handleWorkCategoryChange, payment, handlePaymentChange,
                     paymentType, handlePaymentTypeChange, projectDescription, handleProjectDescriptionChange,
+                    projectCity, handleProjectCityChange,
                     // policy form
                     policyClicked, handlePolicyClickedChange
                 }}
