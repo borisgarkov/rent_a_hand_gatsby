@@ -10,11 +10,8 @@ import WorkIcon from '@mui/icons-material/Work';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-import cld from "../services/getCloudinaryImages";
 import * as styles from '../components/MainPage/main-page.module.css';
-
 import { Stack, Typography, Button, Paper, Tabs, Tab, Box } from "@mui/material";
-
 
 const tabs_css_style = {
     padding: {
@@ -23,9 +20,9 @@ const tabs_css_style = {
     },
 };
 
-const job_offers_img = cld.image('main page photos/main_page_job_offers_webp').toURL();
-const freelancer_img = cld.image('main page photos/main_page_freelancer_webp').toURL();
-const projects_img = cld.image('main page photos/project_photo_webp').toURL();
+const job_offers_img = 'https://res.cloudinary.com/jobsportal/image/upload/v1666382185/main%20page%20photos/main_page_job_offers_webp.webp';
+const freelancer_img = 'https://res.cloudinary.com/jobsportal/image/upload/v1666382369/main%20page%20photos/main_page_freelancer_webp.webp';
+const projects_img = 'https://res.cloudinary.com/jobsportal/image/upload/v1666382373/main%20page%20photos/project_photo_webp.webp';
 
 const JobsTabInfo = () => {
     return (
@@ -170,6 +167,7 @@ const MainPage = () => {
             <Box sx={{ position: 'relative' }}>
 
                 <Stack>
+                    {/* <GatsbyImage className={styles.image} image={backgroundImg} alt='job offers img' /> */}
                     <img className={styles.image} src={backgroundImg} alt='job offers img' />
                 </Stack>
                 <Paper sx={{
