@@ -1,21 +1,10 @@
-import { Grid, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import { Grid, Typography, Box } from "@mui/material";
 import * as React from 'react';
-
 import PricingCard from "../components/PricingPlansPage/PricingCard";
 import FAQAccordion from "../components/PricingPlansPage/FAQAccordion";
-
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
 import Navigation from "../components/NavigationBar/Navigation";
 
 export default function PricingList() {
-
-    const [tab, setTab] = React.useState(0);
-
-    const tabsChangeHandler = (event, newTab) => { setTab(newTab) };
 
     const standardPackages = [
         {
@@ -43,17 +32,8 @@ export default function PricingList() {
                 'Всяка седмица публикуване на обявата в нашите социалните мрежи',
             ]
         }
-    ]
+    ];
 
-    const companyPackages = [
-        {
-            title: 'Персонализиран за Вашите нужди',
-            price: '',
-            description: [
-                'По договаряне',
-            ]
-        }
-    ]
 
     return (
         <Navigation>
@@ -71,19 +51,6 @@ export default function PricingList() {
                     Независимо дали си фирма, или потребител
                 </Typography>
 
-                <Tabs
-                    value={tab}
-                    centered
-                    variant='fullWidth'
-                    sx={{
-                        marginBottom: 5
-                    }}
-                    onChange={tabsChangeHandler}
-                >
-                    <Tab wrapped label='Стандартни Пакети' icon={<AccountCircleOutlinedIcon />} iconPosition='start' value={0} />
-                    <Tab wrapped label='Фирмени Пакети' icon={<ApartmentOutlinedIcon />} iconPosition='start' value={1} />
-                </Tabs>
-
                 <Grid
                     container
                     spacing={5}
@@ -94,9 +61,7 @@ export default function PricingList() {
                     data-aos-duration="1000"
                 >
                     {
-                        tab === 0 ?
-                            standardPackages.map((card) => <PricingCard card={card} key={card.title} />) :
-                            companyPackages.map((card) => <PricingCard card={card} key={card.title} />)
+                        standardPackages.map((card) => <PricingCard card={card} key={card.title} />)
                     }
                 </Grid>
                 <FAQAccordion />
