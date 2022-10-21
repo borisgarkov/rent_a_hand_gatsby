@@ -1,8 +1,12 @@
-import { Avatar, Button, Paper, Tab, Tabs, Stack, Typography } from "@mui/material";
+import {
+    Avatar, Button, Paper, Tab, Tabs, Stack,
+    Typography, FormControl, InputLabel, Select, MenuList, Box
+} from "@mui/material";
 
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import StoreIcon from '@mui/icons-material/Store';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import * as React from 'react';
 
 import useScreenResolution from "../components/hooks/useScreenResolution";
@@ -19,6 +23,26 @@ import useFirmStateVariables from "../components/hooks/useFirmStateVariables";
 import AddressFormFirmRegister from "../components/RegisterPage/RegisterAsFirmComponents/AddressFormFirmRegister";
 import AdministrativeInfo from "../components/RegisterPage/RegisterAsFirmComponents/AdministrativeInfo";
 
+const FirmPaymentSection = () => {
+    const paymentPlans = ['Безплатен', 'Стандартен', 'Премиум'];
+
+    const [currentPlan, setCurrentPlan] = React.useState(paymentPlans[0]);
+    const handleCurrentPlanChange = (event) => { setCurrentPlan(event.target.value) };
+
+    return (
+        <>
+            <Typography sx={{ marginBottom: 2 }}>Настоящ план: {currentPlan}</Typography>
+
+            <FormControl variant='filled' fullWidth >
+                <InputLabel>Избери друг план</InputLabel>
+                <Select value={currentPlan} onChange={handleCurrentPlanChange}>
+                    {paymentPlans.map(plan => (<MenuList key={plan} value={plan}>{plan}</MenuList>))}
+                </Select>
+            </FormControl>
+        </>
+    )
+};
+
 
 const TabsChanger = ({ tab, tabsChangeHandler, tabs_info, tabs_data }) => {
 
@@ -26,37 +50,40 @@ const TabsChanger = ({ tab, tabsChangeHandler, tabs_info, tabs_data }) => {
     const tabs_variant = resolution ? 'scrollable' : 'fullWidth';
 
     return (
-        <Paper sx={{
-            width: { xs: '100%', lg: 900 }, margin: '16px auto', padding: { xs: 0, lg: '0 40px 8px' }
-        }}>
-            <Tabs
-                value={tab}
-                centered
-                sx={{ marginBottom: 5 }} onChange={tabsChangeHandler}
-                scrollButtons
-                allowScrollButtonsMobile
-                aria-label="tabs scroll"
-                variant={tabs_variant}
-            >
+        <Box sx={{ height: '100%' }}>
+            <Paper sx={{
+                width: { xs: '100%', lg: 900 }, margin: '16px auto',
+                padding: { xs: 0, lg: '0 40px 8px' }, height: 'min-content',
+            }}>
+                <Tabs
+                    value={tab}
+                    centered
+                    sx={{ marginBottom: 5 }} onChange={tabsChangeHandler}
+                    scrollButtons
+                    allowScrollButtonsMobile
+                    aria-label="tabs scroll"
+                    variant={tabs_variant}
+                >
+                    {
+                        tabs_info.map(t => (
+                            <Tab key={t.label} wrapped label={t.label} icon={t.icon}
+                                iconPosition='top' value={t.value}
+                                sx={{ padding: { xs: '0 10px', md: '0 50px', }, }}
+                            />
+                        ))
+                    }
+                </Tabs>
                 {
-                    tabs_info.map(t => (
-                        <Tab key={t.label} wrapped label={t.label} icon={t.icon}
-                            iconPosition='top' value={t.value}
-                            sx={{ padding: { xs: '0 10px', md: '0 50px', }, }}
-                        />
-                    ))
+                    tab === 0
+                        ? <ProfilePictureSection />
+                        : null
                 }
-            </Tabs>
-            {
-                tab === 0
-                    ? <ProfilePictureSection />
-                    : null
-            }
-            {
-                tabs_data[tab]
-            }
-            <Button sx={{ margin: '16px 0' }} fullWidth variant='contained'>Запази промените</Button>
-        </Paper>
+                {
+                    tabs_data[tab]
+                }
+                <Button sx={{ margin: '16px 0' }} fullWidth variant='contained'>Запази промените</Button>
+            </Paper>
+        </Box>
     )
 }
 
@@ -161,11 +188,17 @@ const FirmSettings = () => {
             label: 'Административна информация',
             icon: <StoreIcon />,
         },
+        {
+            index: 2,
+            label: 'План',
+            icon: <LocalOfferIcon />,
+        }
     ];
 
     const tabs_data = {
         0: <AddressFormFirmRegister />,
         1: <AdministrativeInfo />,
+        2: <FirmPaymentSection />,
     };
 
     return (
@@ -236,7 +269,7 @@ const ProjectFreelancerSettings = () => {
 };
 
 export default function Settings() {
-    const currentUser = 'freelancer';
+    const currentUser = 'firm';
 
     const userMap = {
         'freelancer': () => <FreelancerSettings />,

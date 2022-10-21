@@ -57,7 +57,7 @@ const AddJob = () => {
                             <TextField
                                 type='number'
                                 fullWidth
-                                label="Заплащане на месец"
+                                label="Заплащане на месец в лв."
                                 id="job-salary"
                                 name="job-salary"
                                 variant='outlined'

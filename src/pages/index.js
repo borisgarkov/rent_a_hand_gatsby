@@ -23,9 +23,9 @@ const tabs_css_style = {
     },
 };
 
-const job_offers_img = cld.image('main page photos/main_page_job_offers_sajflw').toURL();
-const freelancer_img = cld.image('main page photos/main_page_freelancer_suf7mw').toURL();
-const projects_img = cld.image('main page photos/project_photo_wadwlu').toURL();
+const job_offers_img = cld.image('main page photos/main_page_job_offers_webp').toURL();
+const freelancer_img = cld.image('main page photos/main_page_freelancer_webp').toURL();
+const projects_img = cld.image('main page photos/project_photo_webp').toURL();
 
 const JobsTabInfo = () => {
     return (
@@ -170,7 +170,7 @@ const MainPage = () => {
             <Box sx={{ position: 'relative' }}>
 
                 <Stack>
-                    <img className={styles.image} loading='lazy' src={backgroundImg} alt='job offers img' />
+                    <img className={styles.image} src={backgroundImg} alt='job offers img' />
                 </Stack>
                 <Paper sx={{
                     width: { xs: '100%', lg: 576 }, position: { xs: 'static', lg: 'absolute' },
