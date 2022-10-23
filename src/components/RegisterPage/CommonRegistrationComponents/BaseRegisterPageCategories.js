@@ -5,11 +5,11 @@ import * as React from "react"
 
 
 export default function RegisterPageCategories({ register_categories, registerUrlMap, }) {
+
     return (
         <Stack sx={{
-            height: '100vh',
             maxWidth: '80%',
-            margin: { xs: '50px auto', lg: '100px auto 0' },
+            margin: { xs: '50px auto', lg: '100px auto 20px' },
             alignItems: 'center',
         }} spacing={5}>
             <Stack sx={{ flexDirection: { xs: 'column', md: 'row' } }} gap={1}>
@@ -34,6 +34,7 @@ export default function RegisterPageCategories({ register_categories, registerUr
                                 <RegisterCard
                                     category_image={x.category_image}
                                     category_description={x.category_description}
+                                    additional_description={x.additional_description}
                                 />
                             </Link>
                         )
