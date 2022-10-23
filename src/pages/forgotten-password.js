@@ -23,7 +23,6 @@ export default function ForgottenPassword() {
                     label='Имейл адрес'
                     name='email'
                     autoComplete='email'
-                    autoFocus
                 />
                 <Typography variant='body2'>
                     На посочения от Вас имейл адрес ще бъдат изпратени инструкции как да възстановите паролата си.

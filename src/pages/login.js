@@ -29,7 +29,6 @@ export default function LoginPage() {
                     label='Имейл адрес'
                     name='email'
                     autoComplete='email'
-                    autoFocus
                 />
                 <TextField
                     margin='normal'

@@ -22,7 +22,6 @@ export default function PasswordReset() {
                     label='Парола'
                     name='password'
                     type='password'
-                    autoFocus
                 />
                 <TextField
                     margin='normal'

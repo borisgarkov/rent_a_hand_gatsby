@@ -25,7 +25,7 @@ export default function RegisterCard({
     return (
         <CardActionArea>
             <Card
-                sx={{ width: { xs: '100%', lg: 350 }, height: { md: 550 } }}
+                sx={{ width: { xs: '100%', lg: 350 }, height: { md: isAdditionalDescriptionIncluded ? 550 : 260 } }}
             >
                 <CardMedia component='img' height='180' image={category_image} alt='category image' />
                 <CardContent>
