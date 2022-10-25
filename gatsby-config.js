@@ -1,6 +1,8 @@
 module.exports = {
     siteMetadata: {
-        siteUrl: `https://www.yourdomain.tld`,
+        title: `Rent A Hand`,
+        description: `Rent A Hand - jobs portal - портал за работа.`,
+        siteUrl: `https://rentahandgatsbymaster.gatsbyjs.io/`,
     },
     plugins: [
         {
@@ -15,6 +17,12 @@ module.exports = {
                     },
                 ],
             },
+        },
+        {
+          resolve: 'gatsby-plugin-manifest',
+          options: {
+            icon: 'src/images/Rent A Hand_D1-01.jpg',
+          },
         },
     ]
 }
