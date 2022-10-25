@@ -24,6 +24,8 @@ import { Link, navigate } from 'gatsby';
 import Footer from '../CommonItems/Footer';
 import BackToTopButton from '../CommonItems/BackToTopButton';
 
+import '../../styles/global.css';
+
 const logo = cld.image('main page photos/Rent_A_Hand_D1_ekcqtj').toURL();
 
 const Navigation = ({ children }) => {
@@ -164,7 +166,9 @@ const Navigation = ({ children }) => {
                 <Box className={styles.separator}>A HAND</Box>
             </AppBar>
             <Toolbar id='navbar' />
-            {children}
+            <Box sx={{ flexGrow: 1 }}>
+                {children}
+            </Box>
             <BackToTopButton />
             <Footer />
         </ThemeProvider>
