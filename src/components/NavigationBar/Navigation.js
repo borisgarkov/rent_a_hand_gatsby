@@ -11,6 +11,8 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DesignServicesOutlinedIcon from '@mui/icons-material/DesignServicesOutlined';
 import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 
 import * as styles from './navbar.module.css';
 import MainPageMenuDrawer from './MainPageMenuDrawer';
@@ -85,6 +87,16 @@ const Navigation = ({ children }) => {
             title: 'Добави проект',
             icon: <DesignServicesOutlinedIcon />,
             path: '/add-project',
+        },
+        {
+            title: 'Запазени таланти',
+            icon: <StarBorderIcon />,
+            path: '/saved-talents',
+        },
+        {
+            title: 'Съобщения',
+            icon: <ChatBubbleOutlineIcon />,
+            path: '/chat',
         },
         {
             title: 'Настройки',
