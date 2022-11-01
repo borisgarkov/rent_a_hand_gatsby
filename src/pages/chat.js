@@ -3,6 +3,7 @@ import Navigation from '../components/NavigationBar/Navigation';
 import ChatMsg from '../components/Chat/ChatMsg';
 import { Box, IconButton, TextField, Stack } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import useScreenResolution from '../components/hooks/useScreenResolution';
 
 const DefaultChatMsg = () => {
     const [textMessages, setMessages] = React.useState([
@@ -24,13 +25,15 @@ const DefaultChatMsg = () => {
         boxRef.current.scrollIntoView({ behavior: "smooth" });
     }, [textMessages]);
 
+    const isMobile = useScreenResolution();
+    const addScrollToChat = isMobile ? {} : { maxHeight: '60vh', overflowY: 'scroll' }
+
     return (
         <Navigation>
             <Box sx={{
                 maxWidth: 1000,
                 margin: '24px auto',
-                maxHeight: '60vh',
-                overflowY: 'scroll',
+                ...addScrollToChat
             }}>
                 <ChatMsg
                     side={'left'}

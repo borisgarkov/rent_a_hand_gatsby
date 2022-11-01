@@ -188,9 +188,15 @@ const MainPage = () => {
                     </Paper>
                 </Box>
             </LazyLoadComponent>
-            <WhyRentAHand />
-            <ExploreTheMarketPlace />
-            <CustomerFeedback />
+            <LazyLoadComponent>
+                <WhyRentAHand />
+            </LazyLoadComponent>
+            <LazyLoadComponent>
+                <ExploreTheMarketPlace />
+            </LazyLoadComponent>
+            <LazyLoadComponent>
+                <CustomerFeedback />
+            </LazyLoadComponent>
         </Navigation>
     )
 }
