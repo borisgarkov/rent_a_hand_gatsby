@@ -1,95 +1,52 @@
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import cx from 'clsx';
-// import { Grid, Avatar, Typography } from '@mui/material';
+import React from 'react';
+import { Grid, Avatar, Typography, Box } from '@mui/material';
 
-// import { makeStyles } from '@mui/material';
-// import defaultChatMsgStyles from './defaultChatMsg.styles';
+const ChatMsg = ({ side, messages }) => {
+    const gridAlign = side === 'right' ? 'flex-end' : 'flex-start';
+    const messageAlign = side === 'right' ? 'right' : 'left';
+    const backgroundColor = side === 'right' ? '#176ab4' : '#ffffff'; //#3f51b5
+    const lettersColor = side === 'right' ? 'white' : 'black';
 
-// const ChatMsg = makeStyles(defaultChatMsgStyles, { name: 'ChatMsg' })(props => {
-//     const {
-//         classes,
-//         avatar,
-//         messages,
-//         side,
-//         GridContainerProps,
-//         GridItemProps,
-//         AvatarProps,
-//         getTypographyProps,
-//     } = props;
+    return (
+        <Grid container
+            sx={{ justifyContent: gridAlign }}
+            columnSpacing={2}
+        >
+            {
+                side === 'left'
+                    ? (
+                        <Grid item><Avatar alt='profile-pic' /></Grid>
+                    )
+                    : null
+            }
+            <Grid item xs={8} sx={{ textAlign: messageAlign, }}>
+                {
+                    messages.map((msg, i) => {
+                        return (
+                            <Box key={`${i} ${msg}`}>
+                                <Typography
+                                    sx={{
+                                        color: lettersColor,
+                                        backgroundColor: backgroundColor,
+                                        marginBottom: 1,
+                                        marginRight: 1,
+                                        padding: 1,
+                                        borderRadius: 4,
+                                        fontSize: '14px',
+                                        display: 'inline-block',
+                                        wordBreak: 'break-word',
+                                    }}
+                                >
+                                    {msg}
+                                </Typography>
+                                <Typography></Typography>
+                            </Box>
+                        );
+                    })
+                }
+            </Grid>
+        </Grid >
+    );
+};
 
-//     const attachClass = index => {
-//         if (index === 0) {
-//             return classes[`${side}First`];
-//         }
-//         if (index === messages.length - 1) {
-//             return classes[`${side}Last`];
-//         }
-//         return '';
-//     };
-//     return (
-//         <Grid
-//             container
-//             spacing={2}
-//             justify={side === 'right' ? 'flex-end' : 'flex-start'}
-//             {...GridContainerProps}
-//         >
-//             {
-//                 side === 'left' && (
-//                     <Grid item {...GridItemProps}>
-//                         <Avatar
-//                             src={avatar}
-//                             {...AvatarProps}
-//                             className={cx(classes.avatar, AvatarProps.className)}
-//                         />
-//                     </Grid>
-//                 )
-//             }
-//             <Grid item xs={8}>
-//                 {
-//                     messages.map((msg, i) => {
-//                         const TypographyProps = getTypographyProps(msg, i, props);
-//                         return (
-//                             // eslint-disable-next-line react/no-array-index-key
-//                             <div key={msg.id || i} className={classes[`${side}Row`]}>
-//                                 <Typography
-//                                     align={'left'}
-//                                     {...TypographyProps}
-//                                     className={cx(
-//                                         classes.msg,
-//                                         classes[side],
-//                                         attachClass(i),
-//                                         TypographyProps.className
-//                                     )}
-//                                 >
-//                                     {msg}
-//                                 </Typography>
-//                             </div>
-//                         );
-//                     })
-//                 }
-//             </Grid>
-//         </Grid>
-//     );
-// });
-
-// ChatMsg.propTypes = {
-//     avatar: PropTypes.string,
-//     messages: PropTypes.arrayOf(PropTypes.string),
-//     side: PropTypes.oneOf(['left', 'right']),
-//     GridContainerProps: PropTypes.shape({}),
-//     GridItemProps: PropTypes.shape({}),
-//     AvatarProps: PropTypes.shape({}),
-//     getTypographyProps: PropTypes.func,
-// };
-// ChatMsg.defaultProps = {
-//     avatar: '',
-//     messages: [],
-//     side: 'left',
-//     GridContainerProps: {},
-//     GridItemProps: {},
-//     AvatarProps: {},
-//     getTypographyProps: () => ({}),
-// };
-
-// export default ChatMsg;
+export default ChatMsg;

@@ -5,6 +5,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import useScreenResolution from "../../hooks/useScreenResolution";
 import * as React from 'react';
 import user from "./testUser";
+import { navigate } from "gatsby";
 
 
 const BaseNameCityConnectHeadingSection = () => {
@@ -45,6 +46,7 @@ const BaseNameCityConnectHeadingSection = () => {
                 variant='contained'
                 startIcon={<MessageOutlinedIcon />}
                 sx={{ marginLeft: { sm: 'auto' }, marginRight: { sm: 5 }, width: { xs: '100%', sm: '20%' } }}
+                onClick={() => (navigate('/chat'))}
             >
                 Свържи се
             </Button>
