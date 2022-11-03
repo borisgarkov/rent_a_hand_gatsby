@@ -1,9 +1,6 @@
 import * as React from "react";
 import { navigate } from "gatsby";
 
-import CustomerFeedback from "../components/MainPage/CustomerFeedback";
-import ExploreTheMarketPlace from "../components/MainPage/ExploreTheMarketPlace";
-import WhyRentAHand from "../components/MainPage/WhyRentAHand";
 import Navigation from "../components/NavigationBar/Navigation";
 
 import WorkIcon from '@mui/icons-material/Work';
@@ -14,6 +11,10 @@ import * as styles from '../components/MainPage/main-page.module.css';
 import { Stack, Typography, Button, Paper, Tabs, Tab, Box } from "@mui/material";
 import cld from "../services/getCloudinaryImages";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
+
+const CustomerFeedback = React.lazy(() => import('../components/MainPage/CustomerFeedback'));
+const WhyRentAHand = React.lazy(() => (import('../components/MainPage/WhyRentAHand')));
+const ExploreTheMarketPlace = React.lazy(() => (import('../components/MainPage/ExploreTheMarketPlace')));
 
 const tabs_css_style = {
     padding: {
@@ -188,15 +189,9 @@ const MainPage = () => {
                     </Paper>
                 </Box>
             </LazyLoadComponent>
-            <LazyLoadComponent>
-                <WhyRentAHand />
-            </LazyLoadComponent>
-            <LazyLoadComponent>
-                <ExploreTheMarketPlace />
-            </LazyLoadComponent>
-            <LazyLoadComponent>
-                <CustomerFeedback />
-            </LazyLoadComponent>
+            <WhyRentAHand />
+            <ExploreTheMarketPlace />
+            <CustomerFeedback />
         </Navigation>
     )
 }

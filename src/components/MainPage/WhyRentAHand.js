@@ -4,13 +4,17 @@ import useScreenResolution from "../hooks/useScreenResolution";
 import cld from "../../services/getCloudinaryImages";
 import * as React from "react";
 
-const logo = cld.image('main page photos/Rent_A_Hand_D1_dwb3is').toURL();
-const we_are_hiring_img = cld.image('main page photos/job-oppotunity-vacancy-work-icon-896425-removebg-preview_uq4etd').toURL();
-const all_talents_img = cld.image('main page photos/all_talents-removebg-preview-removebg-preview_svhy5z').toURL();
-const projects_img = cld.image('main page photos/projects_advt1j').toURL();
-
 export default function WhyRentAHand() {
     const isMobile = useScreenResolution();
+
+    const logo = cld.image('main page photos/Rent_A_Hand_D1_dwb3is').toURL();
+    const we_are_hiring_img = cld.image(
+        'main page photos/job-oppotunity-vacancy-work-icon-896425-removebg-preview_uq4etd'
+    ).toURL();
+    const all_talents_img = cld.image(
+        'main page photos/all_talents-removebg-preview-removebg-preview_svhy5z'
+    ).toURL();
+    const projects_img = cld.image('main page photos/projects_advt1j').toURL();
 
     const textStyle = {
         width: { xs: '100%', sm: '40%' }, textAlign: 'center', margin: '10px auto'
