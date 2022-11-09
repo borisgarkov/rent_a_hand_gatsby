@@ -4,7 +4,7 @@ import * as React from "react";
 
 export default function TalentsCatalog({ user }) {
     return (
-        <Grid item userId={user.id}>
+        <Grid item userid={user.id}>
             <Paper sx={{
                 maxWidth: { xs: 145, md: 200 }, display: 'flex',
                 flexDirection: 'column', alignItems: 'center',

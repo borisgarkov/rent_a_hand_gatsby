@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { Link, navigate } from 'gatsby';
 import { AppBar, Toolbar, Button, ButtonGroup, Stack, Box, ThemeProvider, CssBaseline } from "@mui/material";
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 import HomeIcon from '@mui/icons-material/Home';
 import WorkIcon from '@mui/icons-material/Work';
@@ -15,23 +17,22 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 
 import * as styles from './navbar.module.css';
-import MainPageMenuDrawer from './MainPageMenuDrawer';
+import '../../styles/global.css';
 
 import useScreenResolution from '../hooks/useScreenResolution';
 import cld from '../../services/getCloudinaryImages';
-
 import { theme } from '../../utils/mainTheme';
 
-import { Link, navigate } from 'gatsby';
+import MainPageMenuDrawer from './MainPageMenuDrawer';
 import Footer from '../CommonItems/Footer';
 import BackToTopButton from '../CommonItems/BackToTopButton';
 
-import '../../styles/global.css';
 
-const logo = cld.image('main page photos/Rent_A_Hand_D1_ekcqtj').toURL();
+const queryClient = QueryClient();
 
 const Navigation = ({ children }) => {
 
+    const logo = cld.image('main page photos/Rent_A_Hand_D1_ekcqtj').toURL();
     const isMobile = useScreenResolution();
 
     const menuPages = [
@@ -116,73 +117,84 @@ const Navigation = ({ children }) => {
 
     let isUserLoggedIn = true;
 
-    const ProfileSection = isUserLoggedIn ? <MainPageMenuDrawer
-        menuItems={profilePages}
-        isUserLoggedIn={isUserLoggedIn}
-        isUserSection={true}
-    /> : null;
+    const ProfileSection = (
+        isUserLoggedIn
+            ? (
+                <MainPageMenuDrawer
+                    menuItems={profilePages}
+                    isUserLoggedIn={isUserLoggedIn}
+                    isUserSection={true} />
+            )
+            : null
+    );
 
-    const HomeJobsPlanSection = isMobile ?
-        <MainPageMenuDrawer menuItems={menuPages} isUserSection={false} /> :
-        <ButtonGroup variant='' aria-label='button group'>
-            {menuPages.map((page) => (
-                <Link to={page.path} key={page.title}>
-                    <Button variant='text' sx={{ ...navButtonsCssStyle }}>
-                        <Box sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            fontSize: '12px',
-                            margin: '0 20px',
-                        }} >
-                            {page.icon}
-                            {page.title}
-                        </Box>
-                    </Button>
-                </Link>
-            ))}
-        </ButtonGroup>;
+    const HomeJobsPlanSection = (
+        isMobile
+            ? (<MainPageMenuDrawer menuItems={menuPages} isUserSection={false} />)
+            : (
+                <ButtonGroup variant='' aria-label='button group'>
+                    {menuPages.map((page) => (
+                        <Link to={page.path} key={page.title}>
+                            <Button variant='text' sx={{ ...navButtonsCssStyle }}>
+                                <Box sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    fontSize: '12px',
+                                    margin: '0 20px',
+                                }} >
+                                    {page.icon}
+                                    {page.title}
+                                </Box>
+                            </Button>
+                        </Link>
+                    ))}
+                </ButtonGroup>
+            )
+    );
 
 
     return (
-
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBar elevation={0} sx={{ backgroundColor: 'white' }}>
-                <Toolbar sx={{
-                    width: { xs: '100%' },
-                    maxWidth: { md: '87%' },
-                    margin: { xs: '0 0 5px 0', sm: '0 auto' },
-                    justifyContent: 'space-between',
-                }}>
+            <QueryClientProvider client={queryClient}>
+                <AppBar elevation={0} sx={{ backgroundColor: 'white' }}>
+                    <Toolbar sx={{
+                        width: { xs: '100%' },
+                        maxWidth: { md: '87%' },
+                        margin: { xs: '0 0 5px 0', sm: '0 auto' },
+                        justifyContent: 'space-between',
+                    }}>
 
-                    <img src={logo} height={isMobile ? '20' : '30'} alt="logo img"
-                        onClick={() => navigate('/')} style={{ cursor: 'pointer', }} />
+                        <img src={logo} height={isMobile ? '20' : '30'} alt="logo img"
+                            onClick={() => navigate('/')} style={{ cursor: 'pointer', }} />
 
-                    {
-                        isMobile ?
-                            <Stack sx={{
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                            }}>
-                                {ProfileSection}
-                                {HomeJobsPlanSection}
-                            </Stack> :
-                            <>
-                                {HomeJobsPlanSection}
-                                {ProfileSection}
-                            </>
-                    }
+                        {
+                            isMobile
+                                ? (
+                                    <Stack sx={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        {ProfileSection}
+                                        {HomeJobsPlanSection}
+                                    </Stack>
+                                )
+                                : (
+                                    <>
+                                        {HomeJobsPlanSection}
+                                        {ProfileSection}
+                                    </>
+                                )
+                        }
 
-                </Toolbar>
-                <Box className={styles.separator}>A HAND</Box>
-            </AppBar>
-            <Toolbar id='navbar' />
-            <Box sx={{ flexGrow: 1 }}>
-                {children}
-            </Box>
-            <BackToTopButton />
-            <Footer />
+                    </Toolbar>
+                    <Box className={styles.separator}>A HAND</Box>
+                </AppBar>
+                <Toolbar id='navbar' />
+                <Box sx={{ flexGrow: 1 }}>
+                    {children}
+                </Box>
+                <BackToTopButton />
+                <Footer />
+            </QueryClientProvider>
         </ThemeProvider>
     )
 }

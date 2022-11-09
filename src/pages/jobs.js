@@ -10,7 +10,6 @@ import Navigation from '../components/NavigationBar/Navigation';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 
 import { jobs } from '../components/JobsPage/test-jobs';
-import test_users from '../components/JobsPage/test_users';
 import { work_categories, work_type } from '../components/CommonItems/work-categories';
 import JobsCatalog from '../components/JobsPage/JobsCatalog';
 
@@ -19,6 +18,7 @@ import { scale } from '@cloudinary/url-gen/actions/resize';
 import TalentsCatalog from '../components/JobsPage/TalentsCatalog';
 import AutocompleteWorkCatsList from '../components/CommonItems/AutocompleteWorkCatsList';
 import listOfCities from '../components/CommonItems/listOfCities';
+import { useQuery } from 'react-query';
 
 const setImageSize = (image) => {
     return cld.image(`main page photos/${image}`).resize(scale().width(0.4)).toURL()
@@ -77,6 +77,11 @@ export default function JobsPage() {
     const [searchByKeyWord, setSearchByKeyword] = React.useState('');
     const handleSearchByKeyword = (event) => { setSearchByKeyword(event.target.value) };
 
+    const { data, isLoading } = useQuery(['users'], () => {
+        return fetch('http://localhost:3000/users');
+    });
+
+    console.log(data)
 
     return (
         <Navigation>
@@ -171,10 +176,16 @@ export default function JobsPage() {
                 </Stack>
                 {
                     titleWorkType === 'Таланти'
-                        ?
-                        <Grid container sx={{ maxWidth: 1000, justifyContent: { xs: 'space-evenly', md: 'normal' } }} gap={2} >
-                            {test_users.map(user => (<TalentsCatalog key={user.id} user={user} />))}
-                        </Grid>
+                        ? (
+                            // '' === 'success' && (
+                            <Grid container sx={{
+                                maxWidth: 1000,
+                                justifyContent: { xs: 'space-evenly', md: 'normal' }
+                            }} gap={2}>
+                                {[].map(user => (<TalentsCatalog key={user.id} user={user} />))}
+                            </Grid>
+                            // )
+                        )
                         :
                         <Grid container sx={{ maxWidth: 1000 }} gap={2}>
                             {currentPageJobs.map(job => (<JobsCatalog key={job.id} job={job} />))}
