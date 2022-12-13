@@ -3,85 +3,31 @@ import {
     CardContent, Grid, Button, Autocomplete, FormControlLabel, Checkbox
 } from '@mui/material';
 
-import * as styles from '../components/JobsPage/job-style.module.css';
+import { centerUlItems } from './job-style.module.css';
 import * as React from "react";
 
-import Navigation from '../components/NavigationBar/Navigation';
+import Navigation from '../NavigationBar/Navigation';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 
-import { jobs } from '../components/JobsPage/test-jobs';
-import { work_categories, work_type } from '../components/CommonItems/work-categories';
-import JobsCatalog from '../components/JobsPage/JobsCatalog';
+import AutocompleteWorkCatsList from '../CommonItems/AutocompleteWorkCatsList';
+import { work_type } from '../CommonItems/work-categories';
+import listOfCities from '../CommonItems/listOfCities';
 
-import cld from '../services/getCloudinaryImages';
-import { scale } from '@cloudinary/url-gen/actions/resize';
-import TalentsCatalog from '../components/JobsPage/TalentsCatalog';
-import AutocompleteWorkCatsList from '../components/CommonItems/AutocompleteWorkCatsList';
-import listOfCities from '../components/CommonItems/listOfCities';
-import { useQuery } from 'react-query';
+import useJobsStateVariables from './hooks/useJobsStateVariables';
+import { queryParametersController } from './utils/addQueryParatemers';
+import ShowJobsTalentsSection from './ShowJobsTalentsSection';
 
-const setImageSize = (image) => {
-    return cld.image(`main page photos/${image}`).resize(scale().width(0.4)).toURL()
-}
 
-const job_offers_img = setImageSize('main_page_job_offers_sajflw');
-const freelancer_img = setImageSize('main_page_freelancer_suf7mw');
-const projects_img = setImageSize('project_photo_wadwlu');
+export default function MainJobsPage() {
+    const queryParamsDict = queryParametersController();
+    console.log('MainJobsPage ' + queryParamsDict);
 
-const totalJobsCount = jobs.length;
-const totalJobsPerPage = 10;
-const totalPaginationPages = Math.ceil(totalJobsCount / totalJobsPerPage);
-
-export default function JobsPage() {
-
-    const allAvatarImages = [
-        job_offers_img,
-        projects_img,
-        freelancer_img,
-    ];
-
-    let imageMap = {};
-    work_type.forEach((key, indx) => imageMap[key] = allAvatarImages[indx]);
-
-    const [currentPage, setCurrentPage] = React.useState(1);
-    const handlePageChange = (event) => { setCurrentPage(parseInt(event.target.innerText)) };
-
-    const currentPageJobs = React.useMemo(() => {
-        const firstPageIndex = (currentPage - 1) * totalJobsPerPage;
-        const lastPageIndex = firstPageIndex + totalJobsPerPage;
-        return jobs.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage]);
-
-    const [workType, setWorkType] = React.useState(work_type[0]);
-    const handleWorkTypeChange = (event, newValue) => { setWorkType(newValue) }
-
-    const [currentWorkCategoty, setCurrentWorkCategoty] = React.useState(work_categories[0]);
-    const handleCategoryChange = (event, newValue) => { setCurrentWorkCategoty(newValue) }
-
-    const [currentCity, setCurrentCity] = React.useState(listOfCities[0]);
-    const handleCurrentCityChange = (event, newValue) => { setCurrentCity(newValue) };
-
-    const [avatarImage, setAvatarImage] = React.useState(imageMap[work_type[0]]);
-    const [titleWorkType, setTitleWorkType] = React.useState(work_type[0]);
-
-    const searchJobs = (event) => {
-        if (!work_categories.includes(currentWorkCategoty) || !work_type.includes(workType)) { return };
-
-        setAvatarImage(imageMap[workType]);
-        setTitleWorkType(workType);
-    };
-
-    const [wantToWorkFullTime, setWantToWorkFullTime] = React.useState(false);
-    const handleWantToWorkFullTimeChange = (event) => { setWantToWorkFullTime(event.target.checked) };
-
-    const [searchByKeyWord, setSearchByKeyword] = React.useState('');
-    const handleSearchByKeyword = (event) => { setSearchByKeyword(event.target.value) };
-
-    const { data, isLoading } = useQuery(['users'], () => {
-        return fetch('http://localhost:3000/users');
-    });
-
-    console.log(data)
+    const {
+        workType, handleWorkTypeChange, currentWorkCategoty, handleCategoryChange,
+        currentCity, handleCurrentCityChange, avatarImage, titleWorkType,
+        searchJobs, wantToWorkFullTime, handleWantToWorkFullTimeChange,
+        searchByKeyWord, handleSearchByKeyword,
+    } = useJobsStateVariables(queryParamsDict);
 
     return (
         <Navigation>
@@ -155,8 +101,8 @@ export default function JobsPage() {
                                 renderInput={(params) => <TextField {...params} label='Населено място' />}
                                 sx={{ marginTop: 2 }}
                             />
-
                         </CardContent>
+
                         <Divider />
                         <CardContent>
                             <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
@@ -170,39 +116,32 @@ export default function JobsPage() {
                                     onChange={handleSearchByKeyword}
                                 />
                             </Box>
-                            <Button variant='contained' onClick={searchJobs} sx={{ marginTop: 5 }} fullWidth>Търси</Button>
+                            <Button
+                                variant='contained'
+                                onClick={searchJobs}
+                                sx={{ marginTop: 5 }}
+                                fullWidth
+                            >
+                                Търси
+                            </Button>
                         </CardContent>
                     </Card>
                 </Stack>
-                {
-                    titleWorkType === 'Таланти'
-                        ? (
-                            // '' === 'success' && (
-                            <Grid container sx={{
-                                maxWidth: 1000,
-                                justifyContent: { xs: 'space-evenly', md: 'normal' }
-                            }} gap={2}>
-                                {[].map(user => (<TalentsCatalog key={user.id} user={user} />))}
-                            </Grid>
-                            // )
-                        )
-                        :
-                        <Grid container sx={{ maxWidth: 1000 }} gap={2}>
-                            {currentPageJobs.map(job => (<JobsCatalog key={job.id} job={job} />))}
-                        </Grid>
-                }
+                <ShowJobsTalentsSection titleWorkType={titleWorkType} />
             </Stack>
 
-            <Stack spacing={2} sx={{ maxWidth: 1000, margin: 'auto', marginTop: 5, marginBottom: 5 }} >
+            <Stack spacing={2} sx={{
+                maxWidth: 1000, margin: 'auto',
+                marginTop: 5, marginBottom: 5
+            }} >
                 <Pagination
                     size='large'
-                    count={totalPaginationPages}
+                    count={1}
                     color='primary'
-                    page={currentPage}
-                    onChange={handlePageChange}
-                    className={styles.centerUlItems}
+                    page={1}
+                    className={centerUlItems}
                 />
             </Stack>
-        </Navigation>
+        </Navigation >
     )
 }

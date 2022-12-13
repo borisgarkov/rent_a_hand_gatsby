@@ -19,10 +19,12 @@ module.exports = {
             },
         },
         {
-          resolve: 'gatsby-plugin-manifest',
-          options: {
-            icon: 'src/images/Rent A Hand_D1-01.jpg',
-          },
+            resolve: 'gatsby-plugin-manifest',
+            options: {
+                icon: 'src/images/Rent A Hand_D1-01.jpg',
+            },
         },
+        "gatsby-plugin-image",
+        "gatsby-plugin-sharp",
     ]
 }

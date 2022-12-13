@@ -4,7 +4,6 @@ import { navigate } from "gatsby";
 import Navigation from "../components/NavigationBar/Navigation";
 
 import WorkIcon from '@mui/icons-material/Work';
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import * as styles from '../components/MainPage/main-page.module.css';
@@ -23,84 +22,52 @@ const tabs_css_style = {
     },
 };
 
-const job_offers_img = cld.image('main page photos/main_page_job_offers_sajflw').toURL();
-const projects_img = cld.image('main page photos/project_photo_wadwlu').toURL();
-const freelancer_img = cld.image('main page photos/main_page_freelancer_suf7mw').toURL();
+const CompaniesTabInfo = () => {
+    const tabText = [
+        'Споделете вашата обява за работа и намерете подходящия кандидат.',
+        'Научете повече за предимствата на нашата платформа',
+    ];
 
-const JobsTabInfo = () => {
+    const buttonSectionStyle = {
+        flexDirection: { md: 'row' },
+        gap: 1,
+        justifyContent: 'space-evenly',
+        paddingBottom: 3,
+        marginTop: 2.5,
+    };
+
     return (
         <>
-            <Stack sx={{
-                gap: 2,
-                justifyContent: 'center',
-            }}>
+            <Stack sx={{ gap: 2, justifyContent: 'center' }}>
                 <WorkIcon fontSize='large' sx={{ alignSelf: 'center', color: 'primary.main' }} />
                 <Typography variant='h5' sx={{ ...tabs_css_style }}>
-                    Предлагате работа?
+                    Вие сте фирма и предлагате работа или краткосрочен проект?
                 </Typography>
-                <Typography variant='body1' sx={{ ...tabs_css_style }}>
-                    Споделете вашата обява за работа / стаж и намерете подходящия кандидат.
-                </Typography>
-                <Typography variant='body1' sx={{ marginBottom: 2.5, ...tabs_css_style }}>
-                    Научете повече за предимствата на нашата платформа
-                </Typography>
+                {
+                    tabText.map(text => (
+                        <Typography variant='body1' sx={{ ...tabs_css_style }}>
+                            {text}
+                        </Typography>
+                    ))
+                }
             </Stack>
 
-
-            <Stack sx={{
-                flexDirection: { md: 'row' },
-                gap: 1,
-                justifyContent: 'space-evenly',
-                paddingBottom: 3
-            }}>
+            <Stack sx={buttonSectionStyle}>
                 <Button variant='contained' onClick={() => navigate('/pricing')}>Корпоративни Планове</Button>
-                <Button variant='outlined' onClick={() => navigate('/register-as-firm')}>Качи обява за работа</Button>
+                <Button variant='outlined' onClick={() => navigate('/register')}>Научи повече</Button>
             </Stack>
         </>
     )
 };
 
-const ProjectsTabInfo = () => {
-    const buttonWidth = '38%';
+const UsersTabInfo = () => {
 
-    return (
-        <>
-            <Stack sx={{
-                gap: 2,
-                justifyContent: 'center',
-            }}>
-                <AssignmentIcon fontSize='large' sx={{ alignSelf: 'center', color: 'primary.main' }} />
-                <Typography variant='h5' sx={{ ...tabs_css_style }}>
-                    Имаш проект / задача, за който не се изисква дългосрочен трудов договор?
-                </Typography>
-                <Typography variant='body1' sx={{ marginBottom: 2.5, ...tabs_css_style }}>
-                    Намери подходящ талант в нашата платформа, за да свърши нужната работа.
-                </Typography>
-            </Stack>
-            <Stack sx={{
-                flexDirection: { md: 'row' },
-                gap: 1,
-                justifyContent: 'space-evenly',
-                paddingBottom: 3
-            }}>
-                <Button variant='contained'
-                    onClick={() => navigate('/register-project')}
-                    sx={{ width: { md: buttonWidth } }}
-                >
-                    Регистрация
-                </Button>
-                <Button variant='outlined'
-                    onClick={() => navigate('/jobs')}
-                    sx={{ width: { md: buttonWidth } }}
-                >
-                    Проекти
-                </Button>
-            </Stack>
-        </>
-    )
-};
+    const tabText = [
+        'Работи в удобно за теб време, където и когато поискаш.',
+        'Намери подходящия проект за твоите умения, като споделиш опита и знанията си.',
+        'Намери правилния човек, който да свърши твоята задача / проект.',
+    ];
 
-const FreelancerTabInfo = () => {
     return (
         <>
             <Stack sx={{
@@ -109,31 +76,38 @@ const FreelancerTabInfo = () => {
             }}>
                 <StarBorderIcon fontSize='large' sx={{ alignSelf: 'center', color: 'primary.main' }} />
                 <Typography variant='h5' sx={{ ...tabs_css_style }}>
-                    Искаш да работиш за себе си?
+                    Стани талант в нашата мрежа или сподели проект
                 </Typography>
-                <Typography variant='body1' sx={{ ...tabs_css_style }}>
-                    Работи в удобно за теб време, където и когато поискаш.
-                </Typography>
-                <Typography variant='body1' sx={{ marginBottom: 2.5, ...tabs_css_style }}>
-                    Намери подходящия проект за твоите умения,
-                    като споделиш опита и знанията си в нашата платформа.
-                </Typography>
+                {
+                    tabText.map(text => (
+                        <Typography variant='body1' sx={{ ...tabs_css_style }}>
+                            {text}
+                        </Typography>
+                    ))
+                }
             </Stack>
-            <Stack sx={{ width: { md: '85%' }, margin: '0 auto', paddingBottom: 3 }}>
-                <Button variant='contained' onClick={() => navigate('/register-as-freelancer')}>Регистрация</Button>
+            <Stack sx={{ width: { md: '85%' }, margin: '0 auto', paddingBottom: 3, marginTop: 2.5 }}>
+                <Button
+                    variant='contained'
+                    onClick={() => navigate('/register')}
+                >
+                    Научи повече
+                </Button>
             </Stack>
         </>
     )
 };
 
 const MainPage = () => {
+    const job_offers_img = cld.image('main page photos/main_page_job_offers_sajflw').toURL();
+    const freelancer_img = cld.image('main page photos/main_page_freelancer_suf7mw').toURL();
+
     const [tab, setTab] = React.useState(0);
     const [backgroundImg, setBackgroundImg] = React.useState(job_offers_img);
 
     const tab_images = {
         0: job_offers_img,
-        1: projects_img,
-        2: freelancer_img,
+        1: freelancer_img,
     };
 
     const tabsChangeHandler = (event, newTab) => {
@@ -143,26 +117,20 @@ const MainPage = () => {
 
     const tabs_info = [
         {
-            label: 'Обяви за работа',
+            label: 'Фирми',
             icon: <WorkIcon />,
             value: 0
         },
         {
-            label: 'Проекти / Задачи',
-            icon: <AssignmentIcon />,
-            value: 1
-        },
-        {
-            label: 'Таланти',
+            label: 'Потребители',
             icon: <StarBorderIcon />,
-            value: 2
+            value: 1
         },
     ];
 
     const tabs_data = {
-        0: <JobsTabInfo />,
-        1: <ProjectsTabInfo />,
-        2: <FreelancerTabInfo />,
+        0: <CompaniesTabInfo />,
+        1: <UsersTabInfo />,
     };
 
     return (
@@ -174,9 +142,10 @@ const MainPage = () => {
                     </Stack>
                     <Paper sx={{
                         width: { xs: '100%', lg: 576 }, position: { xs: 'static', lg: 'absolute' },
-                        top: { md: '25%' }, left: { md: '8%' },
+                        top: { md: '20%' }, left: { md: '8%' },
                     }}>
-                        <Tabs value={tab} centered variant='fullWidth' sx={{ marginBottom: 5 }} onChange={tabsChangeHandler}>
+                        <Tabs value={tab} centered variant='fullWidth'
+                            sx={{ marginBottom: 5 }} onChange={tabsChangeHandler}>
                             {
                                 tabs_info.map(x => (
                                     <Tab key={x.label} wrapped label={x.label} icon={x.icon}
@@ -185,7 +154,9 @@ const MainPage = () => {
                                 ))
                             }
                         </Tabs>
-                        {tabs_data[tab]}
+                        {
+                            tabs_data[tab]
+                        }
                     </Paper>
                 </Box>
             </LazyLoadComponent>

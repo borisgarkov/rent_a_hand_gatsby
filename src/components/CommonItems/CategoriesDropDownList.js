@@ -4,7 +4,7 @@ import * as React from "react";
 
 const CategoriesDropDownList = ({ textFieldVariant = 'standard', cssStyle = { margin: '8px 0' }, fullwidth = true }) => {
 
-    const [currentSelectedCategoty, setCurrentSelectedCategoty] = React.useState('ИТ');
+    const [currentSelectedCategoty, setCurrentSelectedCategoty] = React.useState(work_categories[0]);
 
     const handleCategoryChange = (event) => {
         setCurrentSelectedCategoty(event.target.value);

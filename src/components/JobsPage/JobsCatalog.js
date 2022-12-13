@@ -19,7 +19,7 @@ import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import WorkIcon from '@mui/icons-material/Work';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
-import * as styles from '../ProfilePage/profile-page-style.module.css';
+import { imageStyle } from '../ProfilePage/profile-page-style.module.css';
 import cld from '../../services/getCloudinaryImages';
 import { navigate } from 'gatsby';
 
@@ -50,7 +50,12 @@ export default function JobsCatalog({ job }) {
                     <CardHeader
                         title='Rent A Hand'
                         subheader='ИТ'
-                        avatar={<Avatar src={logo} className={styles.imageStyle} sx={{ margin: 0, }} style={{ 'margin': 0 }} />}
+                        avatar={
+                            <Avatar src={logo}
+                                className={imageStyle}
+                                sx={{ margin: 0, }}
+                                style={{ 'margin': 0 }} />
+                        }
                         titleTypographyProps={{ fontSize: { sm: '1rem' }, fontWeight: 'bold', }}
                         subheaderTypographyProps={{ fontSize: { sm: '0.875rem' } }}
                         sx={{

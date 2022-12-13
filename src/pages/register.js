@@ -1,5 +1,7 @@
-import BaseRegisterPageCategories from '../components/RegisterPage/CommonRegistrationComponents/BaseRegisterPageCategories';
-import register_categories from '../components/RegisterPage/CommonRegistrationComponents/registerCategories';
+import BaseRegisterPageCategories
+    from '../components/RegisterPage/CommonRegistrationComponents/BaseRegisterPageCategories';
+import register_categories
+    from '../components/RegisterPage/CommonRegistrationComponents/registerCategories';
 import * as React from "react";
 import Navigation from '../components/NavigationBar/Navigation';
 

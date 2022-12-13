@@ -19,34 +19,22 @@ const BaseNameCityConnectHeadingSection = () => {
         }}>
             <Stack sx={{
                 flexDirection: { xs: 'row', sm: 'column' },
-                alignItems: 'center',
+                alignItems: 'baseline',
                 gap: { xs: 1, sm: 0 }
             }}>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                     {user.firstName} {user.lastName}
                 </Typography>
-                <Stack sx={{
-                    flexDirection: 'row',
-                    gap: 0.5,
-                }}>
+                <Stack sx={{ flexDirection: 'row', gap: 0.5 }}>
                     <LocationOnIcon sx={{ color: 'primary.main' }} size='small' />
                     <Typography variant="body1">{user.city}</Typography>
                 </Stack>
             </Stack>
-            <Stack sx={{
-                flexDirection: 'column',
-                flexGrow: 1,
-                display: { xs: 'none', sm: 'flex' }
-            }}>
-                <Typography component="legend" sx={{ margin: '0 auto' }}>Отзиви</Typography>
-                <Rating name="read-only" defaultValue={3.5} precision={0.5} readOnly
-                    sx={{ color: '#f37327', margin: '0 auto' }} />
-            </Stack>
+
             <Button
                 variant='contained'
                 startIcon={<MessageOutlinedIcon />}
                 sx={{ marginLeft: { sm: 'auto' }, marginRight: { sm: 5 }, width: { xs: '100%', sm: '20%' } }}
-                onClick={() => (navigate('/chat'))}
             >
                 Свържи се
             </Button>
@@ -58,7 +46,6 @@ const BaseNameCityConnectHeadingSection = () => {
 const NameCityConnectHeadingSection = () => {
 
     const isModileDevice = useScreenResolution();
-
     return (
         <>
             {

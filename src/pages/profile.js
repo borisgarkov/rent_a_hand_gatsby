@@ -9,6 +9,8 @@ import { SaveUserToFavouriteSection } from "../components/ProfilePage/UserProfil
 
 import * as React from 'react';
 import Navigation from "../components/NavigationBar/Navigation";
+import AllJobsSection from "../components/ProfilePage/AllJobsSection";
+import { projects } from "../components/JobsPage/test-jobs";
 
 export default function UserProfilePage() {
 
@@ -39,6 +41,7 @@ export default function UserProfilePage() {
                 </Stack>
             </Card>
 
+            <AllJobsSection jobs={projects} sectionTitle='Проекти' />
             <SaveUserToFavouriteSection />
         </Navigation>
     )

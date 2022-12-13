@@ -5,3 +5,44 @@
 .image-half-height {
     height: 50%;
 }
+
+.custom-shape-divider-bottom-1670962481 {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    background-color: white;
+}
+
+.custom-shape-divider-bottom-1670962481 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 55px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1670962481 .shape-fill {
+    fill: #F5F5F5;
+}
+
+
+.footerShape {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    background-color: white;
+}
+
+.footerShape svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 55px;
+    transform: rotateY(180deg);
+}
+
+.footerShape .shape-fill {
+    fill: #F5F5F5;
+}

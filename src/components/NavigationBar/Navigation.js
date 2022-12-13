@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link, navigate } from 'gatsby';
 import { AppBar, Toolbar, Button, ButtonGroup, Stack, Box, ThemeProvider, CssBaseline } from "@mui/material";
-import { QueryClientProvider, QueryClient } from 'react-query';
 
 import HomeIcon from '@mui/icons-material/Home';
 import WorkIcon from '@mui/icons-material/Work';
@@ -28,7 +27,7 @@ import Footer from '../CommonItems/Footer';
 import BackToTopButton from '../CommonItems/BackToTopButton';
 
 
-const queryClient = QueryClient();
+// const queryClient = new QueryClient();
 
 const Navigation = ({ children }) => {
 
@@ -157,44 +156,42 @@ const Navigation = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <QueryClientProvider client={queryClient}>
-                <AppBar elevation={0} sx={{ backgroundColor: 'white' }}>
-                    <Toolbar sx={{
-                        width: { xs: '100%' },
-                        maxWidth: { md: '87%' },
-                        margin: { xs: '0 0 5px 0', sm: '0 auto' },
-                        justifyContent: 'space-between',
-                    }}>
+            <AppBar elevation={0} sx={{ backgroundColor: 'white' }}>
+                <Toolbar sx={{
+                    width: { xs: '100%' },
+                    maxWidth: { md: '87%' },
+                    margin: { xs: '0 0 5px 0', sm: '0 auto' },
+                    justifyContent: 'space-between',
+                }}>
 
-                        <img src={logo} height={isMobile ? '20' : '30'} alt="logo img"
-                            onClick={() => navigate('/')} style={{ cursor: 'pointer', }} />
+                    <img src={logo} height={isMobile ? '20' : '30'} alt="logo img"
+                        onClick={() => navigate('/')} style={{ cursor: 'pointer', }} />
 
-                        {
-                            isMobile
-                                ? (
-                                    <Stack sx={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        {ProfileSection}
-                                        {HomeJobsPlanSection}
-                                    </Stack>
-                                )
-                                : (
-                                    <>
-                                        {HomeJobsPlanSection}
-                                        {ProfileSection}
-                                    </>
-                                )
-                        }
+                    {
+                        isMobile
+                            ? (
+                                <Stack sx={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    {ProfileSection}
+                                    {HomeJobsPlanSection}
+                                </Stack>
+                            )
+                            : (
+                                <>
+                                    {HomeJobsPlanSection}
+                                    {ProfileSection}
+                                </>
+                            )
+                    }
 
-                    </Toolbar>
-                    <Box className={styles.separator}>A HAND</Box>
-                </AppBar>
-                <Toolbar id='navbar' />
-                <Box sx={{ flexGrow: 1 }}>
-                    {children}
-                </Box>
-                <BackToTopButton />
-                <Footer />
-            </QueryClientProvider>
+                </Toolbar>
+                <Box className={styles.separator}>A HAND</Box>
+            </AppBar>
+            <Toolbar id='navbar' />
+            <Box sx={{ flexGrow: 1 }}>
+                {children}
+            </Box>
+            <BackToTopButton />
+            <Footer />
         </ThemeProvider>
     )
 }
