@@ -28,12 +28,15 @@ const BaseInformationSection = ({
             </Typography>
             {
                 informationTextArray.map(text => (
-                    <Stack sx={{
-                        flexDirection: 'row',
-                        maxWidth: '550px',
-                        gap: 2,
-                        margin: '0 auto',
-                    }}>
+                    <Stack
+                        key={text}
+                        sx={{
+                            flexDirection: 'row',
+                            maxWidth: '550px',
+                            gap: 2,
+                            margin: '0 auto',
+                        }}
+                    >
                         {
                             icon
                         }

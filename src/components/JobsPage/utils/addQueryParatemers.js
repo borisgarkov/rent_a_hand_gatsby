@@ -5,6 +5,8 @@ const decodeQueryParam = (text) => {
     return decodeURIComponent(text.replace(/\+/g, " "));
 };
 
+const isBrowser = () => typeof window !== "undefined";
+
 const getQueryParametersFromUrl = (url) => {
     let searchParams = decodeQueryParam(url.search);
     searchParams = searchParams.replace('?', '');
@@ -26,10 +28,11 @@ const addQueryParametersToURL = (url, parametersDict) => {
     }
 
     window.history.replaceState({}, '', url.href);
-    console.log('URL params updated');
 }
 
 const queryParametersController = (jobsStateObject) => {
+    if (isBrowser() === false) { return '' };
+
     const url = new URL(window.location.href);
 
     if (url.search === '') {

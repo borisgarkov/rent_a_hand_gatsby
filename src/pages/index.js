@@ -45,7 +45,7 @@ const CompaniesTabInfo = () => {
                 </Typography>
                 {
                     tabText.map(text => (
-                        <Typography variant='body1' sx={{ ...tabs_css_style }}>
+                        <Typography key={text} variant='body1' sx={{ ...tabs_css_style }}>
                             {text}
                         </Typography>
                     ))
@@ -166,9 +166,9 @@ const MainPage = () => {
             <LazyLoadComponent>
                 <ExploreTheMarketPlace />
             </LazyLoadComponent>
-            <LazyLoadComponent>
+            {/* <LazyLoadComponent>
                 <CustomerFeedback />
-            </LazyLoadComponent>
+            </LazyLoadComponent> */}
         </Navigation>
     )
 }
