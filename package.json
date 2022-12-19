@@ -29,6 +29,7 @@
         "cx": "^22.10.3",
         "gatsby": "^4.24.0",
         "gatsby-omni-font-loader": "^2.0.2",
+        "gatsby-plugin-advanced-sitemap": "^2.1.0",
         "gatsby-plugin-image": "^2.24.0",
         "gatsby-plugin-manifest": "^4.24.0",
         "gatsby-plugin-sharp": "^4.24.0",

@@ -28,14 +28,6 @@ const CompaniesTabInfo = () => {
         'Научете повече за предимствата на нашата платформа',
     ];
 
-    const buttonSectionStyle = {
-        flexDirection: { md: 'row' },
-        gap: 1,
-        justifyContent: 'space-evenly',
-        paddingBottom: 3,
-        marginTop: 2.5,
-    };
-
     return (
         <>
             <Stack sx={{ gap: 2, justifyContent: 'center' }}>
@@ -52,9 +44,8 @@ const CompaniesTabInfo = () => {
                 }
             </Stack>
 
-            <Stack sx={buttonSectionStyle}>
-                <Button variant='contained' onClick={() => navigate('/pricing')}>Корпоративни Планове</Button>
-                <Button variant='outlined' onClick={() => navigate('/register')}>Научи повече</Button>
+            <Stack sx={{ width: { md: '85%' }, margin: '0 auto', paddingBottom: 3, marginTop: 2.5 }}>
+                <Button variant='contained' onClick={() => navigate('/register')}>Научи повече</Button>
             </Stack>
         </>
     )
@@ -87,10 +78,7 @@ const UsersTabInfo = () => {
                 }
             </Stack>
             <Stack sx={{ width: { md: '85%' }, margin: '0 auto', paddingBottom: 3, marginTop: 2.5 }}>
-                <Button
-                    variant='contained'
-                    onClick={() => navigate('/register')}
-                >
+                <Button variant='contained' onClick={() => navigate('/register')}>
                     Научи повече
                 </Button>
             </Stack>

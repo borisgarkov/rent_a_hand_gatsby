@@ -166,7 +166,7 @@ export default function WhyRentAHand() {
                 }}>
                     <img src={we_are_hiring_img} height={isMobile ? '70' : '100'} alt="we_are_hiring_img" />
                     <Typography sx={{ maxWidth: { xs: '100%', sm: '200px' } }}>
-                        Ние имаме работа за всеки, краткосрочна, дългосрочна, безсрочна, да ти се работи само
+                        Ние имаме работа за всеки, краткосрочна, дългосрочна, безсрочна, да ти се работи само.
                     </Typography>
                 </Stack>
                 <Stack sx={{
@@ -176,7 +176,7 @@ export default function WhyRentAHand() {
                 }}>
                     <img src={projects_img} height={isMobile ? '70' : '100'} alt="we_are_hiring_img" />
                     <Typography sx={{ maxWidth: { xs: '100%', sm: '200px' } }}>
-                        Проекти и задачи подходящи за всеки, който се осмели да бъде работлив
+                        Проекти и задачи подходящи за всеки, който се осмели да бъде работлив.
                     </Typography>
                 </Stack>
                 <Stack sx={{
@@ -186,7 +186,7 @@ export default function WhyRentAHand() {
                 }}>
                     <img src={all_talents_img} height={isMobile ? '70' : '100'} alt="we_are_hiring_img" />
                     <Typography sx={{ maxWidth: { xs: '100%', sm: '200px' } }}>
-                        Всички талантливи хора които искат да бъдат чути на едно място
+                        Всички талантливи хора които искат да бъдат чути на едно място.
                     </Typography>
                 </Stack>
             </Stack>
