@@ -12,8 +12,7 @@
         "start": "gatsby develop",
         "build": "gatsby build",
         "serve": "gatsby serve",
-        "clean": "gatsby clean",
-        "start-server": "json-server --watch db.json --port 3000"
+        "clean": "gatsby clean"
     },
     "dependencies": {
         "@cloudinary/url-gen": "^1.8.0",

@@ -9,11 +9,9 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import * as styles from '../components/MainPage/main-page.module.css';
 import { Stack, Typography, Button, Paper, Tabs, Tab, Box } from "@mui/material";
 import cld from "../services/getCloudinaryImages";
-import { LazyLoadComponent } from "react-lazy-load-image-component";
+import WhyRentAHand from '../components/MainPage/WhyRentAHand';
+import ExploreTheMarketPlace from '../components/MainPage/ExploreTheMarketPlace';
 
-const CustomerFeedback = React.lazy(() => import('../components/MainPage/CustomerFeedback'));
-const WhyRentAHand = React.lazy(() => (import('../components/MainPage/WhyRentAHand')));
-const ExploreTheMarketPlace = React.lazy(() => (import('../components/MainPage/ExploreTheMarketPlace')));
 
 const tabs_css_style = {
     padding: {
@@ -123,40 +121,31 @@ const MainPage = () => {
 
     return (
         <Navigation>
-            <LazyLoadComponent>
-                <Box sx={{ position: 'relative' }}>
-                    <Stack>
-                        <img className={styles.image} src={backgroundImg} alt='job offers img' />
-                    </Stack>
-                    <Paper sx={{
-                        width: { xs: '100%', lg: 576 }, position: { xs: 'static', lg: 'absolute' },
-                        top: { md: '20%' }, left: { md: '8%' },
-                    }}>
-                        <Tabs value={tab} centered variant='fullWidth'
-                            sx={{ marginBottom: 5 }} onChange={tabsChangeHandler}>
-                            {
-                                tabs_info.map(x => (
-                                    <Tab key={x.label} wrapped label={x.label} icon={x.icon}
-                                        iconPosition='top' value={x.value} sx={tabs_css_style}
-                                    />
-                                ))
-                            }
-                        </Tabs>
+            <Box sx={{ position: 'relative' }}>
+                <Stack>
+                    <img className={styles.image} src={backgroundImg} alt='job offers img' />
+                </Stack>
+                <Paper sx={{
+                    width: { xs: '100%', lg: 576 }, position: { xs: 'static', lg: 'absolute' },
+                    top: { md: '20%' }, left: { md: '8%' },
+                }}>
+                    <Tabs value={tab} centered variant='fullWidth'
+                        sx={{ marginBottom: 5 }} onChange={tabsChangeHandler}>
                         {
-                            tabs_data[tab]
+                            tabs_info.map(x => (
+                                <Tab key={x.label} wrapped label={x.label} icon={x.icon}
+                                    iconPosition='top' value={x.value} sx={tabs_css_style}
+                                />
+                            ))
                         }
-                    </Paper>
-                </Box>
-            </LazyLoadComponent>
-            <LazyLoadComponent>
-                <WhyRentAHand />
-            </LazyLoadComponent>
-            <LazyLoadComponent>
-                <ExploreTheMarketPlace />
-            </LazyLoadComponent>
-            {/* <LazyLoadComponent>
-                <CustomerFeedback />
-            </LazyLoadComponent> */}
+                    </Tabs>
+                    {
+                        tabs_data[tab]
+                    }
+                </Paper>
+            </Box>
+            <WhyRentAHand />
+            <ExploreTheMarketPlace />
         </Navigation>
     )
 }

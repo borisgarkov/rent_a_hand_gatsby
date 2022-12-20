@@ -27,8 +27,6 @@ import Footer from '../CommonItems/Footer';
 import BackToTopButton from '../CommonItems/BackToTopButton';
 
 
-// const queryClient = new QueryClient();
-
 const Navigation = ({ children }) => {
 
     const logo = cld.image('main page photos/Rent_A_Hand_D1_ekcqtj').toURL();
