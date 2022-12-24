@@ -29,7 +29,7 @@ import BackToTopButton from '../CommonItems/BackToTopButton';
 
 const Navigation = ({ children }) => {
 
-    const logo = cld.image('main page photos/Rent_A_Hand_D1_ekcqtj').toURL();
+    const logo = cld.image('main page photos/Rent_A_Hand_D1_dwb3is').toURL();
     const isMobile = useScreenResolution();
 
     const menuPages = [
@@ -154,7 +154,7 @@ const Navigation = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBar elevation={0} sx={{ backgroundColor: 'white' }}>
+            <AppBar elevation={1} sx={{ backgroundColor: 'white' }}>
                 <Toolbar sx={{
                     width: { xs: '100%' },
                     maxWidth: { md: '87%' },
@@ -182,7 +182,6 @@ const Navigation = ({ children }) => {
                     }
 
                 </Toolbar>
-                <Box className={styles.separator}>A HAND</Box>
             </AppBar>
             <Toolbar id='navbar' />
             <Box sx={{ flexGrow: 1 }}>
