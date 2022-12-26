@@ -1,17 +1,31 @@
 import Search from "@mui/icons-material/Search";
 import MailIcon from '@mui/icons-material/Mail';
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import PaymentIcon from '@mui/icons-material/Payment';
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import LogoutIcon from '@mui/icons-material/Logout';
+
+import homeIcon from '../images/main-page-icons/icons8-home-page-96.png';
+import profileIcon from '../images/main-page-icons/icons8-profile-96.png';
+import subscribeIcon from '../images/main-page-icons/icons8-tags-96.png';
+import addJonIcon from '../images/main-page-icons/icons8-job-seeker-96.png';
+import savedJobsIcon from '../images/main-page-icons/icons8-talent-64.png';
+import settingsIcon from '../images/main-page-icons/icons8-settings-58.png';
+import logoutIcon from '../images/main-page-icons/icons8-logout-64.png';
 
 import { styled, alpha } from '@mui/material/styles';
-import { AppBar, Avatar, Badge, Box, Grid, IconButton, InputBase, Toolbar, Typography, Stack } from "@mui/material";
+import {
+    AppBar, Avatar, Badge, Box, Grid, IconButton,
+    InputBase, Toolbar, Typography, Stack, Container, Divider
+} from "@mui/material";
 import * as React from "react";
 import useScreenResolution from "../components/hooks/useScreenResolution";
 import * as styles from '../components/Home/home-styles.module.css';
 import { Link } from "gatsby";
+import Test from "../components/Home/Test";
+
+const currentUser = {
+    incomingMessages: 4,
+    profilePicture: 'https://source.unsplash.com/random',
+    username: 'rent_a_hand',
+}
+
 
 const SearchBarStyled = styled('div')(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
@@ -36,7 +50,7 @@ const SearchSection = (props) => {
             {
                 !props.isMobile &&
                 < SearchBarStyled >
-                    <Search />
+                    <Search sx={{ paddingLeft: 2 }} />
                     <StyledInputBase
                         placeholder="Търси..."
                         inputProps={{ 'aria-label': 'search' }}
@@ -47,28 +61,87 @@ const SearchSection = (props) => {
     )
 };
 
-const LeftMenu = () => {
+const StyledContainer = styled(Container)(({ theme }) => ({
+    paddingTop: theme.spacing(7),
+    [theme.breakpoints.up('sm')]: {
+        paddingTop: theme.spacing(10),
+        backgroundColor: '#f5f5f5',
+        color: '#555',
+        border: '1px solid #ece7e7',
+    },
+    paddingLeft: 0,
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    height: '100vh',
+    position: 'sticky',
+    top: 0
+}));
+
+const StyledStack = styled(Stack)(({ theme }) => ({
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: theme.spacing(1),
+    marginBottom: theme.spacing(2),
+    ":hover": {
+        backgroundColor: '#ffffff',
+        borderRadius: '5px',
+    }
+}));
+
+const LeftMenu = (props) => {
     const pages = [
-        { title: 'Начало', icon: <HomeIcon />, path: '/new' },
-        { title: 'Профил', icon: <PersonIcon />, path: '/new' },
-        { title: 'Абонамент', icon: <PaymentIcon />, path: '/new' },
-        { title: 'Настройки', icon: <SettingsSuggestIcon />, path: '/new' },
-        { title: 'Изход', icon: <LogoutIcon />, path: '/new' }
-    ]
+        { title: 'Начало', icon: homeIcon, path: '/new' },
+        { title: 'Профил', icon: profileIcon, path: '/new' },
+        { title: 'Абонамент', icon: subscribeIcon, path: '/new' },
+        { title: 'Добави обява', icon: addJonIcon, path: '/new' },
+        { title: 'Запазени обяви', icon: savedJobsIcon, path: '/new' },
+        { title: 'Настройки', icon: settingsIcon, path: '/new' },
+        { title: 'Изход', icon: logoutIcon, path: '/new' }
+    ];
 
     return (
-        <>
+        <StyledContainer>
+            <StyledStack>
+                <Avatar alt="profile-picture" src={currentUser.profilePicture} />
+                <Typography variant="body2">{currentUser.username}</Typography>
+            </StyledStack>
+            <Box sx={{ marginBottom: 4 }}></Box>
             {
                 pages.map((p) => (
                     <Link to={p.path} key={p.title}>
-                        <Stack direction='row' alignItems='center' columnGap={1} marginBottom={3}>
-                            {p.icon}
-                            <Typography variant="body1">{p.title}</Typography>
-                        </Stack>
+                        <StyledStack>
+                            <img alt='icon-picture' width='28' height='28' src={p.icon} />
+                            {
+                                !props.isMobile &&
+                                <Typography variant="body2">{p.title}</Typography>
+                            }
+                        </StyledStack>
                     </Link>
                 ))
             }
+            <Divider />
+        </StyledContainer>
+    )
+};
+
+const Feed = () => {
+    return (
+        <>
+            <Test />
+            <Test />
+            <Test />
+            <Test />
+            <Test />
+            <Test />
         </>
+    )
+};
+
+const RightMenu = () => {
+    return (
+        <StyledContainer>
+
+        </StyledContainer>
     )
 };
 
@@ -81,14 +154,9 @@ export default function Home() {
     const isMobile = useScreenResolution();
     const logoVariant = isMobile ? 'body2' : 'h6';
 
-    const currentUser = {
-        incomingMessages: 4,
-        profilePicture: 'https://source.unsplash.com/random',
-    }
-
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="fixed" sx={{ right: 0 }}>
                 <StyledToolbar>
                     <Typography variant={logoVariant}>
                         Rent A Hand
@@ -106,14 +174,14 @@ export default function Home() {
                 </StyledToolbar>
             </AppBar >
             <Grid container sx={{ height: '100vh' }}>
-                <Grid sx={{ backgroundColor: 'red', height: '100%' }} item sm={2}>
-                    <LeftMenu />
+                <Grid item sm={2} xs={2}>
+                    <LeftMenu isMobile={isMobile} />
                 </Grid>
-                <Grid sx={{ backgroundColor: 'green', height: '100%' }} item sm={8}>
-                    <LeftMenu />
+                <Grid item sm={7} xs={10}>
+                    <Feed />
                 </Grid>
-                <Grid sx={{ backgroundColor: 'white', height: '100%' }} item sm={2}>
-                    <LeftMenu />
+                <Grid item sm={3} xs={0}>
+                    <RightMenu />
                 </Grid>
             </Grid>
         </>
