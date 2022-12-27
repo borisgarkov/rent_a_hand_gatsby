@@ -25,13 +25,8 @@ import { Link } from "gatsby";
 import JobsCatalog from "../components/JobsPage/JobsCatalog";
 import SeachJobsSection from "../components/JobsPage/SearchJobsSection";
 import cld from "../services/getCloudinaryImages";
-
-const currentUser = {
-    incomingMessages: 4,
-    profilePicture: 'https://source.unsplash.com/random',
-    username: 'rent_a_hand',
-}
-
+import AddJob from "../components/JobsPage/AddJob";
+import currentUser from "../components/JobsPage/currentUser";
 
 const SearchBarStyled = styled('div')(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
@@ -76,7 +71,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
         border: '1px solid #ece7e7',
     },
     paddingLeft: 0,
-    backgroundColor: theme.palette.primary.main,
+    paddingRight: 0,
     color: 'white',
     height: '100vh',
     position: 'sticky',
@@ -87,7 +82,6 @@ const StyledStack = styled(Stack)(({ theme }) => ({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: theme.spacing(1),
-    // marginBottom: theme.spacing(2),
     padding: theme.spacing(1),
     ":hover": {
         backgroundColor: '#e4e6e9',
@@ -108,10 +102,14 @@ const LeftMenu = (props) => {
 
     return (
         <StyledContainer>
-            <StyledStack>
-                <Avatar alt="profile-picture" src={currentUser.profilePicture} />
-                <Typography variant="body2">{currentUser.username}</Typography>
-            </StyledStack>
+
+            {
+                !props.isMobile
+                && <StyledStack>
+                    <Avatar alt="profile-picture" src={currentUser.profilePicture} />
+                    <Typography variant="body2">{currentUser.username}</Typography>
+                </StyledStack>
+            }
             {
                 pages.map((p) => (
                     <Link to={p.path} key={p.title}>
@@ -130,36 +128,27 @@ const LeftMenu = (props) => {
     )
 };
 
-const Feed = () => {
+const Feed = (props) => {
     return (
         <Box sx={{ maxWidth: 600, margin: '0 auto' }}>
             <Card sx={{
-                margin: '80px auto 40px',
+                margin: { xs: '70px 5px 20px', lg: '80px 5px 20px' },
                 display: 'flex',
                 flexDirection: 'row',
                 padding: 1,
-                height: '75px',
+                height: { xs: '55px', md: '75px' },
             }}>
                 <CardHeader
-                    avatar={<Avatar src={currentUser.profilePicture} sx={{ width: 56, height: 56 }} />}
+                    avatar={<Avatar
+                        src={currentUser.profilePicture}
+                        sx={{
+                            width: { xs: 24, md: 56 },
+                            height: { xs: 24, md: 56 },
+                        }}
+                    />}
+                    sx={{ padding: { xs: 0, md: 2 } }}
                 />
-                <ListItem
-                    button
-                    aria-haspopup="true"
-                    aria-controls="job-section"
-                    aria-label="job-section"
-                    sx={{
-                        backgroundColor: '#f0f2f5',
-                        borderRadius: 2,
-                        // padding: 0,
-                        "&:hover": {
-                            backgroundColor: '#e4e6e9',
-                        }
-                    }}
-                    onClick={() => { }}
-                >
-                    <ListItemText primary={`Искаш ли да качиш обява, ${currentUser.username}?`} />
-                </ListItem>
+                <AddJob />
             </Card>
             <Grid container sx={{ margin: '0 auto', }} gap={2}>
                 {jobs.map(job => (<JobsCatalog key={job.id} job={job} />))}
@@ -168,7 +157,7 @@ const Feed = () => {
     )
 };
 
-const RightMenu = () => {
+const RightMenu = (props) => {
     const logo = cld.image('main page photos/Rent_A_Hand_D1_dwb3is').toURL();
 
     return (
@@ -186,8 +175,8 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     justifyContent: 'space-between',
 }));
 
-export default function Home() {
-    const isMobile = useScreenResolution();
+export default function Home(props) {
+    const isMobile = useScreenResolution('lg');
     const logoVariant = isMobile ? 'body2' : 'h6';
 
     return (
@@ -217,9 +206,12 @@ export default function Home() {
                 <Grid item sm={7} xs={10}>
                     <Feed />
                 </Grid>
-                <Grid item sm={3} xs={0}>
-                    <RightMenu />
-                </Grid>
+                {
+                    !isMobile
+                    && <Grid item sm={3}>
+                        <RightMenu />
+                    </Grid>
+                }
             </Grid>
         </ThemeProvider >
     )
