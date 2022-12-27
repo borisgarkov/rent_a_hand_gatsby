@@ -34,7 +34,7 @@ export default function Test() {
     };
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 600, marginBottom: 4 }}>
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -51,9 +51,9 @@ export default function Test() {
             />
             <CardMedia
                 component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
+                image='https://source.unsplash.com/random'
                 alt="Paella dish"
+                sx={{ width: '100%', maxHeight: '194px' }}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">

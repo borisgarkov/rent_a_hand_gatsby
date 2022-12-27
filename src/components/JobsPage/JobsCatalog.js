@@ -39,7 +39,7 @@ export default function JobsCatalog({ job }) {
         <Grid item xs={12} key={job.id} sx={{
             margin: {
                 xs: 'auto',
-                sm: 0,
+                sm: '0 auto',
             }
         }}>
             <Card sx={{
@@ -51,10 +51,12 @@ export default function JobsCatalog({ job }) {
                         title='Rent A Hand'
                         subheader='ИТ'
                         avatar={
-                            <Avatar src={logo}
+                            <Avatar
+                                src='https://source.unsplash.com/random'
                                 className={imageStyle}
                                 sx={{ margin: 0, }}
-                                style={{ 'margin': 0 }} />
+                                style={{ 'margin': 0 }}
+                            />
                         }
                         titleTypographyProps={{ fontSize: { sm: '1rem' }, fontWeight: 'bold', }}
                         subheaderTypographyProps={{ fontSize: { sm: '0.875rem' } }}
@@ -87,11 +89,14 @@ export default function JobsCatalog({ job }) {
                     width: '70%',
                 }}>
                     <Divider orientation='vertical' flexItem />
-                    <CardActionArea onClick={handleClickOpen}>
+                    <CardActionArea onClick={handleClickOpen} sx={{ height: '100%' }}>
                         <CardHeader
                             title={job.title}
                             subheader={job.datePosted}
-                            titleTypographyProps={{ fontSize: { xs: '0.875rem', sm: '1rem' }, fontWeight: 'bold', textOverflow: '' }}
+                            titleTypographyProps={{
+                                fontSize: { xs: '0.875rem', sm: '1rem' },
+                                fontWeight: 'bold', textOverflow: ''
+                            }}
                             subheaderTypographyProps={{ fontSize: '0.875rem' }}
                             sx={{ paddingBottom: { xs: 0, sm: 2 } }}
                         />
@@ -132,7 +137,9 @@ export default function JobsCatalog({ job }) {
                             <Typography id="transition-modal-title" variant="h6" component="h2" mb={2}>
                                 {job.publisher}
                             </Typography>
-                            <IconButton onClick={handleClose} sx={{ alignSelf: 'flex-start', marginLeft: 'auto' }} >
+                            <IconButton onClick={handleClose} sx={{
+                                alignSelf: 'flex-start', marginLeft: 'auto'
+                            }} >
                                 <CloseIcon />
                             </IconButton>
                         </Box>

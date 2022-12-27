@@ -6,7 +6,7 @@ const theme = createTheme({
     },
     palette: {
         background: {
-            default: '#f5f5f5',
+            default: '#f0f2f5',
         }
     }
 });

@@ -9,16 +9,20 @@ import savedJobsIcon from '../images/main-page-icons/icons8-talent-64.png';
 import settingsIcon from '../images/main-page-icons/icons8-settings-58.png';
 import logoutIcon from '../images/main-page-icons/icons8-logout-64.png';
 
+import { jobs } from "../components/JobsPage/test-jobs";
+import { theme } from '../utils/mainTheme';
+
 import { styled, alpha } from '@mui/material/styles';
 import {
     AppBar, Avatar, Badge, Box, Grid, IconButton,
-    InputBase, Toolbar, Typography, Stack, Container, Divider
+    InputBase, Toolbar, Typography, Stack, Container, Divider,
+    ThemeProvider, CssBaseline
 } from "@mui/material";
 import * as React from "react";
 import useScreenResolution from "../components/hooks/useScreenResolution";
 import * as styles from '../components/Home/home-styles.module.css';
 import { Link } from "gatsby";
-import Test from "../components/Home/Test";
+import JobsCatalog from "../components/JobsPage/JobsCatalog";
 
 const currentUser = {
     incomingMessages: 4,
@@ -50,7 +54,7 @@ const SearchSection = (props) => {
             {
                 !props.isMobile &&
                 < SearchBarStyled >
-                    <Search sx={{ paddingLeft: 2 }} />
+                    <Search sx={{ paddingLeft: 2 }} fontSize='large' />
                     <StyledInputBase
                         placeholder="Търси..."
                         inputProps={{ 'aria-label': 'search' }}
@@ -65,7 +69,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
     paddingTop: theme.spacing(7),
     [theme.breakpoints.up('sm')]: {
         paddingTop: theme.spacing(10),
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#f0f2f5',
         color: '#555',
         border: '1px solid #ece7e7',
     },
@@ -83,7 +87,7 @@ const StyledStack = styled(Stack)(({ theme }) => ({
     columnGap: theme.spacing(1),
     marginBottom: theme.spacing(2),
     ":hover": {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#f5f5f5',
         borderRadius: '5px',
     }
 }));
@@ -126,14 +130,9 @@ const LeftMenu = (props) => {
 
 const Feed = () => {
     return (
-        <>
-            <Test />
-            <Test />
-            <Test />
-            <Test />
-            <Test />
-            <Test />
-        </>
+        <Grid container sx={{ maxWidth: 800, margin: '0 auto', paddingTop: 10 }} gap={2}>
+            {jobs.map(job => (<JobsCatalog key={job.id} job={job} />))}
+        </Grid>
     )
 };
 
@@ -155,7 +154,8 @@ export default function Home() {
     const logoVariant = isMobile ? 'body2' : 'h6';
 
     return (
-        <>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
             <AppBar position="fixed" sx={{ right: 0 }}>
                 <StyledToolbar>
                     <Typography variant={logoVariant}>
@@ -184,6 +184,6 @@ export default function Home() {
                     <RightMenu />
                 </Grid>
             </Grid>
-        </>
+        </ThemeProvider >
     )
 }
