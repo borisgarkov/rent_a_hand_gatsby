@@ -19,7 +19,7 @@ import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import WorkIcon from '@mui/icons-material/Work';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
-import { imageStyle } from '../ProfilePage/profile-page-style.module.css';
+import * as styles from '../ProfilePage/profile-page-style.module.css';
 import cld from '../../services/getCloudinaryImages';
 import { navigate } from 'gatsby';
 
@@ -48,21 +48,20 @@ export default function JobsCatalog({ job }) {
             }}>
                 <Stack sx={{ width: { xs: '40%', sm: '30%' }, backgroundColor: '#eeeeee' }}>
                     <CardHeader
-                        title='Rent A Hand'
-                        subheader='ИТ'
+                        title='Rent a Hand'
                         avatar={
                             <Avatar
                                 src='https://source.unsplash.com/random'
-                                className={imageStyle}
+                                className={styles.imageStyle}
                                 sx={{ margin: 0, }}
                                 style={{ 'margin': 0 }}
                             />
                         }
                         titleTypographyProps={{ fontSize: { sm: '1rem' }, fontWeight: 'bold', }}
-                        subheaderTypographyProps={{ fontSize: { sm: '0.875rem' } }}
                         sx={{
                             flexDirection: { xs: 'column', sm: 'row' },
                             padding: { xs: '5px 0 0 0', sm: 2 },
+                            overflow: 'hidden',
                         }}
                     />
                     <CardContent sx={{
@@ -76,10 +75,6 @@ export default function JobsCatalog({ job }) {
                         <Stack sx={{ flexDirection: 'row', alignItems: 'center', cursor: 'pointer', gap: 1 }}>
                             <WorkIcon sx={{ color: 'primary.main' }} fontSize='small' />
                             <Typography variant='body2'>Всички обяви</Typography>
-                        </Stack>
-                        <Stack sx={{ flexDirection: 'row', alignItems: 'center', cursor: 'pointer', gap: 1 }}>
-                            <PersonOutlineIcon sx={{ color: 'primary.main' }} fontSize='small' />
-                            <Typography variant='body2'>Профил</Typography>
                         </Stack>
                     </CardContent>
                 </Stack>
@@ -101,7 +96,9 @@ export default function JobsCatalog({ job }) {
                             sx={{ paddingBottom: { xs: 0, sm: 2 } }}
                         />
                         <CardContent sx={{
-                            display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 1, sm: 5 },
+                            display: 'flex',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                            gap: { xs: 1, sm: 5 },
                         }}>
                             <Stack sx={{ flexDirection: 'row', gap: 1 }}>
                                 <LocationOnIcon sx={{ color: 'primary.main' }} fontSize='small' />

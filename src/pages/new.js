@@ -16,13 +16,15 @@ import { styled, alpha } from '@mui/material/styles';
 import {
     AppBar, Avatar, Badge, Box, Grid, IconButton,
     InputBase, Toolbar, Typography, Stack, Container, Divider,
-    ThemeProvider, CssBaseline
+    ThemeProvider, CssBaseline, Card, CardHeader, ListItem, ListItemText
 } from "@mui/material";
 import * as React from "react";
 import useScreenResolution from "../components/hooks/useScreenResolution";
 import * as styles from '../components/Home/home-styles.module.css';
 import { Link } from "gatsby";
 import JobsCatalog from "../components/JobsPage/JobsCatalog";
+import SeachJobsSection from "../components/JobsPage/SearchJobsSection";
+import cld from "../services/getCloudinaryImages";
 
 const currentUser = {
     incomingMessages: 4,
@@ -85,9 +87,10 @@ const StyledStack = styled(Stack)(({ theme }) => ({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: theme.spacing(1),
-    marginBottom: theme.spacing(2),
+    // marginBottom: theme.spacing(2),
+    padding: theme.spacing(1),
     ":hover": {
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#e4e6e9',
         borderRadius: '5px',
     }
 }));
@@ -109,7 +112,6 @@ const LeftMenu = (props) => {
                 <Avatar alt="profile-picture" src={currentUser.profilePicture} />
                 <Typography variant="body2">{currentUser.username}</Typography>
             </StyledStack>
-            <Box sx={{ marginBottom: 4 }}></Box>
             {
                 pages.map((p) => (
                     <Link to={p.path} key={p.title}>
@@ -130,16 +132,51 @@ const LeftMenu = (props) => {
 
 const Feed = () => {
     return (
-        <Grid container sx={{ maxWidth: 800, margin: '0 auto', paddingTop: 10 }} gap={2}>
-            {jobs.map(job => (<JobsCatalog key={job.id} job={job} />))}
-        </Grid>
+        <Box sx={{ maxWidth: 600, margin: '0 auto' }}>
+            <Card sx={{
+                margin: '80px auto 40px',
+                display: 'flex',
+                flexDirection: 'row',
+                padding: 1,
+                height: '75px',
+            }}>
+                <CardHeader
+                    avatar={<Avatar src={currentUser.profilePicture} sx={{ width: 56, height: 56 }} />}
+                />
+                <ListItem
+                    button
+                    aria-haspopup="true"
+                    aria-controls="job-section"
+                    aria-label="job-section"
+                    sx={{
+                        backgroundColor: '#f0f2f5',
+                        borderRadius: 2,
+                        // padding: 0,
+                        "&:hover": {
+                            backgroundColor: '#e4e6e9',
+                        }
+                    }}
+                    onClick={() => { }}
+                >
+                    <ListItemText primary={`Искаш ли да качиш обява, ${currentUser.username}?`} />
+                </ListItem>
+            </Card>
+            <Grid container sx={{ margin: '0 auto', }} gap={2}>
+                {jobs.map(job => (<JobsCatalog key={job.id} job={job} />))}
+            </Grid>
+        </Box >
     )
 };
 
 const RightMenu = () => {
+    const logo = cld.image('main page photos/Rent_A_Hand_D1_dwb3is').toURL();
+
     return (
         <StyledContainer>
-
+            <SeachJobsSection />
+            <Box sx={{ position: 'fixed', bottom: 10, right: 45 }}>
+                <img src={logo} alt='logo-pic' height='30' />
+            </Box>
         </StyledContainer>
     )
 };
