@@ -132,7 +132,7 @@ const Feed = (props) => {
     return (
         <Box sx={{ maxWidth: 600, margin: '0 auto' }}>
             <Card sx={{
-                margin: { xs: '70px 5px 20px', lg: '80px 5px 20px' },
+                margin: { xs: '70px 5px 20px', lg: '80px 0 20px' },
                 display: 'flex',
                 flexDirection: 'row',
                 padding: 1,

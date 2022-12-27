@@ -57,8 +57,11 @@ const ConfirmationDialogRaw = (props) => {
         setJobType(event.target.value);
     };
 
+    const isMobile = useScreenResolution('lg');
+
     return (
         <Dialog
+            fullScreen={isMobile ? true : false}
             sx={{
                 '& .MuiDialog-paper': { width: '80%', maxHeight: 500 },
                 // maxWidth: { md: 'sm' }
