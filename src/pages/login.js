@@ -39,10 +39,19 @@ export default function LoginPage() {
                     name='password'
                     type='password'
                 />
-                <Button sx={{ marginTop: 5, marginBottom: 2 }} variant='contained' fullWidth>Влез</Button>
+                <Button
+                    sx={{ marginTop: 5, marginBottom: 2 }}
+                    variant='contained'
+                    fullWidth
+                    onClick={() => (navigate('/home'))}
+                >
+                    Влез
+                </Button>
                 <Grid container>
                     <Grid item xs>
-                        <Link {...linkProps} onClick={() => (navigate('/forgotten-password'))}> Забравена парола?</Link>
+                        <Link {...linkProps}
+                            onClick={() => (navigate('/forgotten-password'))}
+                        > Забравена парола?</Link>
                     </Grid>
                     <Grid item>
                         <Typography variant="body2">Нямате акаунт?</Typography>

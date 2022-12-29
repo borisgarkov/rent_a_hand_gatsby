@@ -24,7 +24,7 @@ export default function HomeLeftMenuIcons(props) {
         { title: 'Добави обява', icon: addJonIcon, path: '/home' },
         { title: 'Запазени обяви', icon: savedJobsIcon, path: '/home' },
         { title: 'Настройки', icon: settingsIcon, path: '/home' },
-        { title: 'Изход', icon: logoutIcon, path: '/home' }
+        { title: 'Изход', icon: logoutIcon, path: '/' }
     ];
 
     return (
