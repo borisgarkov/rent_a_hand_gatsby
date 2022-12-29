@@ -2,14 +2,13 @@ import * as React from "react";
 import {
     Box, Button, CardContent,
     CardHeader, Divider, FormControl, FormControlLabel,
-    FormLabel, Radio, RadioGroup, Stack, TextField, Typography
+    FormLabel, Radio, RadioGroup, Stack, TextField
 } from "@mui/material";
-import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+// import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import useJobsStateVariables from "./hooks/useJobsStateVariables";
 import ConfirmationJobDialog from "./ConfirmationJobDialog";
 
 export default function SeachJobsSection(props) {
-
     const {
         workType, handleWorkTypeChange, currentWorkCategoty, handleCategoryChange,
         currentCity, handleCurrentCityChange, avatarImage, titleWorkType,
@@ -34,7 +33,6 @@ export default function SeachJobsSection(props) {
             <CardHeader subheader='Филтър' subheaderTypographyProps={{ fontWeight: 700 }} />
             <Divider />
             <CardContent sx={{ display: 'flex', flexDirection: 'column', }}>
-
                 <FormControl sx={{ marginBottom: 2 }}>
                     <FormLabel id="work-type">Тип обяви</FormLabel>
                     <RadioGroup
@@ -54,8 +52,9 @@ export default function SeachJobsSection(props) {
             </CardContent>
 
             <Divider />
+
             <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                {/* <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                     <ManageSearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                     <TextField
                         fullWidth
@@ -65,13 +64,8 @@ export default function SeachJobsSection(props) {
                         value={searchByKeyWord}
                         onChange={handleSearchByKeyword}
                     />
-                </Box>
-                <Button
-                    variant='contained'
-                    onClick={searchJobs}
-                    sx={{ marginTop: 5 }}
-                    fullWidth
-                >
+                </Box> */}
+                <Button variant='contained' onClick={searchJobs} fullWidth>
                     Търси
                 </Button>
             </CardContent>

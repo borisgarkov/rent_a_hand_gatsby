@@ -38,11 +38,13 @@ export default function JobsCatalog({ job }) {
     return (
         <Grid item xs={12} key={job.id}
             sx={{
-                margin: { xs: 'auto 5px auto', lg: '0 auto' }
+                margin: { xs: 'auto 5px auto', lg: '0 auto' },
+                // padding: { md: '20px 70px' }
             }}
         >
             <Card sx={{
                 display: 'flex',
+                borderRadius: '15px',
                 flexDirection: { xs: 'column', md: 'row' },
                 '&.css-1b7w4n7-MuiCardContent-root:last-child': { padding: 0 }
             }}>

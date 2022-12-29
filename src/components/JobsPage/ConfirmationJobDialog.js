@@ -132,6 +132,7 @@ export default function ConfirmationJobDialog(props) {
             width: '100%', maxWidth: 360,
             border: '1px solid #d0d2d4', borderRadius: 1,
             marginBottom: 2,
+            borderRadius: '15px',
         }}>
             <ListItem
                 button
