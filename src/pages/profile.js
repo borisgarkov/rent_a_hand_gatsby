@@ -10,14 +10,14 @@ import MessageIcon from '@mui/icons-material/Message';
 
 import useScreenResolution from '../components/hooks/useScreenResolution';
 import { Avatar, Box, Button, Card, Grid, Typography } from '@mui/material';
-import currentUser from '../components/JobsPage/currentUser';
+import currentUser from "../components/db-files/currentUser";
 import * as styles from '../components/Home/home-styles.module.css';
 
 import MainLayout from '../components/NavigationBar/MainLayout';
 import HomeLeftMenuIcons from '../components/Home/HomeLeftMenuIcons';
 import HomeRightMenuSearchBar from '../components/Home/HomeRightMenuSearchBar';
-import { jobs } from "../components/JobsPage/test-jobs";
 import JobsCatalog from "../components/JobsPage/JobsCatalog";
+import { jobs } from '../components/db-files/test-jobs';
 
 const Profile = (props) => {
     const isMobile = useScreenResolution('md');

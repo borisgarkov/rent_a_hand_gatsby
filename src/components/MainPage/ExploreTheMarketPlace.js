@@ -1,4 +1,4 @@
-import { Box, Dialog, DialogContent, DialogTitle, Divider, Grid, IconButton, Stack, Typography } from '@mui/material';
+import { Box, Divider, Grid, Typography } from '@mui/material';
 import * as React from "react";
 
 import TerminalOutlinedIcon from '@mui/icons-material/TerminalOutlined';
@@ -10,14 +10,8 @@ import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined
 import LoyaltyOutlinedIcon from '@mui/icons-material/LoyaltyOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import * as styles from './explore-categories.module.css'
-import register_categories from '../RegisterPage/CommonRegistrationComponents/registerCategories';
-
-import RegisterCard from '../RegisterPage/RegisterCard';
-import { Link } from 'gatsby';
-
 
 export default function ExploreTheMarketPlace() {
 
@@ -99,37 +93,6 @@ export default function ExploreTheMarketPlace() {
                     )
                 }
             </Grid>
-            <Dialog open={open} onClose={handleClose} maxWidth='lg' fullWidth>
-                <Stack sx={{
-                    flexDirection: 'row',
-                    alignItems: 'baseline'
-                }}>
-                    <DialogTitle>Търси в</DialogTitle>
-                    <IconButton onClick={handleClose} sx={{ margin: '0 8px   0 auto' }}>
-                        <CloseOutlinedIcon />
-                    </IconButton>
-                </Stack>
-                <DialogContent>
-                    <Stack sx={{
-                        flexDirection: { xs: 'column', md: 'row' },
-                        gap: { xs: 2, lg: 5 },
-                        justifyContent: 'center',
-                    }}>
-                        {
-                            register_categories.map(x => {
-                                return (
-                                    <Link key={x.category_description} to='/jobs'>
-                                        <RegisterCard
-                                            category_image={x.category_image}
-                                            category_description={x.category_description}
-                                        />
-                                    </Link>
-                                )
-                            })
-                        }
-                    </Stack>
-                </DialogContent>
-            </Dialog>
         </>
     )
-}
+};

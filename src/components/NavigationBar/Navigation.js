@@ -25,11 +25,11 @@ export default function Navigation(props) {
     const isMobile = useScreenResolution();
 
     const menuPages = [
-        {
-            title: 'Начало',
-            icon: <HomeIcon fontSize="small" />,
-            path: '/',
-        },
+        // {
+        //     title: 'Начало',
+        //     icon: <HomeIcon fontSize="small" />,
+        //     path: '/',
+        // },
         {
             title: 'Вход',
             icon: <LoginIcon fontSize="small" />,
@@ -45,7 +45,7 @@ export default function Navigation(props) {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBar elevation={0} sx={{ backgroundColor: 'white' }}>
+            <AppBar elevation={2} sx={{ backgroundColor: 'white' }}>
                 <Toolbar sx={{
                     width: { xs: '100%' },
                     maxWidth: { md: '87%' },

@@ -1,25 +1,51 @@
-import BaseRegisterPageCategories
-    from '../components/RegisterPage/CommonRegistrationComponents/BaseRegisterPageCategories';
-import register_categories
-    from '../components/RegisterPage/CommonRegistrationComponents/registerCategories';
+import { Button, Grid, Link, Typography, Avatar } from "@mui/material";
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import * as React from "react";
-import Navigation from '../components/NavigationBar/Navigation';
+import { navigate } from "gatsby";
+import BaseLoginRegisterTemplate from "../components/LoginPage/BaseLoginRegisterTemplate";
+import registrationFields from "../components/RegisterPage/registrationFields";
+import BaseRegistrationTextField from "../components/RegisterPage/BaseRegistrationTextField";
 
-
-const registerUrlMap = {
-    'Обяви за постоянна работа / стаж': '/register-as-firm',
-    'Проекти / задачи': '/register-project',
-    'Искам да работя на свободна практика': '/register-as-freelancer',
-}
-
-export default function RegisterPageCategories() {
+export default function LoginPage() {
+    const linkProps = {
+        variant: "body2",
+        sx: { cursor: 'pointer' }
+    };
 
     return (
-        <Navigation>
-            <BaseRegisterPageCategories
-                register_categories={register_categories}
-                registerUrlMap={registerUrlMap}
-            />
-        </Navigation>
-    )
-}
+        <BaseLoginRegisterTemplate>
+            <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                <LockOpenIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+                Регистрация
+            </Typography>
+            <Grid container>
+                {
+                    registrationFields().map((x, index) =>
+                        <BaseRegistrationTextField key={index} field={x} />
+                    )
+                }
+            </Grid>
+            <Button
+                sx={{ marginTop: 5, marginBottom: 2 }}
+                variant='contained'
+                fullWidth
+                onClick={() => (navigate('/home'))}
+            >
+                Регистрация
+            </Button>
+            <Grid container>
+                <Grid item>
+                    <Typography variant="body2">Вече имате акаунт?</Typography>
+                    <Link
+                        {...linkProps}
+                        onClick={() => (navigate('/login'))}
+                    >
+                        Влез
+                    </Link>
+                </Grid>
+            </Grid>
+        </BaseLoginRegisterTemplate>
+    );
+};

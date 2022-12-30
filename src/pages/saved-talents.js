@@ -32,7 +32,9 @@ export default function SavedTalents() {
                                 sx={{ ...textStyle, margin: 5 }}
                             >Все още нямате запазени таланти 😔</Typography>
 
-                            <Typography variant='h6' sx={textStyle}>Намерете подходящите хора за вашия проект 😎</Typography>
+                            <Typography variant='h6' sx={textStyle}>
+                                Намерете подходящите хора за вашия проект 😎
+                            </Typography>
                             <Button
                                 variant='contained'
                                 sx={{ margin: '16px auto', width: { xs: '100%', md: '50%' } }}

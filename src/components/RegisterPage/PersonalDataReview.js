@@ -6,7 +6,10 @@ export default function PersonalDataReview({ context }) {
 
     return (
         <FormControlLabel
-            control={<Checkbox checked={policyClicked} onChange={handlePolicyClickedChange} color="secondary" name="policy" />}
+            control={<Checkbox checked={policyClicked}
+                onChange={handlePolicyClickedChange}
+                color="secondary"
+                name="policy" />}
             label="Прочетох и съм запознат с политиката за лични данни"
         />
     )

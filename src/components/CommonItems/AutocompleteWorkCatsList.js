@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 import * as React from "react";
-import { work_categories } from "./work-categories";
+import { work_categories } from "../db-files/work-categories";
 
 export default function AutocompleteWorkCatsList({
     workCategory, handleWorkCategoryChange, label = 'Категория'

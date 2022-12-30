@@ -2,8 +2,8 @@ import * as React from "react";
 import { Avatar, Box, Card, CardHeader, Grid } from "@mui/material";
 import AddJob from "../JobsPage/AddJob";
 import JobsCatalog from "../JobsPage/JobsCatalog";
-import currentUser from "../JobsPage/currentUser";
-import { jobs } from "../JobsPage/test-jobs";
+import { jobs } from "../db-files/test-jobs";
+import currentUser from "../db-files/currentUser";
 
 export default function FeedSection(props) {
     return (

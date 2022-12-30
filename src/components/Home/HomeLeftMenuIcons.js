@@ -11,8 +11,7 @@ import addJonIcon from '../../images/main-page-icons/icons8-job-seeker-96.png';
 import savedJobsIcon from '../../images/main-page-icons/icons8-talent-64.png';
 import settingsIcon from '../../images/main-page-icons/icons8-settings-58.png';
 import logoutIcon from '../../images/main-page-icons/icons8-logout-64.png';
-import currentUser from "../JobsPage/currentUser";
-
+import currentUser from "../db-files/currentUser";
 
 export default function HomeLeftMenuIcons(props) {
     const isMobile = useScreenResolution('lg');

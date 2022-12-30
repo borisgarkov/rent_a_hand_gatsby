@@ -12,7 +12,6 @@ import cld from "../services/getCloudinaryImages";
 import WhyRentAHand from '../components/MainPage/WhyRentAHand';
 import ExploreTheMarketPlace from '../components/MainPage/ExploreTheMarketPlace';
 
-
 const tabs_css_style = {
     padding: {
         xs: '0 10px',
@@ -84,7 +83,7 @@ const UsersTabInfo = () => {
     )
 };
 
-const MainPage = () => {
+export default function MainPage(props) {
     const job_offers_img = cld.image('main page photos/main_page_job_offers_sajflw').toURL();
     const freelancer_img = cld.image('main page photos/main_page_freelancer_suf7mw').toURL();
 
@@ -103,12 +102,12 @@ const MainPage = () => {
 
     const tabs_info = [
         {
-            label: 'Фирми',
+            label: 'Проекти',
             icon: <WorkIcon />,
             value: 0
         },
         {
-            label: 'Потребители',
+            label: 'Таланти',
             icon: <StarBorderIcon />,
             value: 1
         },
@@ -148,9 +147,7 @@ const MainPage = () => {
             <ExploreTheMarketPlace />
         </Navigation>
     )
-}
-
-export default MainPage
+};
 
 export const Head = () => (
     <>
@@ -158,4 +155,4 @@ export const Head = () => (
         <meta name="description" content="Rent a Hand - jobs portal" />
         <meta name="keywords" content="Рент ъ хенд, Rent a Hand, работа, стаж, проекти, задачи, почасова работа" />
     </>
-)
+);

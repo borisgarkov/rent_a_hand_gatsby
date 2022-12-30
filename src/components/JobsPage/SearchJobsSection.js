@@ -1,21 +1,13 @@
 import * as React from "react";
 import {
-    Box, Button, CardContent,
+    Button, CardContent,
     CardHeader, Divider, FormControl, FormControlLabel,
-    FormLabel, Radio, RadioGroup, Stack, TextField
+    FormLabel, Radio, RadioGroup, Stack
 } from "@mui/material";
 // import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-import useJobsStateVariables from "./hooks/useJobsStateVariables";
 import ConfirmationJobDialog from "./ConfirmationJobDialog";
 
 export default function SeachJobsSection(props) {
-    const {
-        workType, handleWorkTypeChange, currentWorkCategoty, handleCategoryChange,
-        currentCity, handleCurrentCityChange, avatarImage, titleWorkType,
-        searchJobs, wantToWorkFullTime, handleWantToWorkFullTimeChange,
-        searchByKeyWord, handleSearchByKeyword,
-    } = useJobsStateVariables({});
-
     const [value, setValue] = React.useState('Проекти');
 
     const handleChange = (event) => {
@@ -65,7 +57,7 @@ export default function SeachJobsSection(props) {
                         onChange={handleSearchByKeyword}
                     />
                 </Box> */}
-                <Button variant='contained' onClick={searchJobs} fullWidth>
+                <Button variant='contained' fullWidth>
                     Търси
                 </Button>
             </CardContent>

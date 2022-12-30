@@ -9,7 +9,7 @@ import { theme } from "../../utils/mainTheme";
 import { styled, alpha } from '@mui/material/styles';
 import * as styles from '../Home/home-styles.module.css';
 import useScreenResolution from "../hooks/useScreenResolution";
-import currentUser from "../JobsPage/currentUser";
+import currentUser from "../db-files/currentUser";
 
 const SearchBarStyled = styled('div')(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,

@@ -11,8 +11,8 @@ import Dialog from '@mui/material/Dialog';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { work_categories } from '../CommonItems/work-categories';
-import listOfCities from '../CommonItems/listOfCities';
+import { work_categories } from '../db-files/work-categories';
+import listOfCities from '../db-files/listOfCities';
 import { IconButton, Stack } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 

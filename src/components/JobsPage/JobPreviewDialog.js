@@ -13,13 +13,11 @@ import './job-preview.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { navigate } from 'gatsby';
 
-
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function JobPreviewDialog({ job, handleClose, open }) {
-
     return (
         <Dialog
             open={open}

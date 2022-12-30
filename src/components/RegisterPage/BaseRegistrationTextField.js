@@ -5,6 +5,7 @@ export default function BaseRegistrationTextField({ field }) {
     return (
         <Grid item {...field.displaySizeProps}>
             <TextField
+                margin='normal'
                 type={field.type}
                 required={field.required}
                 id={field.id}
