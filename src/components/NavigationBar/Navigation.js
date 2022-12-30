@@ -13,9 +13,8 @@ import '../../styles/global.css';
 
 import useScreenResolution from '../hooks/useScreenResolution';
 import cld from '../../services/getCloudinaryImages';
-import { theme } from '../../utils/mainTheme';
+import { mainPageTheme } from '../../utils/mainTheme';
 
-import Footer from '../CommonItems/Footer';
 import BackToTopButton from '../CommonItems/BackToTopButton';
 import MainPageMenuDrawer from './MainPageMenuDrawer';
 
@@ -43,7 +42,7 @@ export default function Navigation(props) {
     ];
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mainPageTheme}>
             <CssBaseline />
             <AppBar elevation={2} sx={{ backgroundColor: 'white' }}>
                 <Toolbar sx={{
@@ -89,7 +88,6 @@ export default function Navigation(props) {
                 }
             </Box>
             <BackToTopButton />
-            <Footer />
         </ThemeProvider>
     )
 };

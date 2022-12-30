@@ -1,4 +1,4 @@
-import { Button, Grid, Link, Typography, Avatar } from "@mui/material";
+import { Button, Grid, Link, Typography, Avatar, Stack } from "@mui/material";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import * as React from "react";
 import { navigate } from "gatsby";
@@ -35,17 +35,11 @@ export default function LoginPage() {
             >
                 Регистрация
             </Button>
-            <Grid container>
-                <Grid item>
-                    <Typography variant="body2">Вече имате акаунт?</Typography>
-                    <Link
-                        {...linkProps}
-                        onClick={() => (navigate('/login'))}
-                    >
-                        Влез
-                    </Link>
-                </Grid>
-            </Grid>
+
+            <Stack sx={{ flexDirection: 'row', columnGap: 1 }}>
+                <Typography variant="body2">Вече имате акаунт?</Typography>
+                <Link {...linkProps} onClick={() => (navigate('/login'))}>Влез</Link>
+            </Stack>
         </BaseLoginRegisterTemplate>
     );
 };

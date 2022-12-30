@@ -12,13 +12,9 @@ import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlin
 import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
 
 import * as styles from './explore-categories.module.css'
+import { Link } from 'gatsby';
 
 export default function ExploreTheMarketPlace() {
-
-    const [open, setOpen] = React.useState(false);
-    const handleClickOpen = () => { setOpen(true); };
-    const handleClose = () => { setOpen(false); };
-
     const categories = [
         {
             category: 'ИТ',
@@ -73,22 +69,24 @@ export default function ExploreTheMarketPlace() {
                             key={x.category}
                             className={styles.gridParent}
                             item xs={5} md={2}
-                            sx={{ cursor: 'pointer', textAlign: 'center', }} onClick={handleClickOpen}
+                            sx={{ cursor: 'pointer', textAlign: 'center', }}
                         >
-                            <Box className={styles.icon}>
-                                {x.icon}
-                            </Box>
-                            <Divider className={styles.divider} sx={{
-                                width: '20%', margin: '0 auto', bgcolor: '#176ab4',
-                                border: '1px solid #176ab4',
-                            }} />
-                            <Typography variant='body1' sx={{
-                                width: '100%', textAlign: 'center',
-                                margin: '0 auto', overflowWrap: 'break-word',
-                            }}
-                            >
-                                {x.category}
-                            </Typography>
+                            <Link to='/login'>
+                                <Box className={styles.icon}>
+                                    {x.icon}
+                                </Box>
+                                <Divider className={styles.divider} sx={{
+                                    width: '20%', margin: '0 auto', bgcolor: '#176ab4',
+                                    border: '1px solid #176ab4',
+                                }} />
+                                <Typography variant='body1' sx={{
+                                    width: '100%', textAlign: 'center',
+                                    margin: '0 auto', overflowWrap: 'break-word',
+                                }}
+                                >
+                                    {x.category}
+                                </Typography>
+                            </Link>
                         </Grid>
                     )
                 }

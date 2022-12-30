@@ -2,8 +2,6 @@ import * as React from "react";
 import { Avatar, Divider, Typography } from "@mui/material";
 import { Link } from "gatsby";
 import { StyledContainer, StyledStack } from "./StyledComponents";
-import useScreenResolution from "../hooks/useScreenResolution";
-
 import homeIcon from '../../images/main-page-icons/icons8-home-page-96.png';
 import profileIcon from '../../images/main-page-icons/icons8-profile-96.png';
 import subscribeIcon from '../../images/main-page-icons/icons8-tags-96.png';
@@ -14,8 +12,6 @@ import logoutIcon from '../../images/main-page-icons/icons8-logout-64.png';
 import currentUser from "../db-files/currentUser";
 
 export default function HomeLeftMenuIcons(props) {
-    const isMobile = useScreenResolution('lg');
-
     const pages = [
         { title: 'Начало', icon: homeIcon, path: '/home' },
         { title: 'Профил', icon: profileIcon, path: '/profile' },

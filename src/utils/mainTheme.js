@@ -11,4 +11,15 @@ const theme = createTheme({
     }
 });
 
-export { theme };
+const mainPageTheme = createTheme({
+    typography: {
+        fontFamily: ['Comfortaa', 'Helvetica Neue', 'Arial', 'sans-serif'].join(','),
+    },
+    palette: {
+        background: {
+            default: '#f5f5f5',
+        }
+    }
+});
+
+export { theme, mainPageTheme };

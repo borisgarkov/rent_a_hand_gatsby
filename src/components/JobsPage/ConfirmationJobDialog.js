@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ListItem from '@mui/material/ListItem';
@@ -130,7 +129,7 @@ export default function ConfirmationJobDialog(props) {
     return (
         <Box sx={{
             width: '100%', maxWidth: 360,
-            border: '1px solid #d0d2d4', borderRadius: 1,
+            border: '1px solid #d0d2d4',
             marginBottom: 2,
             borderRadius: '15px',
         }}>

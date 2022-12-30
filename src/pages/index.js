@@ -11,6 +11,7 @@ import { Stack, Typography, Button, Paper, Tabs, Tab, Box } from "@mui/material"
 import cld from "../services/getCloudinaryImages";
 import WhyRentAHand from '../components/MainPage/WhyRentAHand';
 import ExploreTheMarketPlace from '../components/MainPage/ExploreTheMarketPlace';
+import Footer from "../components/CommonItems/Footer";
 
 const tabs_css_style = {
     padding: {
@@ -19,71 +20,74 @@ const tabs_css_style = {
     },
 };
 
-const CompaniesTabInfo = () => {
+const LearnMoreSection = () => {
+    return (
+        <Stack sx={{ width: { md: '85%' }, margin: '0 auto', paddingBottom: 3, marginTop: 2.5 }}>
+            <Button variant='contained' onClick={() => navigate('/register')}>Научи повече</Button>
+        </Stack>
+    )
+};
+
+const ProjectsTabInfo = () => {
     const tabText = [
-        'Споделете вашата обява за работа и намерете подходящия кандидат.',
+        'Намерете правилния човек, който да свърши вашата задача / проект.',
         'Научете повече за предимствата на нашата платформа',
     ];
 
-    return (
-        <>
-            <Stack sx={{ gap: 2, justifyContent: 'center' }}>
-                <WorkIcon fontSize='large' sx={{ alignSelf: 'center', color: 'primary.main' }} />
-                <Typography variant='h5' sx={{ ...tabs_css_style }}>
-                    Вие сте фирма и предлагате работа или краткосрочен проект?
-                </Typography>
-                {
-                    tabText.map(text => (
-                        <Typography key={text} variant='body1' sx={{ ...tabs_css_style }}>
-                            {text}
-                        </Typography>
-                    ))
-                }
-            </Stack>
+    /*
+    Замисляли ли сте се, че можете да наемете хора, 
+    за да свършат конкретна задача без постоянен трудов договор? 
+    Тогава споделете обява за краткосрочен проект.
 
-            <Stack sx={{ width: { md: '85%' }, margin: '0 auto', paddingBottom: 3, marginTop: 2.5 }}>
-                <Button variant='contained' onClick={() => navigate('/register')}>Научи повече</Button>
-            </Stack>
-        </>
+    Вие като фирма също можете да работите по конкретни проекти от други компании.
+     */
+
+    return (
+        <Stack sx={{ gap: 2, justifyContent: 'center' }}>
+            <WorkIcon fontSize='large' sx={{ alignSelf: 'center', color: 'primary.main' }} />
+            <Typography variant='h5' sx={{ ...tabs_css_style }}>
+                Вие сте фирма или обикновен потребител, който предлага краткосрочен проект?
+            </Typography>
+            {
+                tabText.map(text => (
+                    <Typography key={text} variant='body1' sx={{ ...tabs_css_style }}>
+                        {text}
+                    </Typography>
+                ))
+            }
+        </Stack>
     )
 };
 
-const UsersTabInfo = () => {
+const TalentsTabInfo = () => {
 
     const tabText = [
+        'Стани част от мрежата с талани.',
         'Работи в удобно за теб време, където и когато поискаш.',
         'Намери подходящия проект за твоите умения, като споделиш опита и знанията си.',
-        'Намери правилния човек, който да свърши твоята задача / проект.',
     ];
 
     return (
-        <>
-            <Stack sx={{
-                gap: 2,
-                justifyContent: 'center',
-            }}>
-                <StarBorderIcon fontSize='large' sx={{ alignSelf: 'center', color: 'primary.main' }} />
-                <Typography variant='h5' sx={{ ...tabs_css_style }}>
-                    Стани талант в нашата мрежа или сподели проект
-                </Typography>
-                {
-                    tabText.map(text => (
-                        <Typography variant='body1' sx={{ ...tabs_css_style }}>
-                            {text}
-                        </Typography>
-                    ))
-                }
-            </Stack>
-            <Stack sx={{ width: { md: '85%' }, margin: '0 auto', paddingBottom: 3, marginTop: 2.5 }}>
-                <Button variant='contained' onClick={() => navigate('/register')}>
-                    Научи повече
-                </Button>
-            </Stack>
-        </>
+        <Stack sx={{
+            gap: 2,
+            justifyContent: 'center',
+        }}>
+            <StarBorderIcon fontSize='large' sx={{ alignSelf: 'center', color: 'primary.main' }} />
+            <Typography variant='h5' sx={{ ...tabs_css_style }}>
+                Искаш да работиш на свободна практика?
+            </Typography>
+            {
+                tabText.map(text => (
+                    <Typography variant='body1' sx={{ ...tabs_css_style }}>
+                        {text}
+                    </Typography>
+                ))
+            }
+        </Stack>
     )
 };
 
-export default function MainPage(props) {
+export default function MainPage() {
     const job_offers_img = cld.image('main page photos/main_page_job_offers_sajflw').toURL();
     const freelancer_img = cld.image('main page photos/main_page_freelancer_suf7mw').toURL();
 
@@ -114,8 +118,8 @@ export default function MainPage(props) {
     ];
 
     const tabs_data = {
-        0: <CompaniesTabInfo />,
-        1: <UsersTabInfo />,
+        0: <ProjectsTabInfo />,
+        1: <TalentsTabInfo />,
     };
 
     return (
@@ -141,10 +145,12 @@ export default function MainPage(props) {
                     {
                         tabs_data[tab]
                     }
+                    <LearnMoreSection />
                 </Paper>
             </Box>
             <WhyRentAHand />
             <ExploreTheMarketPlace />
+            <Footer />
         </Navigation>
     )
 };
@@ -153,6 +159,8 @@ export const Head = () => (
     <>
         <title>Rent A Hand</title>
         <meta name="description" content="Rent a Hand - jobs portal" />
-        <meta name="keywords" content="Рент ъ хенд, Rent a Hand, работа, стаж, проекти, задачи, почасова работа" />
+        <meta name="keywords"
+            content="Рент ъ хенд, Rent a Hand, работа, стаж, проекти, задачи, почасова работа"
+        />
     </>
 );
