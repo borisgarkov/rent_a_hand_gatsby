@@ -18,36 +18,6 @@ import { Link, navigate } from 'gatsby';
 
 const anchor = 'right';
 
-const UserSection = ({ isUserLoggedIn, toggleDrawer }) => {
-
-    const isMobile = useScreenResolution();
-    const iconButton = isMobile ?
-        <IconButton onClick={toggleDrawer(anchor, true)} size='large'>
-            <PersonIcon />
-        </IconButton> :
-        <Button variant='text' sx={{ color: '#666666' }} onClick={toggleDrawer(anchor, true)}>
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                fontSize: '12px',
-                margin: '0 20px',
-            }} >
-                <PersonIcon />
-                Профил
-            </Box>
-        </Button >
-
-
-    return (
-        <Box sx={{
-            marginLeft: 'auto'
-        }}>
-            {isUserLoggedIn ? iconButton : <Button variant='outlined' onClick={() => navigate('/login')}>Вход</Button>}
-        </Box >
-    )
-}
-
 const MainMenuSection = ({ toggleDrawer }) => {
     return (
         <IconButton
@@ -67,13 +37,11 @@ const MainMenuSection = ({ toggleDrawer }) => {
             <MenuIcon />
         </IconButton>
     )
-}
-
+};
 
 export default function MainPageMenuDrawer({ menuItems, isUserLoggedIn, isUserSection }) {
 
     const isMobile = useScreenResolution();
-
     const [state, setState] = React.useState({ right: false, });
 
     const toggleDrawer = (anchor, open) => (event) => {
@@ -114,24 +82,15 @@ export default function MainPageMenuDrawer({ menuItems, isUserLoggedIn, isUserSe
     );
 
     return (
-        <>
-            <Box key={anchor}>
-                {
-                    isUserSection ?
-                        <UserSection
-                            isUserLoggedIn={isUserLoggedIn}
-                            toggleDrawer={toggleDrawer}
-                        /> :
-                        <MainMenuSection toggleDrawer={toggleDrawer} />
-                }
-                <Drawer
-                    anchor={anchor}
-                    open={state[anchor]}
-                    onClose={toggleDrawer(anchor, false)}
-                >
-                    {list(anchor)}
-                </Drawer>
-            </Box>
-        </>
+        <Box key={anchor}>
+            <MainMenuSection toggleDrawer={toggleDrawer} />
+            <Drawer
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+            >
+                {list(anchor)}
+            </Drawer>
+        </Box>
     );
-}
+};

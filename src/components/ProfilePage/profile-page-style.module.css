@@ -1,9 +1,9 @@
-.imageStyle img {
+.image-style {
+    margin: 0;
+}
+
+.image-style img {
     object-fit: contain;
     background-color: white;
 
-}
-
-.imageStyle {
-    margin: 0;
 }

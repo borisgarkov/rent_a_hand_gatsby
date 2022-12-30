@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 import * as React from "react";
-import listOfCities from "./listOfCities";
+import listOfCities from "../db-files/listOfCities";
 
 export default function AutocompleteCitiesList({
     city, handleCityChange, label = 'Населено място'

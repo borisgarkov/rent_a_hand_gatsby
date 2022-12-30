@@ -1,6 +1,9 @@
 import * as React from "react";
-import { Avatar, Button, Card, CardContent, CardHeader, CardMedia, Divider, Stack, Typography, Box } from "@mui/material";
-import { jobs, projects } from "../components/JobsPage/test-jobs";
+import {
+    Avatar, Button, Card, CardContent, CardHeader,
+    CardMedia, Divider, Stack, Typography, Box
+} from "@mui/material";
+import { jobs, projects } from '../components/db-files/test-jobs';
 
 import WorkIcon from '@mui/icons-material/Work';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
