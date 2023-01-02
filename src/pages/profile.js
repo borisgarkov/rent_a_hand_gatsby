@@ -18,6 +18,7 @@ import HomeLeftMenuIcons from '../components/Home/HomeLeftMenuIcons';
 import HomeRightMenuSearchBar from '../components/Home/HomeRightMenuSearchBar';
 import JobsCatalog from "../components/JobsPage/JobsCatalog";
 import { jobs } from '../components/db-files/test-jobs';
+import FixedBottomNavigation from "../components/Home/FixedBottomNavigation";
 
 const Profile = (props) => {
     const isMobile = useScreenResolution('md');
@@ -97,10 +98,14 @@ export default function ProfilePage() {
 
     return (
         <MainLayout>
-            <Grid item sm={2} xs={2}>
-                <HomeLeftMenuIcons isMobile={isMobile} />
-            </Grid>
-            <Grid item lg={7} xs={10}>
+            {
+                isMobile
+                    ? <FixedBottomNavigation />
+                    : <Grid item lg={2}>
+                        <HomeLeftMenuIcons isMobile={isMobile} />
+                    </Grid>
+            }
+            <Grid item lg={7} xs={12}>
                 <Profile />
             </Grid>
             {

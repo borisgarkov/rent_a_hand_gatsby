@@ -79,4 +79,4 @@ export default function MainLayout(props) {
             </Grid>
         </ThemeProvider >
     )
-}
+};
