@@ -1,6 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import ListItem from '@mui/material/ListItem';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
@@ -10,14 +8,13 @@ import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { work_categories } from '../db-files/work-categories';
 import listOfCities from '../db-files/listOfCities';
-import { FormControl, FormLabel, Grid, IconButton, Stack, TextField, Typography } from '@mui/material';
+import { FormControl, FormLabel, Grid, IconButton, Stack, TextField, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AutocompleteWorkCatsList from '../CommonItems/AutocompleteWorkCatsList';
 import AutocompleteCitiesList from '../CommonItems/AutocompleteCitiesList';
 import useScreenResolution from '../hooks/useScreenResolution';
-import currentUser from '../db-files/currentUser';
 
-const ConfirmationDialogRaw = (props) => {
+export default function ConfirmationDialogRaw(props) {
     const { onClose, value: valueProp, open, ...other } = props;
     const [value, setValue] = React.useState(valueProp);
 
@@ -150,46 +147,4 @@ const ConfirmationDialogRaw = (props) => {
             </DialogActions>
         </Dialog>
     );
-}
-
-export default function AddJob(props) {
-    const [open, setOpen] = React.useState(false);
-    const isMobile = useScreenResolution('md');
-
-    const handleClickListItem = () => {
-        setOpen(true);
-    };
-
-    const handleClose = (newValue) => {
-        setOpen(false);
-    };
-
-    return (
-        <>
-            <ListItem
-                button
-                aria-haspopup="true"
-                aria-controls="job-section"
-                aria-label="job-section"
-                sx={{
-                    backgroundColor: '#f0f2f5',
-                    borderRadius: 2,
-                    "&:hover": {
-                        backgroundColor: '#e4e6e9',
-                    }
-                }}
-                onClick={handleClickListItem}
-            >
-                <Typography variant={isMobile ? 'body2' : 'body1'}>
-                    Искаш ли да качиш обява, {currentUser.username}?
-                </Typography>
-            </ListItem>
-            <ConfirmationDialogRaw
-                id="job-section"
-                keepMounted
-                open={open}
-                onClose={handleClose}
-            />
-        </>
-    );
-}
+};

@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Avatar, Box, Card, CardHeader, Grid } from "@mui/material";
-import AddJob from "../JobsPage/AddJob";
+import AddJobFromPost from "../JobsPage/AddJobFromPost";
 import JobsCatalog from "../JobsPage/JobsCatalog";
 import { jobs } from "../db-files/test-jobs";
 import currentUser from "../db-files/currentUser";
 
 export default function FeedSection(props) {
     return (
-        <Box sx={{ margin: '0 auto', padding: { md: '20px 70px' } }}>
+        <Box sx={{ margin: { xs: '0 auto 100px', lg: '0 auto' }, padding: { md: '20px 70px' } }}>
             <Card sx={{
                 margin: { xs: '70px 5px 20px', lg: '80px 0 20px' },
                 display: 'flex',
@@ -26,7 +26,7 @@ export default function FeedSection(props) {
                     />}
                     sx={{ padding: { xs: 0, md: 2 } }}
                 />
-                <AddJob />
+                <AddJobFromPost />
             </Card>
             <Grid container sx={{ margin: '0 auto', }} gap={2}>
                 {

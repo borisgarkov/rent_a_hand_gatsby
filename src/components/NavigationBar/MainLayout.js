@@ -72,7 +72,7 @@ export default function MainLayout(props) {
                     </div>
                 </Toolbar>
             </AppBar >
-            <Grid container sx={{ height: '100vh' }}>
+            <Grid container sx={{ height: '100vh', marginBottom: { xs: '100px', lg: 0 } }}>
                 {
                     props.children
                 }
