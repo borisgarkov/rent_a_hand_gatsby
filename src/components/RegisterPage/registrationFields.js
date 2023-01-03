@@ -39,7 +39,7 @@ const registrationFields = (
                 type: 'text',
                 textField: 'username',
                 id: 'username',
-                label: 'Потребителски име',
+                label: 'Потребителско име',
                 required: true,
                 displaySizeProps: {
                     xs: 12,

@@ -64,9 +64,9 @@ export default function WhyRentAHand() {
 
                 <Divider sx={{ width: '40%', margin: '0 auto 20px', bgcolor: '#f37327' }} />
                 {
-                    whyRentAHandTexts.map(text => {
+                    whyRentAHandTexts.map((text, index) => {
                         return (
-                            <Stack key={text} sx={{
+                            <Stack key={index} sx={{
                                 flexDirection: 'row',
                                 justifyContent: 'center',
                                 columnGap: 1,

@@ -78,7 +78,7 @@ const TalentsTabInfo = () => {
             </Typography>
             {
                 tabText.map(text => (
-                    <Typography variant='body1' sx={{ ...tabs_css_style }}>
+                    <Typography key={text} variant='body1' sx={{ ...tabs_css_style }}>
                         {text}
                     </Typography>
                 ))

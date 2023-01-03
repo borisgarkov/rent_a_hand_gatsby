@@ -10,6 +10,10 @@ import { styled, alpha } from '@mui/material/styles';
 import * as styles from '../Home/home-styles.module.css';
 import useScreenResolution from "../hooks/useScreenResolution";
 import currentUser from "../db-files/currentUser";
+import { Link } from "gatsby";
+import FixedBottomNavigation from "../Home/FixedBottomNavigation";
+import HomeLeftMenuIcons from "../Home/HomeLeftMenuIcons";
+import HomeRightMenuSearchBar from "../Home/HomeRightMenuSearchBar";
 
 const SearchBarStyled = styled('div')(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
@@ -57,9 +61,11 @@ export default function MainLayout(props) {
                     display: 'flex',
                     justifyContent: 'space-between',
                 }}>
-                    <Typography variant={logoVariant}>
-                        Rent A Hand
-                    </Typography>
+                    <Link to='/home'>
+                        <Typography variant={logoVariant}>
+                            Rent A Hand
+                        </Typography>
+                    </Link>
                     <SearchSection isMobile={isMobile} />
                     <div className={styles.notificationSection}>
                         {isMobile && <IconButton><Search className={styles.icon} /></IconButton>}
@@ -68,13 +74,30 @@ export default function MainLayout(props) {
                                 <MailIcon className={styles.icon} />
                             </Badge>
                         </IconButton>
-                        <Avatar alt="profile-picture" src={currentUser.profilePicture} />
+                        <Link to='/profile'>
+                            <Avatar alt="profile-picture" src={currentUser.profilePicture} />
+                        </Link>
                     </div>
                 </Toolbar>
             </AppBar >
-            <Grid container sx={{ height: '100vh', marginBottom: { xs: '100px', lg: 0 } }}>
+            <Grid container sx={{ height: '100vh' }}>
                 {
-                    props.children
+                    isMobile
+                        ? <FixedBottomNavigation />
+                        : <Grid item lg={2}>
+                            <HomeLeftMenuIcons isMobile={isMobile} />
+                        </Grid>
+                }
+                <Grid item lg={7} xs={12}>
+                    {
+                        props.children
+                    }
+                </Grid>
+                {
+                    !isMobile &&
+                    <Grid item lg={3}>
+                        <HomeRightMenuSearchBar />
+                    </Grid>
                 }
             </Grid>
         </ThemeProvider >

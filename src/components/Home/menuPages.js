@@ -6,14 +6,15 @@ import savedJobsIcon from '../../images/main-page-icons/icons8-talent-64.png';
 import settingsIcon from '../../images/main-page-icons/icons8-settings-58.png';
 import logoutIcon from '../../images/main-page-icons/icons8-logout-64.png';
 
-const menuPages = [
-    { title: 'Начало', icon: homeIcon, path: '/home' },
-    { title: 'Профил', icon: profileIcon, path: '/profile' },
-    { title: 'Абонамент', icon: subscribeIcon, path: '/home' },
-    { title: 'Добави обява', icon: addJonIcon, path: '/home' },
-    { title: 'Запазени обяви', icon: savedJobsIcon, path: '/home' },
-    { title: 'Настройки', icon: settingsIcon, path: '/home' },
-    { title: 'Изход', icon: logoutIcon, path: '/' }
-];
+const homePage = { title: 'Начало', icon: homeIcon, path: '/home' };
+const profilePage = { title: 'Профил', icon: profileIcon, path: '/profile' };
+const subscriptionPage = { title: 'Абонамент', icon: subscribeIcon, path: '/pricing' };
+const addJobPost = { title: 'Добави обява', icon: addJonIcon, path: '/home' };
+const savedJobsPage = { title: 'Запазени обяви', icon: savedJobsIcon, path: '/saved-jobs' };
+const settingsPage = { title: 'Настройки', icon: settingsIcon, path: '/home' };
+const exitPage = { title: 'Изход', icon: logoutIcon, path: '/' };
 
-export default menuPages;
+export {
+    homePage, profilePage, subscriptionPage,
+    addJobPost, savedJobsPage, settingsPage, exitPage
+};

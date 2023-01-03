@@ -2,10 +2,9 @@ import { Grid, Typography, Box } from "@mui/material";
 import * as React from 'react';
 import PricingCard from "../components/PricingPlansPage/PricingCard";
 import FAQAccordion from "../components/PricingPlansPage/FAQAccordion";
-import Navigation from "../components/NavigationBar/Navigation";
+import MainLayout from "../components/NavigationBar/MainLayout";
 
 export default function PricingList() {
-
     const standardPackages = [
         {
             title: 'Безплатен',
@@ -34,12 +33,14 @@ export default function PricingList() {
         }
     ];
 
-
     return (
-        <Navigation>
+        <MainLayout>
             <Box
-                maxWidth={{ md: '70%' }}
-                sx={{ margin: 'auto', marginTop: 5, }}
+                sx={{
+                    margin: '0 auto',
+                    maxWidth: { lg: '95%' },
+                    paddingTop: 10,
+                }}
             >
                 <Typography variant='h5' align='center' gutterBottom>
                     План & Ценови лист
@@ -57,8 +58,6 @@ export default function PricingList() {
                     alignItems='flex-end'
                     marginBottom={10}
                     justifyContent='center'
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
                 >
                     {
                         standardPackages.map((card) => <PricingCard card={card} key={card.title} />)
@@ -66,6 +65,6 @@ export default function PricingList() {
                 </Grid>
                 <FAQAccordion />
             </Box >
-        </Navigation>
+        </MainLayout>
     )
 }

@@ -1,19 +1,54 @@
 import * as React from "react";
-import { Avatar, Divider, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Typography } from "@mui/material";
 import { Link } from "gatsby";
 import { StyledContainer, StyledStack } from "./StyledComponents";
 import currentUser from "../db-files/currentUser";
-import menuPages from "./menuPages";
+import {
+    homePage, profilePage, subscriptionPage,
+    addJobPost, savedJobsPage, settingsPage, exitPage
+} from './menuPages';
+import ConfirmationDialogRaw from "../JobsPage/AddJobModal";
 
 export default function HomeLeftMenuIcons(props) {
+    const [openJobModal, setOpenJobModal] = React.useState(false);
+
+    const handleClickOnJobModal = () => {
+        setOpenJobModal(true);
+    };
+
+    const handleCloseJobModal = (newValue) => {
+        setOpenJobModal(false);
+    };
+
+    const upperPartMenuPages = [homePage, profilePage, subscriptionPage];
+    const lowerPartMenuPages = [savedJobsPage, settingsPage, exitPage];
+
     return (
         <StyledContainer>
-            <StyledStack>
-                <Avatar alt="profile-picture" src={currentUser.profilePicture} />
-                <Typography variant="body2">{currentUser.username}</Typography>
-            </StyledStack>
+            <Link to='/profile'>
+                <StyledStack>
+                    <Avatar alt="profile-picture" src={currentUser.profilePicture} />
+                    <Typography variant="body2">{currentUser.username}</Typography>
+                </StyledStack>
+            </Link>
             {
-                menuPages.map((p) => (
+                upperPartMenuPages.map((p) => (
+                    <Link to={p.path} key={p.title}>
+                        <StyledStack>
+                            <img alt='icon' width='28' height='28' src={p.icon} />
+                            <Typography variant="body2">{p.title}</Typography>
+                        </StyledStack>
+                    </Link>
+                ))
+            }
+            <Box onClick={handleClickOnJobModal} sx={{ cursor: 'pointer' }}>
+                <StyledStack>
+                    <img alt='icon' width='28' height='28' src={addJobPost.icon} />
+                    <Typography variant="body2">{addJobPost.title}</Typography>
+                </StyledStack>
+            </Box>
+            {
+                lowerPartMenuPages.map((p) => (
                     <Link to={p.path} key={p.title}>
                         <StyledStack>
                             <img alt='icon' width='28' height='28' src={p.icon} />
@@ -23,6 +58,12 @@ export default function HomeLeftMenuIcons(props) {
                 ))
             }
             <Divider />
+            <ConfirmationDialogRaw
+                id="job-section"
+                keepMounted
+                open={openJobModal}
+                onClose={handleCloseJobModal}
+            />
         </StyledContainer>
     )
-}
+};

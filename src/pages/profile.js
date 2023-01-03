@@ -14,28 +14,17 @@ import currentUser from "../components/db-files/currentUser";
 import * as styles from '../components/Home/home-styles.module.css';
 
 import MainLayout from '../components/NavigationBar/MainLayout';
-import HomeLeftMenuIcons from '../components/Home/HomeLeftMenuIcons';
-import HomeRightMenuSearchBar from '../components/Home/HomeRightMenuSearchBar';
 import JobsCatalog from "../components/JobsPage/JobsCatalog";
 import { jobs } from '../components/db-files/test-jobs';
-import FixedBottomNavigation from "../components/Home/FixedBottomNavigation";
-
-import subscribeIcon from '../images/main-page-icons/icons8-tags-96.png';
-import savedJobsIcon from '../images/main-page-icons/icons8-talent-64.png';
-import settingsIcon from '../images/main-page-icons/icons8-settings-58.png';
-import logoutIcon from '../images/main-page-icons/icons8-logout-64.png';
 import { Link } from "gatsby";
+import { subscriptionPage, savedJobsPage, settingsPage, exitPage } from '../components/Home/menuPages';
+
 
 const Profile = (props) => {
     const isMobile = useScreenResolution('md');
     const isBelowLargeResolution = useScreenResolution('lg');
 
-    const userProfilePages = [
-        { title: 'Абонамент', icon: subscribeIcon, path: '/profile' },
-        { title: 'Запазени обяви', icon: savedJobsIcon, path: '/profile' },
-        { title: 'Настройки', icon: settingsIcon, path: '/profile' },
-        { title: 'Изход', icon: logoutIcon, path: '/' }
-    ];
+    const userProfilePages = [subscriptionPage, savedJobsPage, settingsPage, exitPage];
 
     return (
         <>
@@ -151,26 +140,9 @@ const Profile = (props) => {
 };
 
 export default function ProfilePage() {
-    const isMobile = useScreenResolution('lg');
-
     return (
         <MainLayout>
-            {
-                isMobile
-                    ? <FixedBottomNavigation />
-                    : <Grid item lg={2}>
-                        <HomeLeftMenuIcons isMobile={isMobile} />
-                    </Grid>
-            }
-            <Grid item lg={7} xs={12}>
-                <Profile />
-            </Grid>
-            {
-                !isMobile &&
-                <Grid item sm={3}>
-                    <HomeRightMenuSearchBar />
-                </Grid>
-            }
+            <Profile />
         </MainLayout>
     )
 };
