@@ -58,11 +58,6 @@ export default function ConfirmationDialogRaw(props) {
     return (
         <Dialog
             fullScreen={isMobile ? true : false}
-            // sx={{
-            //     '& .MuiDialog-paper': { width: '80%', maxHeight: 500 },
-            //     // maxWidth: { md: 'sm' }
-            // }}
-            // maxWidth="sm"
             open={open}
             {...other}
         >
