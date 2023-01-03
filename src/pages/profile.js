@@ -55,7 +55,10 @@ const Profile = (props) => {
                     margin: 'auto',
                 }} />
             </Box>
-            <Box sx={{ padding: { xs: '10px 0', md: '20px 70px' }, }}>
+            <Box sx={{
+                padding: { xs: '10px 0', md: '20px 70px' },
+                margin: { xs: '0 auto 100px', lg: '0 auto' }
+            }}>
                 <Card sx={{
                     borderRadius: '15px',
                     height: '180px',
@@ -127,7 +130,7 @@ const Profile = (props) => {
                                             margin: '2px auto'
                                         }}>
                                             <img alt='icon' width='28' height='28' src={p.icon} />
-                                            <Typography variant="body2">{p.title}</Typography>
+                                            <Typography variant="body1">{p.title}</Typography>
                                         </Stack>
                                     </Link>
                                 )
