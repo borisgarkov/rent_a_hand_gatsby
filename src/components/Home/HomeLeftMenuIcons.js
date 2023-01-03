@@ -8,22 +8,16 @@ import menuPages from "./menuPages";
 export default function HomeLeftMenuIcons(props) {
     return (
         <StyledContainer>
-            {
-                !props.isMobile
-                && <StyledStack>
-                    <Avatar alt="profile-picture" src={currentUser.profilePicture} />
-                    <Typography variant="body2">{currentUser.username}</Typography>
-                </StyledStack>
-            }
+            <StyledStack>
+                <Avatar alt="profile-picture" src={currentUser.profilePicture} />
+                <Typography variant="body2">{currentUser.username}</Typography>
+            </StyledStack>
             {
                 menuPages.map((p) => (
                     <Link to={p.path} key={p.title}>
                         <StyledStack>
                             <img alt='icon' width='28' height='28' src={p.icon} />
-                            {
-                                !props.isMobile &&
-                                <Typography variant="body2">{p.title}</Typography>
-                            }
+                            <Typography variant="body2">{p.title}</Typography>
                         </StyledStack>
                     </Link>
                 ))

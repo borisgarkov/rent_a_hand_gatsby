@@ -9,7 +9,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MessageIcon from '@mui/icons-material/Message';
 
 import useScreenResolution from '../components/hooks/useScreenResolution';
-import { Avatar, Box, Button, Card, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Button, Card, Grid, Stack, Typography } from '@mui/material';
 import currentUser from "../components/db-files/currentUser";
 import * as styles from '../components/Home/home-styles.module.css';
 
@@ -20,8 +20,22 @@ import JobsCatalog from "../components/JobsPage/JobsCatalog";
 import { jobs } from '../components/db-files/test-jobs';
 import FixedBottomNavigation from "../components/Home/FixedBottomNavigation";
 
+import subscribeIcon from '../images/main-page-icons/icons8-tags-96.png';
+import savedJobsIcon from '../images/main-page-icons/icons8-talent-64.png';
+import settingsIcon from '../images/main-page-icons/icons8-settings-58.png';
+import logoutIcon from '../images/main-page-icons/icons8-logout-64.png';
+import { Link } from "gatsby";
+
 const Profile = (props) => {
     const isMobile = useScreenResolution('md');
+    const isBelowLargeResolution = useScreenResolution('lg');
+
+    const userProfilePages = [
+        { title: 'Абонамент', icon: subscribeIcon, path: '/profile' },
+        { title: 'Запазени обяви', icon: savedJobsIcon, path: '/profile' },
+        { title: 'Настройки', icon: settingsIcon, path: '/profile' },
+        { title: 'Изход', icon: logoutIcon, path: '/' }
+    ];
 
     return (
         <>
@@ -53,21 +67,30 @@ const Profile = (props) => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                     }}>
-                        <Box>
-                            <a href=""><FacebookIcon /></a>
-                            <a href=""><InstagramIcon /></a>
-                            <a href=""><TwitterIcon /></a>
-                            <a href=""><LinkedInIcon /></a>
+                        <Box sx={{
+                            display: 'flex',
+                            columnGap: { xs: 6, md: 1 },
+                        }}>
+                            <a href="/"><FacebookIcon /></a>
+                            <a href="/"><InstagramIcon /></a>
+                            <a href="/"><TwitterIcon /></a>
+                            <a href="/"><LinkedInIcon /></a>
                         </Box>
                         <Typography variant="h6">
                             {currentUser.username}
                         </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', }}>
+                        <Box sx={{
+                            display: 'flex',
+                            columnGap: { xs: 4, md: 1 },
+                            margin: { xs: '16px auto', md: '0' }
+                        }}>
                             {
-                                isMobile && <a href=""><MessageIcon /></a>
+                                isMobile && <a href="/"><MessageIcon /></a>
                             }
-                            <a href=""><LanguageIcon /></a>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', }}>
+                            <a href="/"><LanguageIcon /></a>
+                            <Box sx={{
+                                display: 'flex',
+                            }}>
                                 <LocationOnIcon />
                                 <Typography>{currentUser.location}</Typography>
                             </Box>
@@ -81,6 +104,37 @@ const Profile = (props) => {
                         </Button>
                     }
                 </Card>
+                {
+                    isBelowLargeResolution &&
+                    <Card sx={{
+                        margin: '16px auto',
+                        backgroundColor: '#eeeeee',
+                        borderRadius: '15px',
+                        height: '180px',
+                        display: 'flex',
+                        flexDirection: { xs: 'column', lg: 'row' },
+                        gap: 2,
+                    }}>
+                        {
+                            userProfilePages.map(p => {
+                                return (
+                                    <Link to={p.path} key={p.title}>
+                                        <Stack sx={{
+                                            flexDirection: 'row',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            columnGap: 1,
+                                            margin: '2px auto'
+                                        }}>
+                                            <img alt='icon' width='28' height='28' src={p.icon} />
+                                            <Typography variant="body2">{p.title}</Typography>
+                                        </Stack>
+                                    </Link>
+                                )
+                            })
+                        }
+                    </Card>
+                }
                 <Grid container sx={{ margin: '24px auto', }} gap={2}>
                     {
                         jobs.map(job => (
