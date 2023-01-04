@@ -7,24 +7,25 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { Avatar, Box, IconButton, Typography } from '@mui/material';
-
-import './job-preview.css';
-
 import CloseIcon from '@mui/icons-material/Close';
 import { navigate } from 'gatsby';
+import useScreenResolution from "../hooks/useScreenResolution";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <Slide direction="down" ref={ref} {...props} />;
 });
 
 export default function JobPreviewDialog({ job, handleClose, open }) {
+    const isMobile = useScreenResolution('md');
+
     return (
         <Dialog
+            fullScreen={isMobile ? true : false}
             open={open}
             TransitionComponent={Transition}
             keepMounted
             onClose={handleClose}
-            aria-describedby="alert-dialog-slide-description"
+            aria-describedby="job-dialog-description"
         >
             <DialogTitle>
                 <Box
@@ -39,14 +40,16 @@ export default function JobPreviewDialog({ job, handleClose, open }) {
                     <Typography id="transition-modal-title" variant="h6" component="h2" mb={2}>
                         {job.publisher}
                     </Typography>
-                    <IconButton onClick={handleClose} sx={{ alignSelf: 'flex-start', marginLeft: 'auto' }} >
+                    <IconButton onClick={handleClose} sx={{
+                        alignSelf: 'flex-start', marginLeft: 'auto'
+                    }} >
                         <CloseIcon />
                     </IconButton>
                 </Box>
                 {job.title}
             </DialogTitle>
             <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
+                <DialogContentText id="job-dialog-description">
                     {job.description}
                 </DialogContentText>
             </DialogContent>

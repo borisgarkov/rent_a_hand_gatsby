@@ -3,19 +3,12 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import {
-    Avatar, Box, Button, CardActionArea,
+    Avatar, CardActionArea,
     IconButton, Stack, Tooltip, Typography
 } from '@mui/material';
 import * as React from "react";
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-
-import CloseIcon from '@mui/icons-material/Close';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -25,12 +18,9 @@ import WorkIcon from '@mui/icons-material/Work';
 import * as styles from '../ProfilePage/profile-page-style.module.css';
 import { navigate } from 'gatsby';
 import useScreenResolution from '../hooks/useScreenResolution';
+import JobPreviewDialog from './JobPreviewDialog';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="down" ref={ref} {...props} />;
-});
-
-export default function JobsCatalog({ job }) {
+export default function JobPost({ job }) {
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => { setOpen(true) };
     const handleClose = () => { setOpen(false) };
@@ -130,45 +120,7 @@ export default function JobsCatalog({ job }) {
                         </IconButton>
                     </Tooltip>
                 </Stack>
-                <Dialog
-                    open={open}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    onClose={handleClose}
-                    aria-describedby="alert-dialog-slide-description"
-                >
-                    <DialogTitle>
-                        <Box
-                            marginBottom={2}
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'baseline',
-                                columnGap: 2,
-                            }}
-                        >
-                            <Avatar>{job.publisher.slice(0, 1)}</Avatar>
-                            <Typography id="transition-modal-title" variant="h6" component="h2" mb={2}>
-                                {job.publisher}
-                            </Typography>
-                            <IconButton onClick={handleClose} sx={{
-                                alignSelf: 'flex-start', marginLeft: 'auto'
-                            }} >
-                                <CloseIcon />
-                            </IconButton>
-                        </Box>
-                        {job.title}
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-slide-description">
-                            {job.description}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={() => (navigate('/job-description'))}>
-                            Прегледай обява
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                <JobPreviewDialog job={job} handleClose={handleClose} open={open} />
             </Card >
         </Grid >
     )

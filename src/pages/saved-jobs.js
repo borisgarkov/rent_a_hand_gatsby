@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid, Typography, Stack, Button } from '@mui/material';
 import { navigate } from 'gatsby';
-import JobsCatalog from '../components/JobsPage/JobsCatalog';
+import JobPost from '../components/JobsPage/JobPost';
 import MainLayout from '../components/NavigationBar/MainLayout';
 
 export default function SavedJobs() {
@@ -21,7 +21,7 @@ export default function SavedJobs() {
                         }} gap={3} >
                             {
                                 jobs.map(job => (
-                                    <JobsCatalog key={job.id} job={job} />
+                                    <JobPost key={job.id} job={job} />
                                 ))
                             }
                         </Grid>

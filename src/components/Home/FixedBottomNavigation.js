@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import ConfirmationDialogRaw from '../JobsPage/AddJobModal';
 
 const BottomNavigationItem = (props) => {

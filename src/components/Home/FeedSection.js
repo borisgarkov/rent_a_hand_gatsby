@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Avatar, Box, Card, CardHeader, Grid } from "@mui/material";
 import AddJobFromPost from "../JobsPage/AddJobFromPost";
-import JobsCatalog from "../JobsPage/JobsCatalog";
+import JobPost from "../JobsPage/JobPost";
 import { jobs } from "../db-files/test-jobs";
 import currentUser from "../db-files/currentUser";
+import { navigate } from "gatsby";
 
 export default function FeedSection(props) {
     return (
@@ -22,7 +23,9 @@ export default function FeedSection(props) {
                         sx={{
                             width: { xs: 24, md: 56 },
                             height: { xs: 24, md: 56 },
+                            cursor: 'pointer'
                         }}
+                        onClick={() => navigate('/profile')}
                     />}
                     sx={{ padding: { xs: 0, md: 2 } }}
                 />
@@ -31,7 +34,7 @@ export default function FeedSection(props) {
             <Grid container sx={{ margin: '0 auto', }} gap={2}>
                 {
                     jobs.map(job => (
-                        <JobsCatalog key={job.id} job={job} />
+                        <JobPost key={job.id} job={job} />
                     ))
                 }
             </Grid>

@@ -14,11 +14,10 @@ import currentUser from "../components/db-files/currentUser";
 import * as styles from '../components/Home/home-styles.module.css';
 
 import MainLayout from '../components/NavigationBar/MainLayout';
-import JobsCatalog from "../components/JobsPage/JobsCatalog";
+import JobPost from "../components/JobsPage/JobPost";
 import { jobs } from '../components/db-files/test-jobs';
 import { Link } from "gatsby";
 import { subscriptionPage, savedJobsPage, settingsPage, exitPage } from '../components/Home/menuPages';
-
 
 const Profile = (props) => {
     const isMobile = useScreenResolution('md');
@@ -130,7 +129,7 @@ const Profile = (props) => {
                 <Grid container sx={{ margin: '24px auto', }} gap={2}>
                     {
                         jobs.map(job => (
-                            <JobsCatalog key={job.id} job={job} />
+                            <JobPost key={job.id} job={job} />
                         ))
                     }
                 </Grid>
