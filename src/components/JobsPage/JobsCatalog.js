@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import {
     Avatar, Box, Button, CardActionArea,
-    Divider, IconButton, Stack, Typography
+    IconButton, Stack, Tooltip, Typography
 } from '@mui/material';
 import * as React from "react";
 
@@ -17,6 +17,7 @@ import Slide from '@mui/material/Slide';
 
 import CloseIcon from '@mui/icons-material/Close';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import WorkIcon from '@mui/icons-material/Work';
@@ -39,7 +40,6 @@ export default function JobsCatalog({ job }) {
         <Grid item xs={12} key={job.id}
             sx={{
                 margin: { xs: 'auto 5px auto', lg: '0 auto' },
-                // padding: { md: '20px 70px' }
             }}
         >
             <Card sx={{
@@ -58,8 +58,9 @@ export default function JobsCatalog({ job }) {
                             <Avatar
                                 src='https://source.unsplash.com/random'
                                 className={styles.imageStyle}
-                                sx={{ margin: 0, }}
+                                sx={{ margin: 0, cursor: 'pointer' }}
                                 style={{ 'margin': 0 }}
+                                onClick={() => navigate('/profile')}
                             />
                         }
                         titleTypographyProps={{ fontSize: { sm: '1rem' }, fontWeight: 'bold', }}
@@ -90,8 +91,8 @@ export default function JobsCatalog({ job }) {
                 <Stack sx={{
                     flexDirection: 'row',
                     alignItems: 'flex-start',
+                    flexGrow: 1
                 }}>
-                    <Divider orientation='vertical' flexItem />
                     <CardActionArea onClick={handleClickOpen} sx={{ height: '100%', width: '100%' }}>
                         <CardHeader
                             title={job.title}
@@ -118,9 +119,16 @@ export default function JobsCatalog({ job }) {
                             </Stack>
                         </CardContent>
                     </CardActionArea>
-                    {/* <IconButton sx={{ marginLeft: 'auto' }}>
-                        <BookmarkAddedIcon sx={{ color: '#f37327' }} />
-                    </IconButton> */}
+                    {/* <Tooltip title="Премахни от запазени">
+                        <IconButton sx={{ marginLeft: 'auto' }}>
+                            <BookmarkAddedIcon sx={{ color: '#f37327' }} />
+                        </IconButton>
+                    </Tooltip> */}
+                    <Tooltip title="Добави в запазени">
+                        <IconButton sx={{ marginLeft: 'auto' }}>
+                            <BookmarkAddIcon sx={{ color: '#176ab4' }} />
+                        </IconButton>
+                    </Tooltip>
                 </Stack>
                 <Dialog
                     open={open}
