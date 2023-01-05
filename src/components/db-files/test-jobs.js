@@ -103,6 +103,19 @@ const jobs = [
         jobCategory: 'Монтажни Дейности',
         likes: '11',
         image: '',
+    },
+    {
+        id: '6',
+        title: 'Отопление, Вентилаци и Климатизация',
+        description: `Предлагам проектиране, `,
+        city: 'София',
+        salary: '123',
+        salaryType: 'Part-time',
+        publisher: 'Венцислав',
+        datePosted: 'Feb. 14, 2022',
+        jobCategory: 'Монтажни Дейности',
+        likes: '11',
+        image: '',
     }
 ];
 
