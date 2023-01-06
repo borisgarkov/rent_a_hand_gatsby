@@ -10,6 +10,7 @@ import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlin
 import cld from "../../services/getCloudinaryImages";
 import MainLayout from "../../components/NavigationBar/MainLayout";
 
+
 const fetchJobInfo = (currentJobId) => {
     return jobs.filter(obj => {
         return obj.id == currentJobId
