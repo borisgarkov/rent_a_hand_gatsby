@@ -8,7 +8,6 @@ import {
 } from '@mui/material';
 import * as React from "react";
 
-import Slide from '@mui/material/Slide';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import LocationOnIcon from '@mui/icons-material/LocationOn';

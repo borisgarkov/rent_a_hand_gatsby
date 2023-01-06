@@ -54,7 +54,7 @@ export default function JobPreviewDialog({ job, handleClose, open }) {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => (navigate('/job-description'))}>
+                <Button onClick={() => (navigate(`/jobs/${job.id}`))}>
                     Прегледай обява
                 </Button>
             </DialogActions>
