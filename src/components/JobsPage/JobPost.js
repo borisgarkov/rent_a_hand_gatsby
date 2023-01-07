@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import * as React from "react";
 
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -113,11 +114,18 @@ export default function JobPost({ job }) {
                             <BookmarkAddedIcon sx={{ color: '#f37327' }} />
                         </IconButton>
                     </Tooltip> */}
-                    <Tooltip title="Добави в запазени">
-                        <IconButton sx={{ marginLeft: 'auto' }}>
-                            <BookmarkAddIcon sx={{ color: '#176ab4' }} />
-                        </IconButton>
-                    </Tooltip>
+                    <Stack>
+                        <Tooltip title="Добави в запазени">
+                            <IconButton sx={{ marginLeft: 'auto' }}>
+                                <BookmarkAddIcon sx={{ color: '#176ab4' }} />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Редактирай обява">
+                            <IconButton sx={{ marginLeft: 'auto' }}>
+                                <EditOutlinedIcon sx={{ color: '#176ab4' }} />
+                            </IconButton>
+                        </Tooltip>
+                    </Stack>
                 </Stack>
                 <JobPreviewDialog job={job} handleClose={handleClose} open={open} />
             </Card >

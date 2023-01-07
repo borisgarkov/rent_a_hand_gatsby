@@ -4,11 +4,12 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MessageIcon from '@mui/icons-material/Message';
 
 import useScreenResolution from '../components/hooks/useScreenResolution';
-import { Avatar, Box, Button, Card, Chip, Grid, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Card, Chip, Grid, Typography } from '@mui/material';
 import currentUser from "../components/db-files/currentUser";
 import * as styles from '../components/Home/home-styles.module.css';
 import MainLayout from '../components/NavigationBar/MainLayout';
 import ProfileTabs from "../components/ProfilePage/ProfileTabs";
+import EditButton from "../components/ProfilePage/EditButton";
 
 const Profile = (props) => {
     const isMobile = useScreenResolution('md');
@@ -20,7 +21,19 @@ const Profile = (props) => {
                 height: { xs: '200px', lg: '300px' },
                 position: 'relative',
             }}>
-                <img src={currentUser.coverPicture} className={styles.coverImage} alt='cover' />
+                <Box sx={{
+                    width: '100%',
+                    height: { xs: '200px', lg: '300px' },
+                    position: 'relative',
+                }} >
+                    <img src={currentUser.coverPicture} alt='cover' className={styles.coverImage} />
+                    <EditButton editStyle={{
+                        position: 'absolute',
+                        bottom: 10,
+                        right: '1%',
+                        zIndex: 2,
+                    }} />
+                </Box>
                 <Avatar src={currentUser.profilePicture} alt='profile-pic' sx={{
                     width: { xs: '100px', lg: '180px' },
                     height: { xs: '100px', lg: '180px' },
