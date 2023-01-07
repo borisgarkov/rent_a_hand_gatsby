@@ -2,16 +2,14 @@ import * as React from "react";
 import { navigate } from "gatsby";
 
 import Navigation from "../components/NavigationBar/Navigation";
-
 import WorkIcon from '@mui/icons-material/Work';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-
 import * as styles from '../components/MainPage/main-page.module.css';
 import { Stack, Typography, Button, Paper, Tabs, Tab, Box } from "@mui/material";
-import cld from "../services/getCloudinaryImages";
 import WhyRentAHand from '../components/MainPage/WhyRentAHand';
 import ExploreTheMarketPlace from '../components/MainPage/ExploreTheMarketPlace';
 import Footer from "../components/CommonItems/Footer";
+import { StaticImage } from "gatsby-plugin-image";
 
 const tabs_css_style = {
     padding: {
@@ -88,21 +86,11 @@ const TalentsTabInfo = () => {
 };
 
 export default function MainPage() {
-    const job_offers_img = cld.image('main page photos/main_page_job_offers_sajflw').toURL();
-    const freelancer_img = cld.image('main page photos/main_page_freelancer_suf7mw').toURL();
+    const job_offers_img = 'https://res.cloudinary.com/jobsportal/image/upload/v1659175536/main%20page%20photos/main_page_job_offers_sajflw.jpg';
+    const freelancer_img = 'https://res.cloudinary.com/jobsportal/image/upload/v1659178189/main%20page%20photos/main_page_freelancer_suf7mw.jpg';
 
     const [tab, setTab] = React.useState(0);
-    const [backgroundImg, setBackgroundImg] = React.useState(job_offers_img);
-
-    const tab_images = {
-        0: job_offers_img,
-        1: freelancer_img,
-    };
-
-    const tabsChangeHandler = (event, newTab) => {
-        setTab(newTab);
-        setBackgroundImg(tab_images[newTab]);
-    };
+    const tabsChangeHandler = (event, newTab) => { setTab(newTab) };
 
     const tabs_info = [
         {
@@ -126,7 +114,11 @@ export default function MainPage() {
         <Navigation>
             <Box sx={{ position: 'relative' }}>
                 <Stack>
-                    <img className={styles.image} src={backgroundImg} alt='job offers img' />
+                    {
+                        tab === 0
+                            ? <StaticImage className={styles.image} src={job_offers_img} alt='job offers' />
+                            : <StaticImage className={styles.image} src={freelancer_img} alt='freelancers' />
+                    }
                 </Stack>
                 <Paper sx={{
                     width: { xs: '100%', lg: 576 }, position: { xs: 'static', lg: 'absolute' },
@@ -158,9 +150,9 @@ export default function MainPage() {
 export const Head = () => (
     <>
         <title>Rent A Hand</title>
-        <meta name="description" content="Rent a Hand - jobs portal" />
+        <meta name="description"
+            content="Rent a Hand - jobs portal, обяви за работа, хора на свободна практика" />
         <meta name="keywords"
-            content="Рент ъ хенд, Rent a Hand, работа, стаж, проекти, задачи, почасова работа"
-        />
+            content="Рент ъ хенд, Rent a Hand, работа, стаж, проекти, задачи, почасова работа" />
     </>
 );
