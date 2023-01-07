@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Grid, Typography, Stack, Button } from '@mui/material';
 import { navigate } from 'gatsby';
-import JobPost from '../components/JobsPage/JobPost';
 import MainLayout from '../components/NavigationBar/MainLayout';
+import JobPost from '../components/JobsPage/JobPost';
 
 export default function SavedJobs() {
     const jobs = [];

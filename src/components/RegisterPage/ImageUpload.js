@@ -1,11 +1,9 @@
+import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import * as React from 'react';
-
 import { Alert } from '@mui/material';
 
 export default function ImageUpload({ isImageUploaded, getImageUploaded, uploadImageText }) {
-
     return (
         <Grid item xs={12}>
             <input
@@ -29,4 +27,4 @@ export default function ImageUpload({ isImageUploaded, getImageUploaded, uploadI
             </label>
         </Grid>
     )
-}
+};

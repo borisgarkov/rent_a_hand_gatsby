@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Link, navigate } from 'gatsby';
 import {
     AppBar, Toolbar, Button, ButtonGroup,
-    Stack, Box, ThemeProvider, CssBaseline
+    Box, ThemeProvider, CssBaseline
 } from "@mui/material";
 
-import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 
@@ -24,11 +23,6 @@ export default function Navigation(props) {
     const isMobile = useScreenResolution();
 
     const menuPages = [
-        // {
-        //     title: 'Начало',
-        //     icon: <HomeIcon fontSize="small" />,
-        //     path: '/',
-        // },
         {
             title: 'Вход',
             icon: <LoginIcon fontSize="small" />,

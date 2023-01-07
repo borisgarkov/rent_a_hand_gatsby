@@ -1,29 +1,17 @@
 import * as React from "react";
-
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LanguageIcon from '@mui/icons-material/Language';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MessageIcon from '@mui/icons-material/Message';
 
 import useScreenResolution from '../components/hooks/useScreenResolution';
-import { Avatar, Box, Button, Card, Grid, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Card, Chip, Grid, Stack, Typography } from '@mui/material';
 import currentUser from "../components/db-files/currentUser";
 import * as styles from '../components/Home/home-styles.module.css';
-
 import MainLayout from '../components/NavigationBar/MainLayout';
-import JobPost from "../components/JobsPage/JobPost";
-import { jobs } from '../components/db-files/test-jobs';
-import { Link } from "gatsby";
-import { subscriptionPage, savedJobsPage, settingsPage, exitPage } from '../components/Home/menuPages';
+import ProfileTabs from "../components/ProfilePage/ProfileTabs";
 
 const Profile = (props) => {
     const isMobile = useScreenResolution('md');
-    const isBelowLargeResolution = useScreenResolution('lg');
-
-    const userProfilePages = [subscriptionPage, savedJobsPage, settingsPage, exitPage];
 
     return (
         <>
@@ -49,7 +37,7 @@ const Profile = (props) => {
             }}>
                 <Card sx={{
                     borderRadius: '15px',
-                    height: '180px',
+                    minHeight: '180px',
                 }}>
                     <Box sx={{
                         padding: '60px 60px 0',
@@ -60,20 +48,7 @@ const Profile = (props) => {
                     }}>
                         <Box sx={{
                             display: 'flex',
-                            columnGap: { xs: 6, md: 1 },
-                        }}>
-                            <a href="/"><FacebookIcon /></a>
-                            <a href="/"><InstagramIcon /></a>
-                            <a href="/"><TwitterIcon /></a>
-                            <a href="/"><LinkedInIcon /></a>
-                        </Box>
-                        <Typography variant="h6">
-                            {currentUser.username}
-                        </Typography>
-                        <Box sx={{
-                            display: 'flex',
                             columnGap: { xs: 4, md: 1 },
-                            margin: { xs: '16px auto', md: '0' }
                         }}>
                             {
                                 isMobile && <a href="/"><MessageIcon /></a>
@@ -86,53 +61,39 @@ const Profile = (props) => {
                                 <Typography>{currentUser.location}</Typography>
                             </Box>
                         </Box>
+                        <Typography variant="h6">
+                            {currentUser.username}
+                        </Typography>
+                        {
+                            !isMobile &&
+                            <Button variant='outlined'
+                                sx={{ maxWidth: '113px', padding: 1, textTransform: 'none' }}
+                            >
+                                Съобщение
+                            </Button>
+                        }
                     </Box>
-                    {
-                        !isMobile &&
-                        <Button variant='outlined'
-                            sx={{ margin: '16px auto', display: 'block' }}>
-                            Съобщение
-                        </Button>
-                    }
-                </Card>
-                {
-                    isBelowLargeResolution &&
-                    <Card sx={{
-                        margin: '16px auto',
-                        backgroundColor: '#eeeeee',
-                        borderRadius: '15px',
-                        height: '180px',
-                        display: 'flex',
-                        flexDirection: { xs: 'column', lg: 'row' },
+                    <Grid container sx={{
+                        justifyContent: 'center',
                         gap: 2,
+                        margin: '24px auto',
+                        maxWidth: '80%'
                     }}>
                         {
-                            userProfilePages.map(p => {
+                            currentUser.skills.map((skill, indx) => {
                                 return (
-                                    <Link to={p.path} key={p.title}>
-                                        <Stack sx={{
-                                            flexDirection: 'row',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            columnGap: 1,
-                                            margin: '2px auto'
-                                        }}>
-                                            <img alt='icon' width='28' height='28' src={p.icon} />
-                                            <Typography variant="body1">{p.title}</Typography>
-                                        </Stack>
-                                    </Link>
+                                    <Grid item key={indx}>
+                                        <Chip label={skill} variant="filled" sx={{
+                                            '&:hover': { backgroundColor: '#bdbdbd' }
+                                        }} />
+                                    </Grid>
                                 )
                             })
                         }
-                    </Card>
-                }
-                <Grid container sx={{ margin: '24px auto', }} gap={2}>
-                    {
-                        jobs.map(job => (
-                            <JobPost key={job.id} job={job} />
-                        ))
-                    }
-                </Grid>
+                    </Grid>
+                </Card>
+
+                <ProfileTabs />
             </Box >
         </>
     )
