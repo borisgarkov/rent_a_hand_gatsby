@@ -5,7 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Button, Stack, Typography } from '@mui/material';
-import ConfirmationDialogRaw from '../JobsPage/AddJobModal';
+import AddJobModal from '../JobsPage/AddJobModal';
 
 const BottomNavigationItem = (props) => {
     const page = props.page
@@ -20,14 +20,8 @@ const BottomNavigationItem = (props) => {
 
 export default function FixedBottomNavigation() {
     const [openJobModal, setOpenJobModal] = React.useState(false);
-
-    const handleClickOnJobModal = () => {
-        setOpenJobModal(true);
-    };
-
-    const handleCloseJobModal = (newValue) => {
-        setOpenJobModal(false);
-    };
+    const handleClickOnJobModal = () => { setOpenJobModal(true); };
+    const handleCloseJobModal = () => { setOpenJobModal(false); };
 
     return (
         <>
@@ -60,11 +54,12 @@ export default function FixedBottomNavigation() {
                     }} />
                 </Link>
             </Paper>
-            <ConfirmationDialogRaw
+            <AddJobModal
                 id="job-section"
                 keepMounted
                 open={openJobModal}
                 onClose={handleCloseJobModal}
+                modaltitle='Добави обява'
             />
         </>
     );

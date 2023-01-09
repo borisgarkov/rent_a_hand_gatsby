@@ -14,8 +14,9 @@ import AutocompleteWorkCatsList from '../CommonItems/AutocompleteWorkCatsList';
 import AutocompleteCitiesList from '../CommonItems/AutocompleteCitiesList';
 import useScreenResolution from '../hooks/useScreenResolution';
 
-export default function ConfirmationDialogRaw(props) {
-    const { onClose, value: valueProp, open, ...other } = props;
+export default function AddJobModal(props) {
+    console.log(props);
+    const { onClose, value: valueProp, open, modaltitle, ...other } = props;
     const [value, setValue] = React.useState(valueProp);
 
     const [position, setPosition] = React.useState('');
@@ -33,25 +34,17 @@ export default function ConfirmationDialogRaw(props) {
     const [jobDescription, setJobDescription] = React.useState('');
     const handleJobDescriptionChange = (event) => { setJobDescription(event.target.value) };
 
+    const [jobType, setJobType] = React.useState('Проекти');
+    const handleJobTypeChange = (event) => { setJobType(event.target.value); };
+
     React.useEffect(() => {
         if (!open) {
             setValue(valueProp);
         }
     }, [valueProp, open]);
 
-    const handleCancel = () => {
-        onClose();
-    };
-
-    const handleOk = () => {
-        onClose(value);
-    };
-
-    const [jobType, setJobType] = React.useState('Проекти');
-
-    const handleJobTypeChange = (event) => {
-        setJobType(event.target.value);
-    };
+    const handleCancel = () => { onClose(); };
+    const handleOk = () => { onClose(value); };
 
     const isMobile = useScreenResolution('lg');
 
@@ -66,7 +59,9 @@ export default function ConfirmationDialogRaw(props) {
                 justifyContent: 'space-between',
                 alignItems: 'center'
             }}>
-                <DialogTitle>Добави обявa</DialogTitle>
+                <DialogTitle>
+                    {modaltitle}
+                </DialogTitle>
                 <IconButton onClick={handleCancel} sx={{ marginRight: 1 }}>
                     <CloseIcon />
                 </IconButton>
@@ -138,7 +133,9 @@ export default function ConfirmationDialogRaw(props) {
                 </Grid>
             </DialogContent>
             <DialogActions>
-                <Button fullWidth variant='outlined' onClick={handleOk}>Добави</Button>
+                <Button fullWidth variant='outlined' onClick={handleOk}>
+                    {modaltitle}
+                </Button>
             </DialogActions>
         </Dialog>
     );

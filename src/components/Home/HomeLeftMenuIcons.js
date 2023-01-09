@@ -7,18 +7,13 @@ import {
     homePage, profilePage, subscriptionPage,
     addJobPost, savedJobsPage, settingsPage, exitPage
 } from './menuPages';
-import ConfirmationDialogRaw from "../JobsPage/AddJobModal";
+import AddJobModal from "../JobsPage/AddJobModal";
 
 export default function HomeLeftMenuIcons(props) {
     const [openJobModal, setOpenJobModal] = React.useState(false);
 
-    const handleClickOnJobModal = () => {
-        setOpenJobModal(true);
-    };
-
-    const handleCloseJobModal = (newValue) => {
-        setOpenJobModal(false);
-    };
+    const handleClickOnJobModal = () => { setOpenJobModal(true); };
+    const handleCloseJobModal = () => { setOpenJobModal(false); };
 
     const upperPartMenuPages = [homePage, profilePage, subscriptionPage];
     const lowerPartMenuPages = [savedJobsPage, settingsPage, exitPage];
@@ -58,11 +53,12 @@ export default function HomeLeftMenuIcons(props) {
                 ))
             }
             <Divider />
-            <ConfirmationDialogRaw
+            <AddJobModal
                 id="job-section"
                 keepMounted
                 open={openJobModal}
                 onClose={handleCloseJobModal}
+                modaltitle='Добави обява'
             />
         </StyledContainer>
     )

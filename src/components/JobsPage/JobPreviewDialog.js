@@ -46,7 +46,9 @@ export default function JobPreviewDialog({ job, handleClose, open }) {
                         <CloseIcon />
                     </IconButton>
                 </Box>
-                {job.title}
+                {
+                    job.title
+                }
             </DialogTitle>
             <DialogContent>
                 <DialogContentText id="job-dialog-description">
