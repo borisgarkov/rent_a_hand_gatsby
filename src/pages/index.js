@@ -4,7 +4,6 @@ import { navigate } from "gatsby";
 import Navigation from "../components/NavigationBar/Navigation";
 import WorkIcon from '@mui/icons-material/Work';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import * as styles from '../components/MainPage/main-page.module.css';
 import { Stack, Typography, Button, Paper, Tabs, Tab, Box } from "@mui/material";
 import WhyRentAHand from '../components/MainPage/WhyRentAHand';
 import ExploreTheMarketPlace from '../components/MainPage/ExploreTheMarketPlace';
@@ -21,7 +20,7 @@ const tabs_css_style = {
 const LearnMoreSection = () => {
     return (
         <Stack sx={{ width: { md: '85%' }, margin: '0 auto', paddingBottom: 3, marginTop: 2.5 }}>
-            <Button variant='contained' onClick={() => navigate('/register')}>Научи повече</Button>
+            <Button variant='contained' onClick={() => navigate('/login')}>Научи повече</Button>
         </Stack>
     )
 };
@@ -58,7 +57,6 @@ const ProjectsTabInfo = () => {
 };
 
 const TalentsTabInfo = () => {
-
     const tabText = [
         'Стани част от мрежата с талани.',
         'Работи в удобно за теб време, където и когато поискаш.',
@@ -141,9 +139,11 @@ export default function MainPage() {
                     <LearnMoreSection />
                 </Paper>
             </Box>
+
             <WhyRentAHand />
             <ExploreTheMarketPlace />
             <Footer />
+
         </Navigation>
     )
 };

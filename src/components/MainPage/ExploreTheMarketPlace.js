@@ -10,6 +10,7 @@ import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined
 import LoyaltyOutlinedIcon from '@mui/icons-material/LoyaltyOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
+import AppsIcon from '@mui/icons-material/Apps';
 
 import * as styles from './explore-categories.module.css'
 import { Link } from 'gatsby';
@@ -52,6 +53,10 @@ export default function ExploreTheMarketPlace() {
             category: 'Финанси/Счетоводни услуги',
             icon: <AccountBalanceOutlinedIcon fontSize='large' />,
         },
+        {
+            category: 'Виж всички',
+            icon: <AppsIcon fontSize='large' />
+        }
     ];
 
     return (

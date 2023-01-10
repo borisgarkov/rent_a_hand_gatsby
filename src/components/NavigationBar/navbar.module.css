@@ -8,36 +8,3 @@ a:hover {
     text-decoration: none;
     color: inherit;
 }
-
-.separator {
-    position: absolute;
-    width: 100%;
-    top: 50px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #f37327;
-    font-weight: bolder;
-    font-size: 10px;
-    background-color: transparent;
-}
-
-.separator::before {
-    content: '';
-    flex: 0.12;
-    border-bottom: 2px solid #f37327;
-}
-
-.separator::after {
-    content: '';
-    flex: 1;
-    border-bottom: 2px solid #f37327;
-}
-
-.separator:not(:empty)::before {
-    margin-right: .25em;
-}
-
-.separator:not(:empty)::after {
-    margin-left: .25em;
-}

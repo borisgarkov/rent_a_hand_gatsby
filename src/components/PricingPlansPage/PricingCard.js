@@ -4,8 +4,10 @@ import * as React from 'react';
 
 export default function PricingCard({ card }) {
     return (
-        <Grid item xs={12} sm={6} md={4} sx={{ alignSelf: 'baseline' }}>
-            <Card>
+        <Grid item xs={12} sx={{ alignSelf: 'baseline', height: '100%' }}>
+            <Card sx={{
+                display: 'flex',
+            }}>
                 <CardHeader
                     title={card.title}
                     titleTypographyProps={{
@@ -13,7 +15,7 @@ export default function PricingCard({ card }) {
                         color: 'primary.main',
                         fontWeight: 'bold',
                     }}
-                    sx={{ backgroundColor: '#e0e3e7', }}
+                    sx={{ backgroundColor: '#e0e3e7', flexBasis: '100px' }}
                 />
                 <CardContent>
                     <Box sx={{
@@ -23,13 +25,14 @@ export default function PricingCard({ card }) {
                         <Typography variant='h4' color='text.primary'>{card.price}</Typography>
                         <Typography variant='h5' color='text.secondary'>/месец</Typography>
                     </Box>
+                </CardContent>
+                <CardContent>
                     <Typography
                         variant='h5' color='text.primary'
                         textAlign='center' marginBottom={4}
                     >
                         Включва
                     </Typography>
-
                     {
                         card.description.map(line =>
                             <Box
@@ -51,8 +54,9 @@ export default function PricingCard({ card }) {
                             </Box>
                         )
                     }
-
                 </CardContent>
+
+
                 <CardActions>
                     <Button variant='contained' fullWidth>Избери</Button>
                 </CardActions>

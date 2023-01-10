@@ -10,7 +10,7 @@ export default function PricingList() {
             title: 'Безплатен',
             price: '0лв.',
             description: [
-                '1 обява за срок от 30 дни',
+                '1 обява за срок от 14 дни',
             ]
         },
         {
@@ -42,14 +42,8 @@ export default function PricingList() {
                     paddingTop: 10,
                 }}
             >
-                <Typography variant='h5' align='center' gutterBottom>
+                <Typography variant='h4' align='center' marginBottom={5}>
                     План & Ценови лист
-                </Typography>
-                <Typography variant='h4' align='center' gutterBottom>
-                    Имаме план за всеки потребител
-                </Typography>
-                <Typography variant='h6' align='center' marginBottom={5} color='text.secondary' gutterBottom>
-                    Независимо дали си фирма, или потребител
                 </Typography>
 
                 <Grid

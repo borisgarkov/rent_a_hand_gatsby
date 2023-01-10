@@ -1,9 +1,0 @@
-#gatsby-focus-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-body {
-    margin: 0;
-}
