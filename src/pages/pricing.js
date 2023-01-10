@@ -1,4 +1,4 @@
-import { Grid, Typography, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import * as React from 'react';
 import PricingCard from "../components/PricingPlansPage/PricingCard";
 import FAQAccordion from "../components/PricingPlansPage/FAQAccordion";
@@ -8,29 +8,45 @@ export default function PricingList() {
     const standardPackages = [
         {
             title: 'Безплатен',
-            price: '0лв.',
+            price: '0',
             description: [
                 '1 обява за срок от 14 дни',
             ]
         },
         {
-            title: 'Стандартен',
-            price: '6,99лв.',
+            title: 'Стандартен за 14 дни',
+            price: '19,60',
             description: [
-                'До 3 обяви за целия абонаментен период',
-                'Подредба на челна позиция с други обяви в общата категория',
-                'По една публикация месечно на обявата в нашите социални мрежи',
+                'Достъп до чат с други потребители',
+                'По-лесно намиране на обявата в търсачката',
             ]
         },
         {
-            title: 'Премиум',
-            price: '25,99лв.',
+            title: 'Стандартен за 28 дни',
+            price: '33,60',
             description: [
-                'Неограничен брой обяви за целия абонаментен период',
-                'Подредба на челна позиция с други обяви в общата категория',
-                'Всяка седмица публикуване на обявата в нашите социалните мрежи',
+                'Достъп до чат с други потребители',
+                'По-лесно намиране на обявата в търсачката',
             ]
-        }
+        },
+        {
+            title: 'Премиум за 7 дни',
+            price: '35',
+            description: [
+                'Достъп до чат с други потребители',
+                'Обявата се показва на челно място в своята категория',
+                'Обявата се споделя на стената в социалните мрежи на Rent A Hand',
+            ]
+        },
+        {
+            title: 'Премиум за 28 дни',
+            price: '117,60',
+            description: [
+                'Достъп до чат с други потребители',
+                'Обявата се показва на челно място в своята категория',
+                'Обявата се споделя на стената в социалните мрежи на Rent A Hand',
+            ]
+        },
     ];
 
     return (
@@ -46,17 +62,10 @@ export default function PricingList() {
                     План & Ценови лист
                 </Typography>
 
-                <Grid
-                    container
-                    spacing={5}
-                    alignItems='flex-end'
-                    marginBottom={10}
-                    justifyContent='center'
-                >
-                    {
-                        standardPackages.map((card) => <PricingCard card={card} key={card.title} />)
-                    }
-                </Grid>
+                {
+                    standardPackages.map((card) => <PricingCard card={card} key={card.title} />)
+                }
+
                 <FAQAccordion />
             </Box >
         </MainLayout>
