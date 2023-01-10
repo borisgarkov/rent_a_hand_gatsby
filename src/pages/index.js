@@ -116,12 +116,13 @@ export default function MainPage() {
                 <Stack>
                     {
                         tab === 0
-                            ? <StaticImage className={styles.image} src={job_offers_img} alt='job offers' />
-                            : <StaticImage className={styles.image} src={freelancer_img} alt='freelancers' />
+                            ? <StaticImage src={job_offers_img} alt='job offers' />
+                            : <StaticImage src={freelancer_img} alt='freelancers' />
                     }
                 </Stack>
                 <Paper sx={{
-                    width: { xs: '100%', lg: 576 }, position: { xs: 'static', lg: 'absolute' },
+                    width: { xs: '100%', lg: 576 },
+                    position: { xs: 'static', lg: 'absolute' },
                     top: { md: '20%' }, left: { md: '8%' },
                 }}>
                     <Tabs value={tab} centered variant='fullWidth'

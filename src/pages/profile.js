@@ -10,6 +10,7 @@ import * as styles from '../components/Home/home-styles.module.css';
 import MainLayout from '../components/NavigationBar/MainLayout';
 import ProfileTabs from "../components/ProfilePage/ProfileTabs";
 import EditButton from "../components/ProfilePage/EditButton";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Profile = (props) => {
     const isMobile = useScreenResolution('md');
@@ -26,6 +27,7 @@ const Profile = (props) => {
                     height: { xs: '200px', lg: '300px' },
                     position: 'relative',
                 }} >
+                    {/* <StaticImage src={currentUser.coverPicture} alt='cover' className={styles.coverImage} /> */}
                     <img src={currentUser.coverPicture} alt='cover' className={styles.coverImage} />
                     <EditButton editStyle={{
                         position: 'absolute',

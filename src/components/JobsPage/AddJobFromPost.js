@@ -3,19 +3,14 @@ import ListItem from '@mui/material/ListItem';
 import { Typography } from '@mui/material';
 import useScreenResolution from '../hooks/useScreenResolution';
 import currentUser from '../db-files/currentUser';
-import ConfirmationDialogRaw from './AddJobModal';
+import AddJobModal from './AddJobModal';
 
 export default function AddJobFromPost(props) {
-    const [openJobModal, setOpenJobModal] = React.useState(false);
     const isMobile = useScreenResolution('md');
 
-    const handleClickOnJobModal = () => {
-        setOpenJobModal(true);
-    };
-
-    const handleCloseJobModal = (newValue) => {
-        setOpenJobModal(false);
-    };
+    const [openJobModal, setOpenJobModal] = React.useState(false);
+    const handleClickOnJobModal = () => { setOpenJobModal(true); };
+    const handleCloseJobModal = () => { setOpenJobModal(false); };
 
     return (
         <>
@@ -37,11 +32,12 @@ export default function AddJobFromPost(props) {
                     Искаш ли да качиш обява, {currentUser.username}?
                 </Typography>
             </ListItem>
-            <ConfirmationDialogRaw
+            <AddJobModal
                 id="job-section"
                 keepMounted
                 open={openJobModal}
                 onClose={handleCloseJobModal}
+                modaltitle='Добави обява'
             />
         </>
     );

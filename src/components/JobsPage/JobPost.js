@@ -1,3 +1,4 @@
+import * as React from "react";
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -6,9 +7,7 @@ import {
     Avatar, CardActionArea,
     IconButton, Stack, Tooltip, Typography
 } from '@mui/material';
-import * as React from "react";
 
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -19,6 +18,9 @@ import * as styles from '../ProfilePage/profile-page-style.module.css';
 import { navigate } from 'gatsby';
 import useScreenResolution from '../hooks/useScreenResolution';
 import JobPreviewDialog from './JobPreviewDialog';
+import AddJobModal from './AddJobModal';
+import EditJob from "./EditJob";
+import DeleteJob from "./DeleteJob";
 
 export default function JobPost({ job }) {
     const [open, setOpen] = React.useState(false);
@@ -120,11 +122,10 @@ export default function JobPost({ job }) {
                                 <BookmarkAddIcon sx={{ color: '#176ab4' }} />
                             </IconButton>
                         </Tooltip>
-                        <Tooltip title="Редактирай обява">
-                            <IconButton sx={{ marginLeft: 'auto' }}>
-                                <EditOutlinedIcon sx={{ color: '#176ab4' }} />
-                            </IconButton>
-                        </Tooltip>
+
+                        <EditJob currentJob={job} />
+                        <DeleteJob />
+
                     </Stack>
                 </Stack>
                 <JobPreviewDialog job={job} handleClose={handleClose} open={open} />
