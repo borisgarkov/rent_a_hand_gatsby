@@ -3,7 +3,7 @@ import { IconButton, Tooltip } from "@mui/material";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import AddJobModal from "./AddJobModal";
 
-export default function EditJob(props) {
+export default function EditJob({ currentJob }) {
     const [openJobModal, setOpenJobModal] = React.useState(false);
     const handleClickOnJobModal = () => { setOpenJobModal(true); };
     const handleCloseJobModal = () => { setOpenJobModal(false); };
@@ -21,6 +21,7 @@ export default function EditJob(props) {
                 open={openJobModal}
                 onClose={handleCloseJobModal}
                 modaltitle='Редактирай обява'
+                currentJob={currentJob}
             />
         </>
     )

@@ -123,14 +123,13 @@ export default function JobPost({ job }) {
                             </IconButton>
                         </Tooltip>
 
-                        <EditJob />
+                        <EditJob currentJob={job} />
                         <DeleteJob />
 
                     </Stack>
                 </Stack>
                 <JobPreviewDialog job={job} handleClose={handleClose} open={open} />
             </Card >
-
         </Grid >
     )
 }

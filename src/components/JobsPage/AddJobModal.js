@@ -6,36 +6,25 @@ import Dialog from '@mui/material/Dialog';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { work_categories } from '../db-files/work-categories';
-import listOfCities from '../db-files/listOfCities';
 import { FormControl, FormLabel, Grid, IconButton, Stack, TextField, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AutocompleteWorkCatsList from '../CommonItems/AutocompleteWorkCatsList';
 import AutocompleteCitiesList from '../CommonItems/AutocompleteCitiesList';
 import useScreenResolution from '../hooks/useScreenResolution';
+import useJobsModalData from '../hooks/useJobsModalData';
 
 export default function AddJobModal(props) {
-    console.log(props);
-    const { onClose, value: valueProp, open, modaltitle, ...other } = props;
+    const { onClose, value: valueProp, open, modaltitle, currentJob, ...other } = props;
     const [value, setValue] = React.useState(valueProp);
 
-    const [position, setPosition] = React.useState('');
-    const handlePositionChange = (event) => { setPosition(event.target.value) };
-
-    const [workCategory, setWorkCategory] = React.useState(work_categories[0]);
-    const handleWorkCategoryChange = (event, newValue) => { setWorkCategory(newValue) };
-
-    const [city, setCity] = React.useState(listOfCities[0]);
-    const handleCityChange = (event, newValue) => { setCity(newValue) };
-
-    const [salary, setSalary] = React.useState('');
-    const handleSalaryChange = (event) => { setSalary(event.target.value) };
-
-    const [jobDescription, setJobDescription] = React.useState('');
-    const handleJobDescriptionChange = (event) => { setJobDescription(event.target.value) };
-
-    const [jobType, setJobType] = React.useState('Проекти');
-    const handleJobTypeChange = (event) => { setJobType(event.target.value); };
+    const {
+        position, handlePositionChange,
+        workCategory, handleWorkCategoryChange,
+        city, handleCityChange,
+        salary, handleSalaryChange,
+        jobDescription, handleJobDescriptionChange,
+        jobType, handleJobTypeChange
+    } = useJobsModalData({ 'currentJob': currentJob });
 
     React.useEffect(() => {
         if (!open) {
