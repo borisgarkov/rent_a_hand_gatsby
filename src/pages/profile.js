@@ -29,9 +29,9 @@ const Profile = (props) => {
                     height: { xs: '200px', lg: '300px' },
                     position: 'relative',
                 }} >
-                    <GatsbyImage image={currentUser.profilePicture} alt='profile-pic' />
+                    {/* <GatsbyImage image={currentUser.profilePicture} alt='profile-pic' /> */}
                     {/* <StaticImage src={currentUser.coverPicture} alt='cover' className={styles.coverImage} /> */}
-                    {/* <img src={currentUser.coverPicture} alt='cover' className={styles.coverImage} /> */}
+                    <img src={currentUser.coverPicture} alt='cover' className={styles.coverImage} />
                     <EditButton editStyle={{
                         position: 'absolute',
                         bottom: 10,
