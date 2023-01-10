@@ -1,13 +1,11 @@
 import * as React from "react";
-import { IconButton, Tooltip, Button, Stack } from "@mui/material";
+import { IconButton, Tooltip, Button } from "@mui/material";
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import CloseIcon from '@mui/icons-material/Close';
 
-export default function DeleteJob(props) {
+export default function DeleteJob() {
     const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
     const handleClickOpen = () => { setOpenDeleteModal(true); };
     const handleClose = () => { setOpenDeleteModal(false); };
